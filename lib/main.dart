@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Container(child: Text("master"),),
+      home: Container(child: Text("adham"),),
     );
   }
 }
