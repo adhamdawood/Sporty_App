@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sporty_app/LogIn/ForgetPasswordScreen.dart';
 import 'package:sporty_app/LogIn/LogInScreen.dart';
+import 'package:sporty_app/LogIn/VerificationCode.dart';
 import 'package:sporty_app/SignUp/SignUpScreen.dart';
 import 'package:sporty_app/WelcomeScreen.dart';
 
@@ -24,8 +25,9 @@ class MyApp extends StatelessWidget {
         SignUpScreen.ROUTE_NAME:(context)=>SignUpScreen(),
         LogInScreen.ROUTE_NAME:(context)=>LogInScreen(),
         ForgetPasswordScreen.ROUTE_NAME:(context)=>ForgetPasswordScreen(),
+        VerificationCode.ROUTE_NAME:(context)=>VerificationCode(),
       },
-      initialRoute: WelcomeScreen.ROUTE_NAME,
+      initialRoute: VerificationCode.ROUTE_NAME,
 
     );
   }
