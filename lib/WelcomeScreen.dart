@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sporty_app/SignUp/SignUpScreen.dart';
 
 class WelcomeScreen extends StatelessWidget {
+  static const  ROUTE_NAME ="WelcomeScreen";
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,10 @@ class WelcomeScreen extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: TextButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (_) => SignUpScreen()));
+                  },
                   child: const Text("Sign Up",style: TextStyle(color: Colors.white),),),
               ),
               const SizedBox(height: 10,),
