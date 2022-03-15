@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         ForgetPasswordScreen.ROUTE_NAME:(context)=>ForgetPasswordScreen(),
         VerificationCode.ROUTE_NAME:(context)=>VerificationCode(),
       },
-      initialRoute: VerificationCode.ROUTE_NAME,
+      initialRoute: WelcomeScreen.ROUTE_NAME,
 
     );
   }

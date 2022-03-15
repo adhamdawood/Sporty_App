@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sporty_app/LogIn/VerificationCode.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   static const ROUTE_NAME= "ForgetPassword Screen";
@@ -42,7 +43,10 @@ class ForgetPasswordScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: TextButton(
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => VerificationCode()));
+                },
                 child: const Text("Send Code",style: TextStyle(color: Colors.white),),),
             ),
           ],
