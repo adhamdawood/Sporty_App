@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sporty_app/WelcomeScreen.dart';
 
 void main() {
   runApp( MyApp());
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Container(child: Text("loglog adham"),),
+      home:WelcomeScreen(),
     );
   }
 }
