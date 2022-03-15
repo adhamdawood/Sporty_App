@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sporty_app/LogIn/ForgetPasswordScreen.dart';
 
 import '../SignUp/SignUpScreen.dart';
 
@@ -9,8 +10,8 @@ class LogInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body : Container(
-        // height: double.infinity,
-        // width: double.infinity,
+        height: double.infinity,
+        width: double.infinity,
         margin: const EdgeInsets.all(25),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -43,7 +44,12 @@ class LogInScreen extends StatelessWidget {
                 return (value != null && value.contains('@')) ? 'Do not use the @ char.' : null;
               },
             ),
-            const Text("Forget Password ?",textAlign: TextAlign.end,),
+            InkWell(
+              onTap: (){
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (_) => ForgetPasswordScreen()));
+              },
+                child: const Text("Forget Password ?",textAlign: TextAlign.end,)),
             Container(
               width: 296,height: 40,
               decoration: BoxDecoration(
