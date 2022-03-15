@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sporty_app/LogIn/LogInScreen.dart';
 import 'package:sporty_app/SignUp/SignUpScreen.dart';
 import 'package:sporty_app/WelcomeScreen.dart';
 
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       routes: {
         WelcomeScreen.ROUTE_NAME: (context)=>WelcomeScreen(),
         SignUpScreen.ROUTE_NAME:(context)=>SignUpScreen(),
+        LogInScreen.ROUTE_NAME:(context)=>LogInScreen(),
       },
       initialRoute: WelcomeScreen.ROUTE_NAME,
       home: WelcomeScreen(),

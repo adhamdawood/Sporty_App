@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sporty_app/LogIn/LogInScreen.dart';
 import 'package:sporty_app/SignUp/SignUpScreen.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -9,7 +10,7 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
           width: double.infinity,
-          color: Colors.white,
+          height: double.infinity,
           child: Column(
             children: [
               const SizedBox(height: 124,),
@@ -29,13 +30,19 @@ class WelcomeScreen extends StatelessWidget {
                   child: const Text("Sign Up",style: TextStyle(color: Colors.white),),),
               ),
               const SizedBox(height: 10,),
-              const Text.rich(
-                TextSpan(
-                  text: "Already have an account ?", // default text style
-                  children: <TextSpan>[
-                    TextSpan(text: ' Sign In ',
-                      style: TextStyle(color :Color(0xFFE20030),fontWeight: FontWeight.bold ),),
-                  ],
+              InkWell(
+                onTap: (){
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => LogInScreen()));
+                },
+                child: const Text.rich(
+                  TextSpan(
+                    text: "Already have an account ?", // default text style
+                    children: <TextSpan>[
+                      TextSpan(text: ' Sign In ',
+                        style: TextStyle(color :Color(0xFFE20030),fontWeight: FontWeight.bold ),),
+                    ],
+                  ),
                 ),
               ),
             ],
@@ -43,4 +50,5 @@ class WelcomeScreen extends StatelessWidget {
         ),
     );
   }
+
 }
