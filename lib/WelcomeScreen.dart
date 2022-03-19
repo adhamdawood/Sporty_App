@@ -3,7 +3,7 @@ import 'package:sporty_app/Auth/LogIn/LogInScreen.dart';
 import 'package:sporty_app/Auth/SignUp/SignUpScreen.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 class WelcomeScreen extends StatelessWidget {
-  static const  ROUTE_NAME ="WelcomeScreen";
+  static const  ROUTE_NAME ="Welcome";
 
   @override
   Widget build(BuildContext context) {
