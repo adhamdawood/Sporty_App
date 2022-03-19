@@ -3,7 +3,7 @@ import 'package:sporty_app/LogIn/LogInScreen.dart';
 import 'package:sporty_app/SignUp/SignUpScreen.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  static const  ROUTE_NAME ="WelcomeScreen";
+  static const  ROUTE_NAME ="Welcome";
 
   @override
   Widget build(BuildContext context) {
