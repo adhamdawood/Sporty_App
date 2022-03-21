@@ -19,8 +19,8 @@ class SignUpScreen extends StatelessWidget {
             const Text("Welcome Hero, Sign Up To Join Us",style: TextStyle(fontSize: 14),),
             TextFormField(
               decoration: const InputDecoration(
-                hintText: "Full Name",
-                labelText: 'Full Name *',
+                hintText: "First Name",
+                labelText: 'First Name *',
               ),
               onSaved: (String value) {
                 // This optional block of code can be used to run
@@ -30,6 +30,18 @@ class SignUpScreen extends StatelessWidget {
                 return (value != null && value.contains('@')) ? 'Do not use the @ char.' : null;
               },
             ),
+            TextFormField(
+          decoration: const InputDecoration(
+            hintText: "Last Name",
+            labelText: 'Last Name *',
+          ),
+          onSaved: (String value) {
+            // This optional block of code can be used to run
+            // code when the user saves the form.
+          },
+          validator: (String value) {
+            return (value != null && value.contains('@')) ? 'Do not use the @ char.' : null;
+          },),
             TextFormField(
               decoration: const InputDecoration(
                 hintText: "E-mail",
@@ -47,6 +59,19 @@ class SignUpScreen extends StatelessWidget {
               decoration: const InputDecoration(
                 hintText: "Password",
                 labelText: 'Password *',
+              ),
+              onSaved: (String value) {
+                // This optional block of code can be used to run
+                // code when the user saves the form.
+              },
+              validator: (String value) {
+                return (value != null && value.contains('@')) ? 'Do not use the @ char.' : null;
+              },
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                hintText: "Confirm Password",
+                labelText: 'Confirm Password *',
               ),
               onSaved: (String value) {
                 // This optional block of code can be used to run
