@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:sporty_app/LogIn/ForgetPasswordScreen.dart';
-import 'package:sporty_app/LogIn/LogInScreen.dart';
-import 'package:sporty_app/LogIn/NewPasswordScreen.dart';
-import 'package:sporty_app/LogIn/VerificationCode.dart';
-import 'package:sporty_app/SignUp/SignUpScreen.dart';
+import 'package:sporty_app/Auth/LogIn/ForgetPasswordScreen.dart';
+import 'package:sporty_app/Auth/LogIn/NewPasswordScreen.dart';
+import 'package:sporty_app/Auth/LogIn/VerificationCode.dart';
+import 'package:sporty_app/Auth/SignUp/SignUpScreen.dart';
 import 'package:sporty_app/WelcomeScreen.dart';
+
+import 'Auth/LogIn/LogInScreen.dart';
 
 void main() {
   runApp( MyApp());

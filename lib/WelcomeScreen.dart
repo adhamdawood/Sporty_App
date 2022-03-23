@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sporty_app/LogIn/LogInScreen.dart';
-import 'package:sporty_app/SignUp/SignUpScreen.dart';
-
+import 'package:sporty_app/Auth/LogIn/LogInScreen.dart';
+import 'package:sporty_app/Auth/SignUp/SignUpScreen.dart';
 class WelcomeScreen extends StatelessWidget {
   static const  ROUTE_NAME ="Welcome";
 

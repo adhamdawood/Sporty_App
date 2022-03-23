@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sporty_app/LogIn/ForgetPasswordScreen.dart';
+import 'package:sporty_app/Auth/LogIn/ForgetPasswordScreen.dart';
 
 import '../SignUp/SignUpScreen.dart';
 
