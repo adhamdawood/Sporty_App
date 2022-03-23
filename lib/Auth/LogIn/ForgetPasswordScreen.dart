@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:sporty_app/LogIn/LogInScreen.dart';
+import 'package:sporty_app/Auth/LogIn/VerificationCode.dart';
 
-class NewPasswordScreen extends StatelessWidget {
-  static const ROUTE_NAME="NewPasswordScreen";
+
+class ForgetPasswordScreen extends StatelessWidget {
+  static const ROUTE_NAME= "ForgetPassword Screen";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,8 +12,8 @@ class NewPasswordScreen extends StatelessWidget {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(icon:Icon(Icons.arrow_back,color: Colors.black,),
-          onPressed:() => Navigator.pop(context),
-        ),),
+    onPressed:() => Navigator.pop(context),
+      ),),
       body : Container(
         height: double.infinity,
         width: double.infinity,
@@ -19,13 +21,13 @@ class NewPasswordScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Image.asset("assets/images/key.png",fit: BoxFit.fill,),
+            Image.asset("assets/images/ForgetPassword.png",fit: BoxFit.fill,),
             const Text("Forget Password ?",style: TextStyle(fontWeight: FontWeight.bold),),
             const Text("Enter your email to reset the password",style: TextStyle(fontSize: 14),),
             TextFormField(
               decoration: const InputDecoration(
                 hintText: "E-mail",
-                labelText: 'Password *',
+                labelText: 'E-mail *',
               ),
               onSaved: (String value) {
                 // This optional block of code can be used to run
@@ -44,9 +46,9 @@ class NewPasswordScreen extends StatelessWidget {
               child: TextButton(
                 onPressed: (){
                   Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => LogInScreen()));
+                      .push(MaterialPageRoute(builder: (_) => VerificationCode()));
                 },
-                child: const Text("Create password",style: TextStyle(color: Colors.white),),),
+                child: const Text("Send Code",style: TextStyle(color: Colors.white),),),
             ),
           ],
         ),
