@@ -14,13 +14,12 @@ import 'Auth/LogIn/LogInScreen.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
    await cacheHelper.init();
-
    dynamic welcome = cacheHelper.getData(key: 'welcome');
-  dynamic token = cacheHelper.getData(key: "token");
+  dynamic token = cacheHelper.sharedPreferences.getString("token");
   Widget widget;
   if(welcome!=null){
-    if(token!=null)widget=chooseInterests();
-    else widget=LogInScreen();
+    if(token!=null){widget=HomePage();}
+    else {widget=LogInScreen();}
   }
   runApp( MyApp(widget: widget,));
 }
@@ -35,7 +34,6 @@ Widget widget;
     return MaterialApp(
           title: 'Flutter Demo',
           theme: ThemeData(
-
           ),
           routes: {
             WelcomeScreen.ROUTE_NAME: (context)=>WelcomeScreen(),
@@ -47,8 +45,9 @@ Widget widget;
             chooseInterests.ROUTE_NAME:(context)=>chooseInterests(),
             HomePage.ROUTE_NAME:(context)=>HomePage(),
           },
-          initialRoute: HomePage.ROUTE_NAME,
+         // initialRoute: HomePage.ROUTE_NAME,
           //welcome==true?WelcomeScreen.ROUTE_NAME:LogInScreen.ROUTE_NAME,
+         home: widget,
         );
   }
 }

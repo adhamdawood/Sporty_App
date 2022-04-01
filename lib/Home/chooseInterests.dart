@@ -55,17 +55,8 @@ class _chooseInterestsState extends State<chooseInterests> {
   }
 
   /*
-  * TextButton(
-              onPressed: (){
-                cacheHelper.removeData(key: "token").then((value) {
-                  if(value){
-                    Navigator.pushNamed(context,LogInScreen.ROUTE_NAME);
-                  }
-                });
-              },
-              child: Text("sign out"),
-            ),
-            *  return DefaultTabController(
+  *
+        *  return DefaultTabController(
                 length: 4,
                 child:TabBar(
                     isScrollable: true,
