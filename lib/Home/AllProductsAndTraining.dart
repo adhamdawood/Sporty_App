@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ProfileView extends StatelessWidget {
+class AllProductsAndTraining extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Container();

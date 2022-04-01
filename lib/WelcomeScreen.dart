@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sporty_app/Auth/LogIn/LogInScreen.dart';
 import 'package:sporty_app/Auth/SignUp/SignUpScreen.dart';
+import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 class WelcomeScreen extends StatelessWidget {
   static const  ROUTE_NAME ="WelcomeScreen";
 
@@ -23,16 +24,20 @@ class WelcomeScreen extends StatelessWidget {
                 ),
                 child: TextButton(
                   onPressed: (){
-                    Navigator.of(context)
-                        .push(MaterialPageRoute(builder: (_) => SignUpScreen()));
+                    cacheHelper.saveData(key: "welcome", value: false).then((value) {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (_) => SignUpScreen()));
+                    });
                   },
                   child: const Text("Sign Up",style: TextStyle(color: Colors.white),),),
               ),
               const SizedBox(height: 10,),
               InkWell(
                 onTap: (){
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => LogInScreen()));
+                  cacheHelper.saveData(key: "welcome", value: false).then((value) {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (_) => LogInScreen()));
+                  });
                 },
                 child: const Text.rich(
                   TextSpan(
