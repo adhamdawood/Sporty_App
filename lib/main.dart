@@ -5,6 +5,7 @@ import 'package:sporty_app/Auth/LogIn/VerificationCode.dart';
 import 'package:sporty_app/Auth/SignUp/SignUpScreen.dart';
 import 'package:sporty_app/Home/ProfileView/CreditCardInfo.dart';
 import 'package:sporty_app/Home/ProfileView/CreditCards.dart';
+import 'package:sporty_app/Home/ProfileView/OrderHistory.dart';
 import 'package:sporty_app/Home/ProfileView/ProfileInformation.dart';
 import 'package:sporty_app/Home/ProfileView/ProfileViewScreen.dart';
 import 'package:sporty_app/WelcomeScreen.dart';
@@ -36,7 +37,8 @@ class MyApp extends StatelessWidget {
         ProfileScreen.ROUTE_NAME:(context)=>ProfileScreen(),
         ProfileInformation.ROUTE_NAME:(context)=>ProfileInformation(),
         CreditCardInformation.ROUTE_NAME: (context)=>CreditCardInformation(),
-        CreditCards.ROUTE_NAME: (context)=>CreditCards()
+        CreditCards.ROUTE_NAME: (context)=>CreditCards(),
+        OrderHistory.ROUTE_NAME: (context)=>OrderHistory(),
 
       },
       initialRoute: ProfileScreen.ROUTE_NAME,
