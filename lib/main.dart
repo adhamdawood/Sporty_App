@@ -3,6 +3,9 @@ import 'package:sporty_app/Auth/LogIn/ForgetPasswordScreen.dart';
 import 'package:sporty_app/Auth/LogIn/NewPasswordScreen.dart';
 import 'package:sporty_app/Auth/LogIn/VerificationCode.dart';
 import 'package:sporty_app/Auth/SignUp/SignUpScreen.dart';
+import 'package:sporty_app/Home/ProfileView/CreditCardInfo.dart';
+import 'package:sporty_app/Home/ProfileView/CreditCards.dart';
+import 'package:sporty_app/Home/ProfileView/ProfileInformation.dart';
 import 'package:sporty_app/Home/ProfileView/ProfileViewScreen.dart';
 import 'package:sporty_app/WelcomeScreen.dart';
 
@@ -30,7 +33,11 @@ class MyApp extends StatelessWidget {
         ForgetPasswordScreen.ROUTE_NAME:(context)=>ForgetPasswordScreen(),
         VerificationCode.ROUTE_NAME:(context)=>VerificationCode(),
         NewPasswordScreen.ROUTE_NAME:(context)=>NewPasswordScreen(),
-        ProfileScreen.ROUTE_NAME:(context)=>ProfileScreen()
+        ProfileScreen.ROUTE_NAME:(context)=>ProfileScreen(),
+        ProfileInformation.ROUTE_NAME:(context)=>ProfileInformation(),
+        CreditCardInformation.ROUTE_NAME: (context)=>CreditCardInformation(),
+        CreditCards.ROUTE_NAME: (context)=>CreditCards()
+
       },
       initialRoute: ProfileScreen.ROUTE_NAME,
 
