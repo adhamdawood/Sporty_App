@@ -39,6 +39,8 @@ dependencies:
   http: ^0.13.4
   fluttertoast: ^8.0.9
   shared_preferences: ^2.0.13
+  hexcolor: ^2.0.3
+
 
 dev_dependencies:
   flutter_test:
