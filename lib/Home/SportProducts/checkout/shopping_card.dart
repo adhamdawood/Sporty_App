@@ -167,12 +167,12 @@ class _ShoppingCardState extends State<ShoppingCard> {
 
     ),
     ),
-    SizedBox(width: 155,),
+    SizedBox(width: 165,),
     Text(
     '15\$',
     style: TextStyle(
     fontWeight: FontWeight.w500,
-    fontSize: 20.0,
+    fontSize: 14.0,
     color: HexColor('3F88C5'),
     ),
     ),
