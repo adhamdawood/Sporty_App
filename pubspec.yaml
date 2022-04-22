@@ -40,6 +40,7 @@ dependencies:
   fluttertoast: ^8.0.9
   shared_preferences: ^2.0.13
   hexcolor: ^2.0.3
+  intl: ^0.17.0
 
 
 dev_dependencies:

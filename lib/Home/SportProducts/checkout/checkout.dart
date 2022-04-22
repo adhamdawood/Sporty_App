@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/address.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/credit_card.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/success.dart';
 
 class Checkout extends StatefulWidget {
@@ -82,7 +84,13 @@ class _CheckoutState extends State<Checkout> {
                              ),
                            ),
                          ),
-                         Icon(Icons.arrow_forward_ios,size: 20,color: HexColor('8E8E93'),)
+                         InkWell(
+                             onTap: (){
+                               Navigator.push(
+                                   context,
+                                   MaterialPageRoute(builder: (context) =>Address()));
+                             },
+                             child: Icon(Icons.arrow_forward_ios,size: 20,color: HexColor('8E8E93'),))
                        ],
                      ),
                    ),
@@ -141,7 +149,13 @@ class _CheckoutState extends State<Checkout> {
                               ),
                             ),
                           ),
-                          Icon(Icons.arrow_forward_ios,size: 20,color: HexColor('8E8E93'),)
+                          InkWell(
+                            onTap: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) =>CreditCard()));
+                            },
+                              child: Icon(Icons.arrow_forward_ios,size: 20,color: HexColor('8E8E93'),))
                         ],
                       ),
                     ),
