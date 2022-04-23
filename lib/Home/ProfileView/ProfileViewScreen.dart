@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sporty_app/Home/ProfileView/CreditCardInfo.dart';
+import 'package:sporty_app/Home/ProfileView/CreditCards.dart';
+import 'package:sporty_app/Home/ProfileView/ProfileInformation.dart';
 
 class ProfileScreen extends StatelessWidget {
   static const ROUTE_NAME = "Profile screen";
@@ -26,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
               width: 70,
               height: 70,
               child: CircleAvatar(
-                  backgroundImage: AssetImage("assets/images/blank.png")),
+                  backgroundImage: AssetImage("assets/images/ManWithHead.png")),
             )),
           ),
           Padding(
@@ -41,7 +44,7 @@ class ProfileScreen extends StatelessWidget {
             style: TextStyle(fontWeight: FontWeight.w200, fontSize: 14),
           ),
           SizedBox(
-            height: 25,
+            height: 33,
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -52,7 +55,7 @@ class ProfileScreen extends StatelessWidget {
                 width: 400,
                 height: 55,
                 child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {Navigator.of(context).pushNamed(ProfileInformation.ROUTE_NAME);},
                     icon: Row(
                       children: [
                         Icon(Icons.person,color: const Color(0xFF3f88c5)),
@@ -75,7 +78,7 @@ class ProfileScreen extends StatelessWidget {
                 width: 400,
                 height: 55,
                 child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {Navigator.of(context).pushNamed(CreditCards.ROUTE_NAME);},
                     icon: Row(
                       children: [
                         Icon(Icons.credit_card,color: const Color(0xFF3f88c5)),
