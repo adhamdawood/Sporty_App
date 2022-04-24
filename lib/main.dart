@@ -35,7 +35,6 @@ class MyApp extends StatelessWidget {
         NewPasswordScreen.ROUTE_NAME:(context)=>NewPasswordScreen(),
         ProfileScreen.ROUTE_NAME:(context)=>ProfileScreen(),
         ProfileInformation.ROUTE_NAME:(context)=>ProfileInformation(),
-        CreditCardInformation.ROUTE_NAME: (context)=>CreditCardInformation(),
         CreditCards.ROUTE_NAME: (context)=>CreditCards()
 
       },

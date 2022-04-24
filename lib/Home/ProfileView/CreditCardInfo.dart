@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 class CreditCardInformation extends StatelessWidget {
   static const ROUTE_NAME = "Credit card info";
-
+  String creditNumber,zipCode;
+  String creditExp;
+CreditCardInformation(this.creditExp,this.creditNumber,this.zipCode);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,6 +34,7 @@ class CreditCardInformation extends StatelessWidget {
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               child: TextFormField(
+                initialValue: creditNumber,
                 decoration: const InputDecoration(
                     border: UnderlineInputBorder(),
                     focusedBorder: UnderlineInputBorder(
@@ -42,6 +45,7 @@ class CreditCardInformation extends StatelessWidget {
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               child: TextFormField(
+                initialValue: zipCode,
                 decoration: const InputDecoration(
                     border: UnderlineInputBorder(),
                     focusedBorder: UnderlineInputBorder(
@@ -52,6 +56,7 @@ class CreditCardInformation extends StatelessWidget {
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               child: TextFormField(
+                initialValue: creditExp,
                 decoration: const InputDecoration(
                     border: UnderlineInputBorder(),
                     focusedBorder: UnderlineInputBorder(
