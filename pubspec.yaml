@@ -41,6 +41,10 @@ dependencies:
   shared_preferences: ^2.0.13
   hexcolor: ^2.0.3
   intl: ^0.17.0
+  sqflite: ^2.0.2+1
+  flutter_bloc: ^8.0.1
+  bloc: ^8.0.1
+
 
 
 dev_dependencies:

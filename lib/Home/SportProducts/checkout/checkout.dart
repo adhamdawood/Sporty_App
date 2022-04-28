@@ -1,19 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/address.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/controller/user_payment_data_controller.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/credit_card.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/model/address_model.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/model/user_payment_data_model.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/success.dart';
+import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
+import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 
 class Checkout extends StatefulWidget {
-  const Checkout({Key key}) : super(key: key);
-
+  final double subTotal;
+  const Checkout({Key key, this.subTotal}) : super(key: key);
   @override
-  State<Checkout> createState() => _CheckoutState();
+  State<Checkout> createState() => _CheckoutState(subTotal);
 }
 
 class _CheckoutState extends State<Checkout> {
+  UserPaymentDataModel paymentData;
+
+  String street;
+  String city;
+  int building;
+  String creditCardNum;
+  double subTotal;
+  double total ;
+  ShoppingCubit cubit = new ShoppingCubit();
+
+  _CheckoutState(double subTotal)
+  {
+    this.subTotal = subTotal;
+    total = subTotal + 10;
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+   //////////////////////////////////// print("in checkout${cacheHelperr.address}");
+     cubit.createDatabase();
+
+  }
+
   @override
   Widget build(BuildContext context) {
+  //cubit.getSubTotal();
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -77,7 +107,7 @@ class _CheckoutState extends State<Checkout> {
                      child: Row(
                        children: [
                          Expanded(
-                           child: Text('omar elmokhtar street',
+                           child: Text("{cacheHelperr.address.street}",
                              style: TextStyle(
                                fontSize: 14,
                                fontWeight: FontWeight.w400,
@@ -97,7 +127,7 @@ class _CheckoutState extends State<Checkout> {
                     SizedBox(height: 6,),
                     Padding(
                       padding: const EdgeInsetsDirectional.only(start: 9,),
-                      child: Text('Alexandria',
+                      child: Text("${city}",
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
@@ -142,7 +172,7 @@ class _CheckoutState extends State<Checkout> {
                       child: Row(
                         children: [
                           Expanded(
-                            child: Text('omar elmokhtar street',
+                            child: Text("Credit Card",
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,
@@ -162,7 +192,7 @@ class _CheckoutState extends State<Checkout> {
                     SizedBox(height: 6,),
                     Padding(
                       padding: const EdgeInsetsDirectional.only(start: 9,),
-                      child: Text('*****-0921',
+                      child: Text("",
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
@@ -200,7 +230,7 @@ class _CheckoutState extends State<Checkout> {
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.only(end: 16),
-                  child: Text('100\$',
+                  child: Text('${subTotal} \$',
                     style: TextStyle(
                       color: HexColor('8E8E93'),
                       fontSize: 14,
@@ -256,7 +286,7 @@ class _CheckoutState extends State<Checkout> {
                 ),
                 Padding(
                   padding: const EdgeInsetsDirectional.only(end: 16),
-                  child: Text('110\$',
+                  child: Text(' ${total} \$',
                     style: TextStyle(
                      // color: HexColor('8E8E93'),
                       fontSize: 14,
@@ -287,7 +317,7 @@ class _CheckoutState extends State<Checkout> {
                         .size
                         .height * .05,
                     decoration: BoxDecoration(),
-                    child:  Center(child: Text(  'Pay 110\$' ,
+                    child:  Center(child: Text(  'Pay ${total} \$' ,
                       style: TextStyle(
                           fontSize: 14.0,
                           fontWeight: FontWeight.w500,

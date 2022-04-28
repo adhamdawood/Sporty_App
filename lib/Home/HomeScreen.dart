@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sporty_app/Home/AllProductsAndTraining.dart';
 import 'package:sporty_app/Home/ChatBot/ChatBotScreen.dart';
 import 'package:sporty_app/Home/ProfileView/ProfileViewScren.dart';
-import 'package:sporty_app/Home/SportProducts/products/screen_products.dart';
+import 'package:sporty_app/Home/SportProducts/products/screen/screen_products.dart';
 import 'package:sporty_app/Home/TrainingProgram/TrainingScreen.dart';
 
 class HomePage extends StatefulWidget {

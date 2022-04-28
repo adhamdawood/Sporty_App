@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/shopping_card.dart';
 import 'package:sporty_app/Home/SportProducts/product/product_screen.dart';
-import 'package:sporty_app/Home/SportProducts/products/mydata_controller.dart';
+import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
+import 'package:sporty_app/Home/SportProducts/products/screen/mydata_controller.dart';
 import 'package:sporty_app/Home/SportProducts/products/search_model.dart';
 import 'mydata_model.dart';
 
@@ -24,13 +26,14 @@ class _ScreenState extends State<ProductScreen> {
 // currentIndex = index;
 //     });
 //   }
-
+  dynamic itemProduct = 0 ;
   var currentIndex =0;
  var searchController = TextEditingController();
-   Future<List<MydataModel>> futureData;
-   Future<List<SearchModel>> searchProductData;
-  List <MydataModel> searchedData = [];
-List filter = ["Gym","Swimming","Tennis","Football"];
+ Future <List<MydataModel>> futureData;
+
+  // List<SearchModel> searchProductData;
+  List <MydataModel> searchedData ;
+  List filter = ["Gym","Swimming","Tennis","Football"];
 
 
 // MydataModel _selectoption =filterList as MydataModel ;
@@ -39,10 +42,20 @@ List filter = ["Gym","Swimming","Tennis","Football"];
 //     _selectoption = mydataModel;
 //   });
 // }
+
+  // void addSearchedForItem(String value)
+  // {
+  //   searchedData = futureData.where((character) => character.sportName.toLowerCase().startsWith(value)).toList() as List<MydataModel>;
+  //   setState(() {});
+  // }
+
+
   void initState() {
     super.initState();
-    futureData = fetchData();
-   // searchedData = futureData as List<MydataModel>;
+    //BlocProvider.of<ShoppingCubit>(context).createDatabase();
+
+    futureData = fetchData(); //as List<MydataModel> ;
+    //searchedData = futureData as List<MydataModel>;
     //searchProductData = searchData();
 
   }
@@ -124,8 +137,10 @@ List filter = ["Gym","Swimming","Tennis","Football"];
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 42.0),
               child: TextFormField(
+                controller: searchController,
                   onChanged: (value)
                   {
+                    //addSearchedForItem(value);
                   },
                   decoration: InputDecoration(
                       suffixIcon: PopupMenuButton(
@@ -143,18 +158,20 @@ List filter = ["Gym","Swimming","Tennis","Football"];
               ),
             ),
             FutureBuilder<List<MydataModel>>(
-              future: futureData,
+               future:  futureData ,
               builder: (context,snapshot,){
                 if (snapshot.hasData) {
                   List<MydataModel> data = snapshot.data;
                   return GridView.count(
+
                     shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       crossAxisCount: 2,
                     mainAxisSpacing: 0.0,
                     crossAxisSpacing: 0.0,
                     childAspectRatio: 1/1.25,
-                    children: List.generate(data.length, (index) => InkWell(
+
+                    children: List.generate(searchController.text.isEmpty ?  data.length : searchedData.length, (index) => InkWell(
                       onTap: (){
                         Navigator.push(
                           context,
@@ -164,6 +181,77 @@ List filter = ["Gym","Swimming","Tennis","Football"];
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          // Row(
+                          //   children: [
+                          //     InkWell(
+                          //       onTap: (){
+                          //         setState(() {
+                          //           itemProduct--;
+                          //         });
+                          //       },
+                          //       child: Container(
+                          //         height: 16,
+                          //         width: 24,
+                          //         decoration: BoxDecoration(
+                          //             color: HexColor('F7F7F7'),
+                          //             borderRadius: BorderRadiusDirectional.only(topStart: Radius.circular(5),bottomStart: Radius.circular(5)),
+                          //             boxShadow: [
+                          //               BoxShadow(
+                          //                   color: HexColor('000000').withOpacity(0.25),
+                          //                   spreadRadius: -0.25,
+                          //                   blurRadius:  2,
+                          //                   offset: Offset(-2,0)
+                          //               )
+                          //             ]
+                          //         ),
+                          //         child: Center(child:  Icon(Icons.remove,color: Colors.black,size: 10,)),
+                          //       ),
+                          //     ),
+                          //     Container(
+                          //       height: 16,
+                          //       width: 24,
+                          //       decoration: BoxDecoration(
+                          //           color: Colors.white,
+                          //           // borderRadius: BorderRadiusDirectional.only(topEnd: Radius.circular(5),bottomEnd:  Radius.circular(5)),
+                          //           boxShadow: [
+                          //             BoxShadow(
+                          //                 color: HexColor('000000').withOpacity(0.25),
+                          //                 spreadRadius: -0.25,
+                          //                 blurRadius:  2,
+                          //                 offset: Offset(1,0)
+                          //             )
+                          //           ]
+                          //       ),
+                          //       child: Center(child:Text('${itemProduct}'),),
+                          //     ),
+                          //     InkWell(
+                          //       onTap: (){
+                          //         setState(() {
+                          //           itemProduct++;
+                          //         });
+                          //       },
+                          //       child: Container(
+                          //           height: 16,
+                          //           width: 24,
+                          //           decoration: BoxDecoration(
+                          //               color: HexColor('F7F7F7'),
+                          //               borderRadius: BorderRadiusDirectional.only(topEnd: Radius.circular(5),bottomEnd:  Radius.circular(5)),
+                          //               boxShadow: [
+                          //                 BoxShadow(
+                          //                     color: HexColor('000000').withOpacity(0.25),
+                          //                     spreadRadius: -0.25,
+                          //                     blurRadius:  2,
+                          //                     offset: Offset(1,0)
+                          //                 )
+                          //               ]
+                          //           ),
+                          //           child: Center(child: Icon(Icons.add,color: Colors.black,size: 10,),)
+                          //
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+
                           Stack(
                             children: [
                               Padding(

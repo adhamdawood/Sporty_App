@@ -5,6 +5,7 @@ import 'package:sporty_app/Auth/LogIn/NewPasswordScreen.dart';
 import 'package:sporty_app/Auth/LogIn/VerificationCode.dart';
 import 'package:sporty_app/Auth/SignUp/SignUpScreen.dart';
 import 'package:sporty_app/Home/HomeScreen.dart';
+import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
 import 'package:sporty_app/Home/chooseInterests.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 import 'package:sporty_app/WelcomeScreen.dart';
@@ -16,6 +17,9 @@ void main() async{
    await cacheHelper.init();
    dynamic welcome = cacheHelper.getData(key: 'welcome');
   dynamic token = cacheHelper.sharedPreferences.getString("token");
+  ShoppingCubit cubit = new ShoppingCubit();
+  //cubit.createDatabase();
+  //cacheHelperr.createDatabase();
   Widget widget;
   if(welcome!=null){
     if(token!=null){widget=HomePage();}
