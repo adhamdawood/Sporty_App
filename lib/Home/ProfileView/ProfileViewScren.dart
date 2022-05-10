@@ -13,6 +13,7 @@ class ProfileView extends StatelessWidget {
               if(value){
                 Navigator.pushNamed(context,LogInScreen.ROUTE_NAME);
               }
+              cacheHelper.removeData(key: "refreshToken");
             });
           },
           child: Text("sign out"),

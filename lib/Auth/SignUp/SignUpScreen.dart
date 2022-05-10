@@ -1,11 +1,23 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:sporty_app/Models/Widgets.dart';
 
 
 import '../LogIn/LogInScreen.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
 
   static const ROUTE_NAME = "SignUpScreen";
+
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  String firstName,lastName;
+  String eMail,password;
 
   @override
   Widget build(BuildContext context) {
@@ -13,48 +25,36 @@ class SignUpScreen extends StatelessWidget {
       body : Container(
         width: double.infinity,
         height: double.infinity,
-        margin: const EdgeInsets.all(25),
+        margin: EdgeInsets.all(25),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Image.asset("assets/images/welcomeScreen.png",fit: BoxFit.fill,),
-            const Text("Welcome Hero, Sign Up To Join Us",style: TextStyle(fontSize: 14),),
+            Text("Welcome Hero, Sign Up To Join Us",style: TextStyle(fontSize: 14),),
             TextFormField(
               decoration: const InputDecoration(
                 hintText: "First Name",
                 labelText: 'First Name *',
               ),
-              onSaved: (String value) {
-                // This optional block of code can be used to run
-                // code when the user saves the form.
-              },
-              validator: (String value) {
-                return (value != null && value.contains('@')) ? 'Do not use the @ char.' : null;
+              onChanged: (value){
+                firstName=value;
               },
             ),
             TextFormField(
-          decoration: const InputDecoration(
-            hintText: "Last Name",
-            labelText: 'Last Name *',
-          ),
-          onSaved: (String value) {
-            // This optional block of code can be used to run
-            // code when the user saves the form.
-          },
-          validator: (String value) {
-            return (value != null && value.contains('@')) ? 'Do not use the @ char.' : null;
-          },),
+              decoration: const InputDecoration(
+                hintText: "Last Name",
+                labelText: 'Last Name *',
+              ),
+              onChanged: (value){
+                lastName=value;
+              },),
             TextFormField(
               decoration: const InputDecoration(
                 hintText: "E-mail",
                 labelText: 'E-mail *',
               ),
-              onSaved: (String value) {
-                // This optional block of code can be used to run
-                // code when the user saves the form.
-              },
-              validator: (String value) {
-                return (value != null && value.contains('@')) ? 'Do not use the @ char.' : null;
+              onChanged: (value){
+                eMail=value;
               },
             ),
             TextFormField(
@@ -62,28 +62,10 @@ class SignUpScreen extends StatelessWidget {
                 hintText: "Password",
                 labelText: 'Password *',
               ),
-              onSaved: (String value) {
-                // This optional block of code can be used to run
-                // code when the user saves the form.
-              },
-              validator: (String value) {
-                return (value != null && value.contains('@')) ? 'Do not use the @ char.' : null;
-              },
+             onChanged: (value){
+                password=value;
+             },
             ),
-            TextFormField(
-              decoration: const InputDecoration(
-                hintText: "Confirm Password",
-                labelText: 'Confirm Password *',
-              ),
-              onSaved: (String value) {
-                // This optional block of code can be used to run
-                // code when the user saves the form.
-              },
-              validator: (String value) {
-                return (value != null && value.contains('@')) ? 'Do not use the @ char.' : null;
-              },
-            ),
-            const SizedBox(height: 10,),
             Container(
               width: 296,height: 40,
               decoration: BoxDecoration(
@@ -91,7 +73,13 @@ class SignUpScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: TextButton(
-                onPressed: (){},
+                onPressed: (){
+                  if(firstName!=null&&lastName!=null&&password!=null){
+                    SignUp();
+                  }else{
+                   flutterToast(msg: "All Inputs are Required ");
+                  }
+                },
                 child: const Text("Sign Up",style: TextStyle(color: Colors.white),),),
             ),
             InkWell(
@@ -113,5 +101,32 @@ class SignUpScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> SignUp() async {
+    var body = jsonEncode({
+      "firstName": firstName,
+      "lastName": lastName,
+      "email": eMail,
+      "password": password,
+      "confirmPassword":password,
+    });
+    var url = Uri.parse(
+        'http://Sporty.somee.com/api/Auth/signup');
+    final response = await http.post(url,
+        body: body, headers: {
+          "content-type": "application/json",
+          "Accept": "application/json",
+        });
+    if (response.statusCode == 200) {
+      flutterToast(msg: "Signed up Successfully");
+      Navigator.pushNamed(context, LogInScreen.ROUTE_NAME);
+    } else if(response.statusCode==400) {
+      flutterToast(msg: "The Email field is not a valid e-mail address");
+      throw(Exception(response.body));
+    }else {
+      flutterToast(msg: response.body.characters.string);
+      throw(Exception(response.body));
+    }
   }
 }

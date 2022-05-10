@@ -1,5 +1,6 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sporty_app/Auth/LogIn/ForgetPasswordScreen.dart';
 import 'package:sporty_app/Auth/LogIn/NewPasswordScreen.dart';
 import 'package:sporty_app/Auth/LogIn/VerificationCode.dart';
@@ -7,23 +8,29 @@ import 'package:sporty_app/Auth/SignUp/SignUpScreen.dart';
 import 'package:sporty_app/Home/HomeScreen.dart';
 import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
 import 'package:sporty_app/Home/chooseInterests.dart';
+import 'package:sporty_app/Models/Widgets.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 import 'package:sporty_app/WelcomeScreen.dart';
-
 import 'Auth/LogIn/LogInScreen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
    await cacheHelper.init();
-   dynamic welcome = cacheHelper.getData(key: 'welcome');
+   dynamic welcome = cacheHelper.sharedPreferences.getBool("welcome");
   dynamic token = cacheHelper.sharedPreferences.getString("token");
   ShoppingCubit cubit = new ShoppingCubit();
   //cubit.createDatabase();
   //cacheHelperr.createDatabase();
   Widget widget;
-  if(welcome!=null){
-    if(token!=null){widget=HomePage();}
-    else {widget=LogInScreen();}
+  if(welcome == false){
+      if(token!=null)
+      {
+        widget=HomePage();
+      }else{
+        widget=LogInScreen();
+      }
+  }else{
+    widget=WelcomeScreen();
   }
   runApp( MyApp(widget: widget,));
 }
@@ -36,6 +43,7 @@ Widget widget;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(
           ),
@@ -49,10 +57,11 @@ Widget widget;
             chooseInterests.ROUTE_NAME:(context)=>chooseInterests(),
             HomePage.ROUTE_NAME:(context)=>HomePage(),
           },
-         // initialRoute: HomePage.ROUTE_NAME,
+         // initialRoute: ForgetPasswordScreen.ROUTE_NAME,
           //welcome==true?WelcomeScreen.ROUTE_NAME:LogInScreen.ROUTE_NAME,
          home: widget,
         );
   }
+
 }
 
