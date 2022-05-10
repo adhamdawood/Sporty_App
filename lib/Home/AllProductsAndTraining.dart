@@ -37,7 +37,6 @@ class _AllProductsAndTrainingState extends State<AllProductsAndTraining> {
   }
 
   Future<GetHomeData> GetAlLData() async {
-
     var body = jsonEncode({
     });
     var url = Uri.parse(
@@ -49,7 +48,7 @@ class _AllProductsAndTrainingState extends State<AllProductsAndTraining> {
           "Authorization" : "Bearer $token"
         });
     if (response.statusCode == 200) {
-      return await GetHomeData.fromJson(jsonDecode(response.body));
+           return await GetHomeData.fromJson(jsonDecode(response.body));
     } else  {
       throw(Exception(response.body));
     }

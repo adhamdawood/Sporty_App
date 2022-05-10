@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sporty_app/APIs/GetHomeData.dart';
+import 'package:sporty_app/Home/SportProducts/product/product_screen.dart';
 
 class getAllData extends StatelessWidget {
   GetHomeData homeData;
@@ -43,30 +44,24 @@ class getAllData extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 5,),
-                 Container(
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(50)),
-                    child: CachedNetworkImage(
-                      width: 320,
-                      height: 200,
-                      imageUrl: homeData.trainingPrograms[2].imageUrl,
-                      fit: BoxFit.cover,
-                      progressIndicatorBuilder: (context, url, downloadProgress) =>
-                          Center(
-                              child: CircularProgressIndicator(
-                                  value: downloadProgress.progress)),
-                      errorWidget: (context, url, error) => const Icon(Icons.error),
+                Container(
+                  padding: const EdgeInsets.all(0.0), height: 200, width: 600,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10.0),
+                    image:  DecorationImage(image:  NetworkImage(homeData.trainingPrograms[0].imageUrl.toString(),), // fit: BoxFit.cover,
                     ),
                   ),
+                ),
                 Row (
                   children: [
-                    Text(homeData.trainingPrograms[2].name),
+                    Text(homeData.trainingPrograms[0].name),
                     const Spacer(),
                     const Icon(Icons.star, color: Color(0xffffba08),),
                     const Text('4.6')
                   ],
                 ),
                 Text(
-                  homeData.trainingPrograms[2].level,
+                  homeData.trainingPrograms[0].level,
                   style: TextStyle(color: Color(0xff8E8E93)),
                 ),
                  const SizedBox(height: 20,),
@@ -104,7 +99,7 @@ class getAllData extends StatelessWidget {
                                 height: 150.0, width: 150.0,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(10.0),
-                                  image:  DecorationImage(image:  NetworkImage(homeData.products[3].imageUrl.toString(),), // fit: BoxFit.cover,
+                                  image:  DecorationImage(image:  NetworkImage(homeData.products[0].imageUrl.toString(),), // fit: BoxFit.cover,
                                   ),
                                 ),
                               ),
@@ -124,7 +119,7 @@ class getAllData extends StatelessWidget {
                             ],
                           ),
                           SizedBox(height: 5,),
-                          Text(homeData.products[3].name.toString(),
+                          Text(homeData.products[0].name.toString(),
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400,),
@@ -134,7 +129,7 @@ class getAllData extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Container(
-                                child: Text(homeData.products[3].brand.toString(),
+                                child: Text(homeData.products[0].brand.toString(),
                                   style: TextStyle(color: Colors.grey),),
                               ),
                               SizedBox(width: 5,),
@@ -162,11 +157,18 @@ class getAllData extends StatelessWidget {
                         children: [
                           Stack(
                             children: [
-                              Container(
-                                padding: const EdgeInsets.all(30.0), height: 150.0, width: 150.0,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  image:  DecorationImage(image:  NetworkImage(homeData.products[4].imageUrl.toString(),), // fit: BoxFit.cover,
+                              InkWell(
+                                onTap: (){
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) =>SingleProductScreen(id: homeData.products[0].productId)),);
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.all(30.0), height: 150.0, width: 150.0,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    image:  DecorationImage(image:  NetworkImage(homeData.products[1].imageUrl.toString(),), // fit: BoxFit.cover,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -186,7 +188,7 @@ class getAllData extends StatelessWidget {
                             ],
                           ),
                           SizedBox(height: 5,),
-                          Text(homeData.products[4].name.toString(),
+                          Text(homeData.products[1].name.toString(),
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                             style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400,),
@@ -194,7 +196,7 @@ class getAllData extends StatelessWidget {
                           SizedBox(height: 5.0,),
                           Row(
                             children: [
-                              Text(homeData.products[4].brand.toString(),
+                              Text(homeData.products[1].brand.toString(),
                                 style: TextStyle(color: Colors.grey),),
 
                               SizedBox(width: 5,),
@@ -204,7 +206,7 @@ class getAllData extends StatelessWidget {
                                 color: Color(0xffE20030),
                               ),
                               SizedBox(width: 8.0,),
-                              Text('${homeData.products[4].price.toString()}\$',
+                              Text('${homeData.products[1].price.toString()}\$',
                                 style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w600, fontStyle: FontStyle.normal),
                               ),
                             ],

@@ -127,6 +127,7 @@ class _LogInScreenState extends State<LogInScreen> {
           "Accept": "application/json",
         });
     if (response.statusCode == 200) {
+
       return await LoginResponse.fromJson(jsonDecode(response.body));
     } else if(response.statusCode==400&&onSignInButton==1) {
      flutterToast( msg: "Email or Password is Incorrect");

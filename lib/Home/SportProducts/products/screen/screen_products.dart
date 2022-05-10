@@ -288,6 +288,7 @@ class _ScreenState extends State<ProductScreen> {
                       //   ),
                       // ),
                       child: Container(
+                        padding: EdgeInsets.fromLTRB(18, 0, 8, 0),
                         width: 150,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -314,7 +315,7 @@ class _ScreenState extends State<ProductScreen> {
                                     Padding(
                                       padding:  EdgeInsetsDirectional.only(top: 5.0),
                                       child: Text('4.6',
-                                        style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w600, color: Colors.white),),),
+                                        style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w600, color: Color(0xffFFC107)),),),
                                   ],
                                 ),
                               ],
