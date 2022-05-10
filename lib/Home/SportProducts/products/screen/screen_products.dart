@@ -64,51 +64,7 @@ class _ScreenState extends State<ProductScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    //   bottomNavigationBar:
-    //       BottomNavigationBar(
-    //           currentIndex: currentIndex,
-    //           selectedItemColor:  HexColor('E20030'),
-    //           onTap: (index){
-    //             changeItemNavBottom(index);
-    //           },
-    //           type: BottomNavigationBarType.fixed,
-    //           items: [
-    //         BottomNavigationBarItem(
-    //         icon: Icon(Icons.sports_basketball_outlined,),
-    //         label: 'Products',
-    //       ),
-    //         BottomNavigationBarItem(
-    //           icon: Icon(Icons.fitness_center_outlined,),
-    //           label: 'Trainings',
-    //         ),
-    //         BottomNavigationBarItem(
-    //           icon: Icon(Icons.home,),
-    //           label: 'Home',
-    //         ),
-    //         BottomNavigationBarItem(
-    //           icon: Icon(Icons.chat,),
-    //           label: 'Chatbot',
-    //         ),
-    //         BottomNavigationBarItem(
-    //           icon: Icon(Icons.person,),
-    //           label: 'Profile',
-    //         ),]
-    //
-    // ),
-
-
-      // CircleBottomNavigation(
-      //     tabs: [
-      //       TabData(icon: Icons.sports_basketball_outlined,title:'Products' ),
-      //       TabData(icon: Icons.fitness_center_outlined,title:'Trainings' ),
-      //       TabData(icon: Icons.home,title:'Home' ),
-      //       TabData(icon: Icons.chat,title: 'Chatbot'),
-      //       TabData(icon: Icons.person,title: 'Profile' ),
-      //     ],
-      //     onTabChangedListener: changeItemNavBottom,
-      //     initialSelection: currentIndex),
       backgroundColor: Colors.white,
-
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.white,
@@ -163,12 +119,11 @@ class _ScreenState extends State<ProductScreen> {
                 if (snapshot.hasData) {
                   List<MydataModel> data = snapshot.data;
                   return GridView.count(
-
                     shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       crossAxisCount: 2,
-                    mainAxisSpacing: 0.0,
-                    crossAxisSpacing: 0.0,
+                    mainAxisSpacing: 3.0,
+                    crossAxisSpacing: 3.0,
                     childAspectRatio: 1/1.25,
 
                     children: List.generate(searchController.text.isEmpty ?  data.length : searchedData.length, (index) => InkWell(
@@ -177,159 +132,222 @@ class _ScreenState extends State<ProductScreen> {
                           context,
                           MaterialPageRoute(builder: (context) =>SingleProductScreen(id: data[index].productId)),);
                       },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Row(
-                          //   children: [
-                          //     InkWell(
-                          //       onTap: (){
-                          //         setState(() {
-                          //           itemProduct--;
-                          //         });
-                          //       },
-                          //       child: Container(
-                          //         height: 16,
-                          //         width: 24,
-                          //         decoration: BoxDecoration(
-                          //             color: HexColor('F7F7F7'),
-                          //             borderRadius: BorderRadiusDirectional.only(topStart: Radius.circular(5),bottomStart: Radius.circular(5)),
-                          //             boxShadow: [
-                          //               BoxShadow(
-                          //                   color: HexColor('000000').withOpacity(0.25),
-                          //                   spreadRadius: -0.25,
-                          //                   blurRadius:  2,
-                          //                   offset: Offset(-2,0)
-                          //               )
-                          //             ]
-                          //         ),
-                          //         child: Center(child:  Icon(Icons.remove,color: Colors.black,size: 10,)),
-                          //       ),
-                          //     ),
-                          //     Container(
-                          //       height: 16,
-                          //       width: 24,
-                          //       decoration: BoxDecoration(
-                          //           color: Colors.white,
-                          //           // borderRadius: BorderRadiusDirectional.only(topEnd: Radius.circular(5),bottomEnd:  Radius.circular(5)),
-                          //           boxShadow: [
-                          //             BoxShadow(
-                          //                 color: HexColor('000000').withOpacity(0.25),
-                          //                 spreadRadius: -0.25,
-                          //                 blurRadius:  2,
-                          //                 offset: Offset(1,0)
-                          //             )
-                          //           ]
-                          //       ),
-                          //       child: Center(child:Text('${itemProduct}'),),
-                          //     ),
-                          //     InkWell(
-                          //       onTap: (){
-                          //         setState(() {
-                          //           itemProduct++;
-                          //         });
-                          //       },
-                          //       child: Container(
-                          //           height: 16,
-                          //           width: 24,
-                          //           decoration: BoxDecoration(
-                          //               color: HexColor('F7F7F7'),
-                          //               borderRadius: BorderRadiusDirectional.only(topEnd: Radius.circular(5),bottomEnd:  Radius.circular(5)),
-                          //               boxShadow: [
-                          //                 BoxShadow(
-                          //                     color: HexColor('000000').withOpacity(0.25),
-                          //                     spreadRadius: -0.25,
-                          //                     blurRadius:  2,
-                          //                     offset: Offset(1,0)
-                          //                 )
-                          //               ]
-                          //           ),
-                          //           child: Center(child: Icon(Icons.add,color: Colors.black,size: 10,),)
-                          //
-                          //       ),
-                          //     ),
-                          //   ],
-                          // ),
-
-                          Stack(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(30.0),
-                                child: Container(
-                                  height: 125.0,
-                                  width: 125.0,
+                      // child: Container(
+                      //   child: Column(
+                      //     mainAxisAlignment: MainAxisAlignment.start,
+                      //     crossAxisAlignment: CrossAxisAlignment.stretch,
+                      //     children: [
+                      //       // Row(
+                      //       //   children: [
+                      //       //     InkWell(
+                      //       //       onTap: (){
+                      //       //         setState(() {
+                      //       //           itemProduct--;
+                      //       //         });
+                      //       //       },
+                      //       //       child: Container(
+                      //       //         height: 16,
+                      //       //         width: 24,
+                      //       //         decoration: BoxDecoration(
+                      //       //             color: HexColor('F7F7F7'),
+                      //       //             borderRadius: BorderRadiusDirectional.only(topStart: Radius.circular(5),bottomStart: Radius.circular(5)),
+                      //       //             boxShadow: [
+                      //       //               BoxShadow(
+                      //       //                   color: HexColor('000000').withOpacity(0.25),
+                      //       //                   spreadRadius: -0.25,
+                      //       //                   blurRadius:  2,
+                      //       //                   offset: Offset(-2,0)
+                      //       //               )
+                      //       //             ]
+                      //       //         ),
+                      //       //         child: Center(child:  Icon(Icons.remove,color: Colors.black,size: 10,)),
+                      //       //       ),
+                      //       //     ),
+                      //       //     Container(
+                      //       //       height: 16,
+                      //       //       width: 24,
+                      //       //       decoration: BoxDecoration(
+                      //       //           color: Colors.white,
+                      //       //           // borderRadius: BorderRadiusDirectional.only(topEnd: Radius.circular(5),bottomEnd:  Radius.circular(5)),
+                      //       //           boxShadow: [
+                      //       //             BoxShadow(
+                      //       //                 color: HexColor('000000').withOpacity(0.25),
+                      //       //                 spreadRadius: -0.25,
+                      //       //                 blurRadius:  2,
+                      //       //                 offset: Offset(1,0)
+                      //       //             )
+                      //       //           ]
+                      //       //       ),
+                      //       //       child: Center(child:Text('${itemProduct}'),),
+                      //       //     ),
+                      //       //     InkWell(
+                      //       //       onTap: (){
+                      //       //         setState(() {
+                      //       //           itemProduct++;
+                      //       //         });
+                      //       //       },
+                      //       //       child: Container(
+                      //       //           height: 16,
+                      //       //           width: 24,
+                      //       //           decoration: BoxDecoration(
+                      //       //               color: HexColor('F7F7F7'),
+                      //       //               borderRadius: BorderRadiusDirectional.only(topEnd: Radius.circular(5),bottomEnd:  Radius.circular(5)),
+                      //       //               boxShadow: [
+                      //       //                 BoxShadow(
+                      //       //                     color: HexColor('000000').withOpacity(0.25),
+                      //       //                     spreadRadius: -0.25,
+                      //       //                     blurRadius:  2,
+                      //       //                     offset: Offset(1,0)
+                      //       //                 )
+                      //       //               ]
+                      //       //           ),
+                      //       //           child: Center(child: Icon(Icons.add,color: Colors.black,size: 10,),)
+                      //       //
+                      //       //       ),
+                      //       //     ),
+                      //       //   ],
+                      //       // ),
+                      //       Stack(
+                      //         children: [
+                      //           Padding(
+                      //             padding: const EdgeInsets.all(30.0),
+                      //             child: Container(
+                      //               height: 125.0,
+                      //               width: 125.0,
+                      //               decoration: BoxDecoration(
+                      //                 borderRadius: BorderRadius.circular(10.0),
+                      //                 image:  DecorationImage(image:  NetworkImage(data[index].imageUrl.toString(),),
+                      //                  // fit: BoxFit.cover,
+                      //                 ),
+                      //               ),
+                      //             ),
+                      //           ),
+                      //           Row(
+                      //             children: [
+                      //               Padding(
+                      //                 padding: const EdgeInsetsDirectional.only(start: 36.0,top: 35.0),
+                      //                 child: Icon(Icons.star,color: HexColor('FFC107'),),
+                      //               ),
+                      //               SizedBox(width: 2.0,),
+                      //               Padding(
+                      //                 padding: const EdgeInsetsDirectional.only(top: 35.0),
+                      //                 child: Text('4.6',
+                      //                   style: TextStyle(
+                      //                       fontSize: 12.0,
+                      //                       fontWeight: FontWeight.w600,
+                      //                       color: Colors.black
+                      //                   ),
+                      //                 ),
+                      //               ),
+                      //             ],
+                      //           ),
+                      //
+                      //         ],
+                      //       ),
+                      //       SizedBox(height: 0.0,),
+                      //       Padding(
+                      //         padding: const EdgeInsetsDirectional.only(start: 16.0),
+                      //         child: Text(
+                      //           data[index].descriptionMinimized.toString(),
+                      //           maxLines: 3,
+                      //           overflow: TextOverflow.ellipsis,
+                      //           style: TextStyle(
+                      //             fontSize: 12.0,
+                      //             fontWeight: FontWeight.w400,
+                      //
+                      //           ),
+                      //         ),
+                      //       ),
+                      //       SizedBox(height: 2.0,),
+                      //       Row(
+                      //         children: [
+                      //           Padding(
+                      //             padding: const EdgeInsetsDirectional.only(start: 16.0),
+                      //             child: Text(data[index].brand.toString(),
+                      //               style: TextStyle(
+                      //                   color: Colors.grey
+                      //               ),),
+                      //           ),
+                      //           SizedBox(width: 8.0,),
+                      //           Container(
+                      //             height: 10.0,
+                      //             width: 1.0,
+                      //             color: HexColor('E20030'),
+                      //           ),
+                      //           SizedBox(width: 8.0,),
+                      //           Text('${data[index].price.toString()}\$',
+                      //             style: TextStyle(
+                      //                 fontSize: 12.0,
+                      //                 fontWeight: FontWeight.w600,
+                      //                 fontStyle: FontStyle.normal
+                      //             ),
+                      //           ),
+                      //         ],
+                      //       ),
+                      //     ],
+                      //   ),
+                      // ),
+                      child: Container(
+                        width: 150,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Stack(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(20.0),
+                                  height: 150.0, width: 150.0,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10.0),
-                                    image:  DecorationImage(image:  NetworkImage(data[index].imageUrl.toString(),),
-                                     // fit: BoxFit.cover,
+                                    image:  DecorationImage(image:  NetworkImage(data[index].imageUrl.toString(),), // fit: BoxFit.cover,
                                     ),
                                   ),
                                 ),
-                              ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.only(start: 36.0,top: 35.0),
-                                    child: Icon(Icons.star,color: HexColor('FFC107'),),
-                                  ),
-                                  SizedBox(width: 2.0,),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.only(top: 35.0),
-                                    child: Text('4.6',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black
-                                      ),
+                                Row(
+                                  children: const [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.only(start: 10.0,top: 3.0),
+                                      child: Icon(Icons.star,color: Color(0xffFFC107),),
                                     ),
-                                  ),
-                                ],
-                              ),
-
-                            ],
-                          ),
-                          SizedBox(height: 0.0,),
-                          Padding(
-                            padding: const EdgeInsetsDirectional.only(start: 16.0),
-                            child: Text(
-                              data[index].descriptionMinimized.toString(),
+                                    SizedBox(width: 2.0,),
+                                    Padding(
+                                      padding:  EdgeInsetsDirectional.only(top: 5.0),
+                                      child: Text('4.6',
+                                        style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w600, color: Colors.white),),),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 5,),
+                            Text(data[index].name.toString(),
                               maxLines: 3,
                               overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                fontSize: 12.0,
-                                fontWeight: FontWeight.w400,
-
-                              ),
+                              style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400,),
                             ),
-                          ),
-                          SizedBox(height: 2.0,),
-                          Row(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsetsDirectional.only(start: 16.0),
-                                child: Text(data[index].brand.toString(),
-                                  style: TextStyle(
-                                      color: Colors.grey
-                                  ),),
-                              ),
-                              SizedBox(width: 8.0,),
-                              Container(
-                                height: 10.0,
-                                width: 1.0,
-                                color: HexColor('E20030'),
-                              ),
-                              SizedBox(width: 8.0,),
-                              Text('${data[index].price.toString()}\$',
-                                style: TextStyle(
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.w600,
-                                    fontStyle: FontStyle.normal
+                            SizedBox(height: 5.0,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  child: Text(data[index].brand.toString(),
+                                    style: TextStyle(color: Colors.grey),),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                                SizedBox(width: 5,),
+                                Container(
+                                  height: 10.0,
+                                  width: 1.0,
+                                  color: Color(0xffE20030),
+                                ),
+                                SizedBox(width: 8.0,),
+                                Text('${data[index].price.toString()}\$',
+                                  style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w600, fontStyle: FontStyle.normal),
+                                ),
+                              ],
+                            ),
+
+                          ],
+                        ),
                       ),
                     ),)
 

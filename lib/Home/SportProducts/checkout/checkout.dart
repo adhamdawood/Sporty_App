@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/address.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/controller/user_payment_data_controller.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/credit_card.dart';
@@ -91,7 +90,7 @@ class _CheckoutState extends State<Checkout> {
                   borderRadius: BorderRadius.circular(5.0),
                   boxShadow: [
                     BoxShadow(
-                      color: HexColor('000000').withOpacity(0.25),
+                      color: Color(0xff000000).withOpacity(0.25),
                       spreadRadius: 1,
                       blurRadius:  1,
                     )
@@ -120,7 +119,7 @@ class _CheckoutState extends State<Checkout> {
                                    context,
                                    MaterialPageRoute(builder: (context) =>Address()));
                              },
-                             child: Icon(Icons.arrow_forward_ios,size: 20,color: HexColor('8E8E93'),))
+                             child: Icon(Icons.arrow_forward_ios,size: 20,color: Color(0xff8E8E93),))
                        ],
                      ),
                    ),
@@ -131,7 +130,7 @@ class _CheckoutState extends State<Checkout> {
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
-                          color: HexColor('8E8E93'),
+                          color: Color(0xff8E8E93),
                         ),
                       ),
                     ),
@@ -156,7 +155,7 @@ class _CheckoutState extends State<Checkout> {
                   borderRadius: BorderRadius.circular(5.0),
                   boxShadow: [
                     BoxShadow(
-                      color: HexColor('000000').withOpacity(0.25),
+                      color: Color(0xff000000).withOpacity(0.25),
                       spreadRadius: 1,
                       blurRadius:  1,
                     )
@@ -185,7 +184,7 @@ class _CheckoutState extends State<Checkout> {
                                 context,
                                 MaterialPageRoute(builder: (context) =>CreditCard()));
                             },
-                              child: Icon(Icons.arrow_forward_ios,size: 20,color: HexColor('8E8E93'),))
+                              child: Icon(Icons.arrow_forward_ios,size: 20,color: Color(0xff8E8E93),))
                         ],
                       ),
                     ),
@@ -196,7 +195,7 @@ class _CheckoutState extends State<Checkout> {
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
-                          color: HexColor('8E8E93'),
+                          color: Color(0xff8E8E93),
                         ),
                       ),
                     ),
@@ -210,7 +209,7 @@ class _CheckoutState extends State<Checkout> {
               child: Container(
                 width: 328,
                 height: 1,
-                color: HexColor('C7C7CC'),
+                color: Color(0xffC7C7CC),
               ),
             ),
             SizedBox(height: 22,),
@@ -221,7 +220,7 @@ class _CheckoutState extends State<Checkout> {
                     padding: const EdgeInsetsDirectional.only(start: 16),
                     child: Text('subtotal',
                       style: TextStyle(
-                        color: HexColor('8E8E93'),
+                        color: Color(0xff8E8E93),
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),
@@ -232,7 +231,7 @@ class _CheckoutState extends State<Checkout> {
                   padding: const EdgeInsetsDirectional.only(end: 16),
                   child: Text('${subTotal} \$',
                     style: TextStyle(
-                      color: HexColor('8E8E93'),
+                      color: Color(0xff8E8E93),
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                     ),
@@ -249,7 +248,7 @@ class _CheckoutState extends State<Checkout> {
                     padding: const EdgeInsetsDirectional.only(start: 16),
                     child: Text('Delivery fees',
                       style: TextStyle(
-                        color: HexColor('8E8E93'),
+                        color: Color(0xff8E8E93),
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),
@@ -260,7 +259,7 @@ class _CheckoutState extends State<Checkout> {
                   padding: const EdgeInsetsDirectional.only(end: 16),
                   child: Text('10\$',
                     style: TextStyle(
-                      color: HexColor('8E8E93'),
+                      color: Color(0xff8E8E93),
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                     ),
@@ -301,7 +300,7 @@ class _CheckoutState extends State<Checkout> {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child:  Material(
-                color: HexColor('E20030'),
+                color: Color(0xffE20030),
                 borderRadius: BorderRadius.circular(10.0),
                 child: InkWell(
                   onTap: () {Navigator.push(

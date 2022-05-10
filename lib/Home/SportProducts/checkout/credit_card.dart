@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/checkout.dart';
 
@@ -103,7 +102,7 @@ var formKey = GlobalKey<FormState>();
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child:  Material(
-                    color: HexColor('E20030'),
+                    color: Color(0xffE20030),
                     borderRadius: BorderRadius.circular(10.0),
                     child: InkWell(
                       onTap: () {
