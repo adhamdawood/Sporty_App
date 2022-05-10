@@ -1,7 +1,25 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-class VerificationCode extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'package:sporty_app/APIs/CheckResetToken.dart';
+import 'package:sporty_app/Auth/LogIn/NewPasswordScreen.dart';
+import 'package:sporty_app/Models/Widgets.dart';
+
+class VerificationCode extends StatefulWidget {
   static const ROUTE_NAME="verificationCode";
+  String eMail;
+  VerificationCode({this.eMail});
+
+  @override
+  State<VerificationCode> createState() => _VerificationCodeState();
+}
+
+class _VerificationCodeState extends State<VerificationCode> {
+  String verificationCode;
+  CheckResetToken resetToken;
+  String newUrl;
+  bool urlIsSent=false;
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +27,7 @@ class VerificationCode extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(icon:Icon(Icons.arrow_back,color: Colors.black,),
+        leading: IconButton(icon:const Icon(Icons.arrow_back,color: Colors.black,),
           onPressed:() => Navigator.pop(context),
         ),),
       body : Container(
@@ -22,7 +40,7 @@ class VerificationCode extends StatelessWidget {
           children: [
             const Text("Verification Code",style: TextStyle(fontWeight: FontWeight.bold),),
             const Text("Enter the code that was sent to",style: TextStyle(fontSize: 14),),
-            const Text("The account@gmail.com   ",style: TextStyle(fontSize: 14,color:Color(0xFFE20030),),),
+             Text( widget.eMail,style: const TextStyle(fontSize: 14,color:Color(0xFFE20030),),),
             const SizedBox(height: 100,),
 
             const Text("Enter your code"),
@@ -31,13 +49,9 @@ class VerificationCode extends StatelessWidget {
                 hintText: "",
                // labelText: 'SENT CODE *',
               ),
-              onSaved: (String value) {
-                // This optional block of code can be used to run
-                // code when the user saves the form.
-              },
-              validator: (String value) {
-                return (value != null && value.contains('@')) ? 'Do not use the @ char.' : null;
-              },
+             onChanged: (value){
+                verificationCode=value;
+             },
             ),
             //const SizedBox(height: 20,),
             Container(
@@ -47,7 +61,14 @@ class VerificationCode extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: TextButton(
-                onPressed: (){},
+                onPressed :() async {
+                  await verifyCode();
+                  if(urlIsSent){
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (_) => NewPasswordScreen(newUrl: newUrl,)));
+                  }
+
+                },
                 child: const Text("Reset Password",style: TextStyle(color: Colors.white),),),
             ),
             //const SizedBox(height: 20,),
@@ -64,5 +85,30 @@ class VerificationCode extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<CheckResetToken> verifyCode() async {
+    var body = jsonEncode({
+      'Token': verificationCode,
+    });
+    var url = Uri.parse(
+        'http://Sporty.somee.com/api/Auth/CheckResetToken');
+    final response = await http.post(url,
+        body: body, headers: {
+          "content-type": "application/json",
+          "Accept": "application/json",
+        });
+    if (response.statusCode == 200) {
+       resetToken = await CheckResetToken.fromJson(jsonDecode(response.body));
+       newUrl=resetToken.resetLink.href;
+     urlIsSent=true;
+    } else if(response.statusCode==403){
+      urlIsSent=false;
+      flutterToast(msg: "Invalid code");
+      throw(Exception(response.body));
+    }else{
+      urlIsSent=false;
+      flutterToast(msg: "code is required!");
+    }
   }
 }

@@ -1,11 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sporty_app/APIs/login_response.dart';
 import 'package:sporty_app/Auth/LogIn/ForgetPasswordScreen.dart';
 import 'package:http/http.dart' as http;
 import 'package:sporty_app/Home/HomeScreen.dart';
+import 'package:sporty_app/Models/Widgets.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 
 import '../SignUp/SignUpScreen.dart';
@@ -34,7 +33,8 @@ class _LogInScreenState extends State<LogInScreen> {
                 future: loginResponse,
                 builder: (context,snapshot){
                   if (snapshot.hasData){
-                   cacheHelper.saveData(key: "token", value: snapshot.data.token).then((value) => HomePage());
+                   cacheHelper.saveData(key: "token", value: snapshot.data.token);
+                   cacheHelper.saveData(key: "refreshToken", value : snapshot.data.refreshToken);
                     return HomePage();
                   }else {
                     return Scaffold(
@@ -83,7 +83,7 @@ class _LogInScreenState extends State<LogInScreen> {
                               child: TextButton(
                                 onPressed: () {
                                   setState(() {
-                                    loginResponse= LoadResponse();
+                                    loginResponse= loadResponse();
                                   });
                                   onSignInButton=1;
                                 },
@@ -114,13 +114,13 @@ class _LogInScreenState extends State<LogInScreen> {
                 }
                 );
       }
-  Future<LoginResponse> LoadResponse() async {
+  Future<LoginResponse> loadResponse() async {
     var body = jsonEncode({
-      'email':"adhamdawood@gmail.com",
-      'password': "Adh@mD@wood123",
+      'email':email,
+      'password': password,
     });
     var url = Uri.parse(
-        'http://mohamedsadk889-001-site1.etempurl.com/api/Auth/login');
+        'http://Sporty.somee.com/api/Auth/login');
     final response = await http.post(url,
         body: body, headers: {
           "content-type": "application/json",
@@ -129,15 +129,7 @@ class _LogInScreenState extends State<LogInScreen> {
     if (response.statusCode == 200) {
       return await LoginResponse.fromJson(jsonDecode(response.body));
     } else if(response.statusCode==400&&onSignInButton==1) {
-      Fluttertoast.showToast(
-          msg: "Email or Password is Incorrect",
-          toastLength: Toast.LENGTH_LONG,
-          gravity: ToastGravity.CENTER,
-          timeInSecForIosWeb: 1,
-          backgroundColor: const Color(0xFFE20030),
-          textColor: Colors.white,
-          fontSize: 16.0
-      );
+     flutterToast( msg: "Email or Password is Incorrect");
       throw(Exception(response.body));
     }
   }
