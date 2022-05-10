@@ -1,9 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:sporty_app/Auth/LogIn/VerificationCode.dart';
 
+import '../../Models/Widgets.dart';
 
-class ForgetPasswordScreen extends StatelessWidget {
+
+class ForgetPasswordScreen extends StatefulWidget {
   static const ROUTE_NAME= "ForgetPassword Screen";
+
+  @override
+  State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
+}
+
+class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
+  String eMail;
+ bool codeIsSent;
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +22,7 @@ class ForgetPasswordScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(icon:Icon(Icons.arrow_back,color: Colors.black,),
+        leading: IconButton(icon:const Icon(Icons.arrow_back,color: Colors.black,),
     onPressed:() => Navigator.pop(context),
       ),),
       body : Container(
@@ -29,10 +40,9 @@ class ForgetPasswordScreen extends StatelessWidget {
                 hintText: "E-mail",
                 labelText: 'E-mail *',
               ),
-              onSaved: (String value) {
-                // This optional block of code can be used to run
-                // code when the user saves the form.
-              },
+             onChanged: (value){
+                eMail=value;
+             },
               validator: (String value) {
                 return (value != null && value.contains('@')) ? 'Do not use the @ char.' : null;
               },
@@ -44,15 +54,35 @@ class ForgetPasswordScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: TextButton(
-                onPressed: (){
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (_) => VerificationCode()));
-                },
+                onPressed: () async {
+                   await forgetPass();
+                  if(codeIsSent){
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (_) => VerificationCode(eMail: eMail,)));
+                  }
+                 },
                 child: const Text("Send Code",style: TextStyle(color: Colors.white),),),
             ),
           ],
         ),
       ),
     );
+  }
+
+  Future<void> forgetPass() async {
+    var url = Uri.parse(
+        'http://Sporty.somee.com/api/Auth/ForgetPassword?email=$eMail');
+    final response = await http.post(url,
+         headers: {
+          "content-type": "application/json",
+          "Accept": "application/json",
+        });
+    if (response.statusCode == 200) {
+        flutterToast(msg: "Reset password Token has been sent to your email successfully!");
+        codeIsSent= true;
+    } else {
+      flutterToast(msg: response.body.characters.string);
+      codeIsSent= false;
+    }
   }
 }
