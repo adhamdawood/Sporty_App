@@ -1,31 +1,32 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:provider/provider.dart';
 import 'package:sporty_app/APIs/GetHomeData.dart';
 import 'package:sporty_app/Home/SportProducts/product/product_screen.dart';
+import 'package:sporty_app/Providers/productsProvider.dart';
 
 class getAllData extends StatelessWidget {
   GetHomeData homeData;
-
   getAllData(this.homeData);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: Image.asset("assets/images/welcomeScreen.png",width: 100,height: 20,),
-        actions: const [
-          Icon(
-            Icons.shopping_bag_outlined,
-            color: Color(0xff1c3144),
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            leading: Image.asset("assets/images/welcomeScreen.png",width: 100,height: 20,),
+            actions: const [
+              Icon(
+                Icons.shopping_bag_outlined,
+                color: Color(0xff1c3144),
+              ),
+            ],
           ),
-        ],
-      ),
-      body: Container(
-         margin: const EdgeInsets.all(15),
-        child: Column(
+          body: Container(
+            margin: const EdgeInsets.all(15),
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -44,27 +45,47 @@ class getAllData extends StatelessWidget {
                   ],
                 ),
                 SizedBox(height: 5,),
-                Container(
-                  padding: const EdgeInsets.all(0.0), height: 200, width: 600,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    image:  DecorationImage(image:  NetworkImage(homeData.trainingPrograms[0].imageUrl.toString(),), // fit: BoxFit.cover,
-                    ),
+                Expanded(
+                  child: GridView.builder(
+                    scrollDirection: Axis.horizontal,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 1,mainAxisSpacing: 8,crossAxisSpacing: 8),
+                    itemCount: homeData.trainingPrograms.length,
+                      itemBuilder: (_, index)  {
+                    return Column(
+                      children: [
+                        Container(
+                          child:  CachedNetworkImage(
+                            imageUrl: homeData.trainingPrograms[0].imageUrl,
+                            progressIndicatorBuilder: (context, url, downloadProgress) =>
+                                Center(child: CircularProgressIndicator(value: downloadProgress.progress)),
+                            errorWidget: (context, url, error) => Icon(Icons.error),
+                          ),
+                        ),
+                        Row (
+                          children: [
+                            Container(
+                              width: 200,
+                              child: Text(homeData.trainingPrograms[index].name,
+                                maxLines: 2,
+                              ),
+                            ),
+                            const Spacer(),
+                            const Icon(Icons.star, color: Color(0xffffba08),),
+                            const Text('4.6')
+                          ],
+                        ),
+                        Text(
+                          homeData.trainingPrograms[index].level,
+                          style: TextStyle(color: Color(0xff8E8E93)),
+                        ),
+                      ],
+                    ) ;
+                    }
+
                   ),
                 ),
-                Row (
-                  children: [
-                    Text(homeData.trainingPrograms[0].name),
-                    const Spacer(),
-                    const Icon(Icons.star, color: Color(0xffffba08),),
-                    const Text('4.6')
-                  ],
-                ),
-                Text(
-                  homeData.trainingPrograms[0].level,
-                  style: TextStyle(color: Color(0xff8E8E93)),
-                ),
-                 const SizedBox(height: 20,),
+                const SizedBox(height: 20,),
                 Row(
                   children: const [
                     Text(
@@ -217,12 +238,13 @@ class getAllData extends StatelessWidget {
                     ),
                   ],
                 ),
-                  ],
-                ),
+              ],
+            ),
 
-        ),
+          ),
 
 
-      );
+        );
+
   }
 }

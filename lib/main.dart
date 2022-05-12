@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sporty_app/Auth/LogIn/ForgetPasswordScreen.dart';
 import 'package:sporty_app/Auth/LogIn/NewPasswordScreen.dart';
 import 'package:sporty_app/Auth/LogIn/VerificationCode.dart';
@@ -9,6 +10,7 @@ import 'package:sporty_app/Home/HomeScreen.dart';
 import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
 import 'package:sporty_app/Home/chooseInterests.dart';
 import 'package:sporty_app/Models/Widgets.dart';
+import 'package:sporty_app/Providers/productsProvider.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 import 'package:sporty_app/WelcomeScreen.dart';
 import 'Auth/LogIn/LogInScreen.dart';
@@ -42,8 +44,8 @@ Widget widget;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(
           ),
@@ -57,11 +59,11 @@ Widget widget;
             chooseInterests.ROUTE_NAME:(context)=>chooseInterests(),
             HomePage.ROUTE_NAME:(context)=>HomePage(),
           },
-         // initialRoute: ForgetPasswordScreen.ROUTE_NAME,
+          // initialRoute: ForgetPasswordScreen.ROUTE_NAME,
           //welcome==true?WelcomeScreen.ROUTE_NAME:LogInScreen.ROUTE_NAME,
-         home: widget,
+          home: widget,
         );
+        }
   }
 
-}
 
