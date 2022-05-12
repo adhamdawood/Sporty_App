@@ -4,6 +4,8 @@ import 'package:sporty_app/Home/ChatBot/ChatBotScreen.dart';
 import 'package:sporty_app/Home/ProfileView/ProfileViewScren.dart';
 import 'package:sporty_app/Home/SportProducts/products/screen/screen_products.dart';
 import 'package:sporty_app/Home/TrainingProgram/TrainingScreen.dart';
+import 'package:sporty_app/Home/TrainingProgram/training_programs/screen/trainings.dart';
+
 
 class HomePage extends StatefulWidget {
   static String  ROUTE_NAME="Home";

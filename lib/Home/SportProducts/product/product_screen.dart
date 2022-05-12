@@ -35,6 +35,7 @@ class _ProductScreenState extends State<SingleProductScreen> {
     //cubit.getSubTotal();
 
         return Scaffold(
+
           body:
           FutureBuilder<ProductModel>(
               future: futureData,

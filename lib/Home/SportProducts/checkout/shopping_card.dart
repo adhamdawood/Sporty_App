@@ -12,7 +12,7 @@ import 'package:sporty_app/Home/SportProducts/products/cubit/states.dart';
 
 
 class ShoppingCard extends StatelessWidget {
- // var products = cacheHelperr.products;
+ // var training_programs = cacheHelperr.training_programs;
  // Map <int ,dynamic> itemProduct ={} ;
  // List <Map> subTotal = cacheHelperr.subTotal ;
   // @override

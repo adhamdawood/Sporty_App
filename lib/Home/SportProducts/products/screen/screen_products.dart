@@ -152,7 +152,7 @@ class _ScreenState extends State<ProductScreen> {
                         },
                         child: Icon (Icons.tune_outlined,color: HexColor('E20030'),),),
                       prefixIcon: Icon(Icons.search),
-                      hintText: 'Search for product'
+                      hintText: 'Search for single_training'
 
                   )
               ),
@@ -294,7 +294,7 @@ class _ScreenState extends State<ProductScreen> {
                             padding: const EdgeInsetsDirectional.only(start: 16.0),
                             child: Text(
                               data[index].descriptionMinimized.toString(),
-                              maxLines: 3,
+                              maxLines: 1,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 fontSize: 12.0,
