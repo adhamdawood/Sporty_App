@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:provider/provider.dart';
 import 'package:sporty_app/Home/SportProducts/product/product_controller.dart';
 import 'package:sporty_app/Home/SportProducts/product/product_model.dart';
 import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
@@ -29,16 +30,13 @@ class _ProductScreenState extends State<SingleTrainingScreen> {
     //BlocProvider.of<ShoppingCubit>(context)..createDatabase();
     futureData = singleTrainingData(id: this.id) ;
   }
-
   @override
   Widget build(BuildContext context) {
     ShoppingCubit cubit = new ShoppingCubit();
     cubit.createDatabase();
     //cubit.getSubTotal();
-
         return Scaffold(
-          body:
-          FutureBuilder<SingleTrainingModel>(
+          body: FutureBuilder<SingleTrainingModel>(
               future: futureData,
               builder: (context,snapshot,) {
                 if (snapshot.hasData ) {
@@ -276,12 +274,11 @@ class _ProductScreenState extends State<SingleTrainingScreen> {
                                   color: HexColor('E20030'),
                                   borderRadius: BorderRadius.circular(10.0),
                                   child: InkWell(
-                                    onTap: () {
-                                      /// var product = new CartProductModel(productId: data.trainingProgramId,
-                                      ///     name: data.name, counter: 1, brand: data.level, price: data.pricePerMonth
-                                      ///     ,imageUrl: data.imageUrl);
-                                      /// print('screeeeen ${product.productId}');
-                                      /// cubit.insertDatabase( cartProduct: product );
+                                    onTap: () async{
+
+                                      await enrollToAProgram(data.trainingProgramId);
+                                      Navigator.pop(context);
+
 
 
                                     },
@@ -295,7 +292,7 @@ class _ProductScreenState extends State<SingleTrainingScreen> {
                                           .size
                                           .height * .05,
                                       decoration: BoxDecoration(),
-                                      child:  Center(child: Text(  'Add To Cart' ,
+                                      child:  Center(child: Text(  'Book Now' ,
                                         style: TextStyle(
                                             fontSize: 14.0,
                                             fontWeight: FontWeight.w500,

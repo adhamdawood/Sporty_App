@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:provider/provider.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/address.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/controller/user_payment_data_controller.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/credit_card.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/model/address_model.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/model/user_payment_data_model.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/provider/provider_checkout.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/success.dart';
 import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 
 class Checkout extends StatefulWidget {
   final double subTotal;
-  const Checkout({Key key, this.subTotal}) : super(key: key);
+  final List <Map> products;
+
+  const Checkout({Key key, this.subTotal, this.products}) : super(key: key);
   @override
-  State<Checkout> createState() => _CheckoutState(subTotal);
+  State<Checkout> createState() => _CheckoutState(subTotal, products);
 }
 
 class _CheckoutState extends State<Checkout> {
@@ -26,25 +30,31 @@ class _CheckoutState extends State<Checkout> {
   double subTotal;
   double total ;
   ShoppingCubit cubit = new ShoppingCubit();
+  List <Map> productsList;
 
-  _CheckoutState(double subTotal)
+  _CheckoutState(double subTotal, List<Map<dynamic, dynamic>> products)
   {
     this.subTotal = subTotal;
     total = subTotal + 10;
+    productsList = products;
+    print("in check out ${products}");
   }
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
    //////////////////////////////////// print("in checkout${cacheHelperr.address}");
-     cubit.createDatabase();
+     ///cubit.createDatabase();
 
   }
-
+  CheckoutProvider provider ;
   @override
   Widget build(BuildContext context) {
   //cubit.getSubTotal();
-    return Scaffold(
+    provider = Provider.of<CheckoutProvider>(context);
+    print("in setting provider ${productsList}");
+    provider.products = productsList;
+    return provider.userPayment != null ?  Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
@@ -107,7 +117,8 @@ class _CheckoutState extends State<Checkout> {
                      child: Row(
                        children: [
                          Expanded(
-                           child: Text("{cacheHelperr.address.street}",
+                           child: Text("${provider.userPayment.address == null ? "Enter your address" :
+                           provider.userPayment.address.street}",
                              style: TextStyle(
                                fontSize: 14,
                                fontWeight: FontWeight.w400,
@@ -118,7 +129,7 @@ class _CheckoutState extends State<Checkout> {
                              onTap: (){
                                Navigator.push(
                                    context,
-                                   MaterialPageRoute(builder: (context) =>Address()));
+                                   MaterialPageRoute(builder: (context) =>Address(total: this.total,addressModel: provider.userPayment.address,)));
                              },
                              child: Icon(Icons.arrow_forward_ios,size: 20,color: HexColor('8E8E93'),))
                        ],
@@ -127,7 +138,8 @@ class _CheckoutState extends State<Checkout> {
                     SizedBox(height: 6,),
                     Padding(
                       padding: const EdgeInsetsDirectional.only(start: 9,),
-                      child: Text("${city}",
+                      child: Text("${provider.userPayment.address == null ? "" :
+                      provider.userPayment.address.city}",
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
@@ -183,7 +195,7 @@ class _CheckoutState extends State<Checkout> {
                             onTap: (){
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) =>CreditCard()));
+                                MaterialPageRoute(builder: (context) =>CreditCard(total: total - 10,creditCard: provider.userPayment.creditCard,)));
                             },
                               child: Icon(Icons.arrow_forward_ios,size: 20,color: HexColor('8E8E93'),))
                         ],
@@ -192,7 +204,9 @@ class _CheckoutState extends State<Checkout> {
                     SizedBox(height: 6,),
                     Padding(
                       padding: const EdgeInsetsDirectional.only(start: 9,),
-                      child: Text("",
+                      child: Text("${provider.userPayment.creditCard.length == 0 ?
+                      "Enter your Credit Card" :
+                      provider.userPayment.creditCard[0].creditCardNumber}",
                         style: TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
@@ -205,6 +219,7 @@ class _CheckoutState extends State<Checkout> {
                 ),
               ),
             ),
+
             SizedBox(height: 55,),
             Center(
               child: Container(
@@ -304,7 +319,9 @@ class _CheckoutState extends State<Checkout> {
                 color: HexColor('E20030'),
                 borderRadius: BorderRadius.circular(10.0),
                 child: InkWell(
-                  onTap: () {Navigator.push(
+                  onTap: () {
+                    provider.makeApiOrder(total);
+                    Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) =>Success()),);},
                   child: Container(
@@ -331,6 +348,6 @@ class _CheckoutState extends State<Checkout> {
           ],
         ),
       ),
-    );
+    ) : Center(child: CircularProgressIndicator());
   }
 }

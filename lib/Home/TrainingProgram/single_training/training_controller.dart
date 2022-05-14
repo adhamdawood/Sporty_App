@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:sporty_app/Home/SportProducts/consttt.dart';
 import 'package:sporty_app/Home/SportProducts/product/product_model.dart';
 import 'package:sporty_app/Home/TrainingProgram/single_training/training_model.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 
 Future<SingleTrainingModel> singleTrainingData({ String id}) async {
 
-  final response = await http.get(Uri.parse('http://Sporty.somee.com/api/programs/'+id),
+  final response = await http.get(Uri.parse('${baseApi}/api/programs/'+id),
       headers: {'Authorization':'Bearer ${cacheHelper.sharedPreferences.getString("token")}'},
   );
   if (response.statusCode == 200) {
@@ -20,3 +21,22 @@ Future<SingleTrainingModel> singleTrainingData({ String id}) async {
     throw Exception('Unexpected error occured!');
   }
 }
+
+Future<dynamic> enrollToAProgram(String id) async{
+  var headers = {
+    'Authorization': 'Bearer ${cacheHelper.sharedPreferences.getString("token")}'
+  };
+  var request = http.Request('POST', Uri.parse('http://ahmedssaleem-001-site1.etempurl.com/api/programs/${id}/enroll'));
+
+  request.headers.addAll(headers);
+
+  http.StreamedResponse response = await request.send();
+
+  if (response.statusCode == 200) {
+    print(await response.stream.bytesToString());
+  }
+  else {
+  print(response.reasonPhrase);
+  }
+}
+

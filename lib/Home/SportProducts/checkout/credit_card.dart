@@ -1,20 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/checkout.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/model/CreditCardModel.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/provider/provider_checkout.dart';
 
 class CreditCard extends StatefulWidget {
-  const CreditCard({Key key}) : super(key: key);
+  final double total;
+  final List<CreditCardModel> creditCard;
+  const CreditCard({Key key, this.total, this.creditCard}) : super(key: key);
 
   @override
-  State<CreditCard> createState() => _CreditCardState();
+  State<CreditCard> createState() => _CreditCardState(total,creditCard);
 }
 
 class _CreditCardState extends State<CreditCard> {
-  var dateController = TextEditingController();
+  var credirCardNumController = TextEditingController();
+  var expirationDateController = TextEditingController();
+  var zipCodeController = TextEditingController();
+List<CreditCardModel> creditCards;
+  double subtotal;
 var formKey = GlobalKey<FormState>();
+
+  _CreditCardState(total, List<CreditCardModel> creditCard){
+    subtotal = total;
+    creditCards = creditCard;
+    if(creditCards.length != 0){
+      credirCardNumController.text = creditCards[0].creditCardNumber;
+      expirationDateController.text = creditCards[0].expirationDate;
+      zipCodeController.text = creditCards[0].zipcode;
+    }
+  }
+
+
+  CheckoutProvider provider;
   @override
   Widget build(BuildContext context) {
+    provider = Provider.of<CheckoutProvider>(context);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -39,6 +62,7 @@ var formKey = GlobalKey<FormState>();
                     )),
                 TextFormField(
                   keyboardType: TextInputType.number,
+                  controller: credirCardNumController,
                   validator: (value){
                     if(value.isEmpty)
                     {
@@ -57,6 +81,7 @@ var formKey = GlobalKey<FormState>();
                         fontWeight: FontWeight.w400
                     ),),
                 TextFormField(keyboardType: TextInputType.number,
+                  controller: zipCodeController,
                   validator: (value){
                     if(value.isEmpty)
                     {
@@ -74,17 +99,17 @@ var formKey = GlobalKey<FormState>();
                         fontWeight: FontWeight.w400
                     )),
                 TextFormField(
-                  controller: dateController,
+                  controller: expirationDateController,
                   keyboardType: TextInputType.datetime,
-                  onTap: (){
-                    showDatePicker(context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime.now(),
-                        lastDate: DateTime(2100)).then((value) {
-                      dateController.text = DateFormat.yMMMd().format(value);
-
-                    });;
-                  },
+                  // onTap: (){
+                  //   showDatePicker(context: context,
+                  //       initialDate: DateTime.now(),
+                  //       firstDate: DateTime.now(),
+                  //       lastDate: DateTime(2100)).then((value) {
+                  //     expirationDateController.text = DateFormat.yMMMd().format(value);
+                  //
+                  //   });;
+                  // },
                   validator: (value){
                     if(value.isEmpty)
                     {
@@ -108,9 +133,11 @@ var formKey = GlobalKey<FormState>();
                     child: InkWell(
                       onTap: () {
                         if (formKey.currentState.validate()){
+                          provider.setCreditCard(credirCardNumController.text,
+                              expirationDateController.text, zipCodeController.text);
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) =>Checkout()),);
+                            MaterialPageRoute(builder: (context) =>Checkout(subTotal: subtotal,)),);
                         }
 
                         },

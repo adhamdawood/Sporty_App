@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sporty_app/APIs/CheckResetToken.dart';
 import 'package:sporty_app/Auth/LogIn/NewPasswordScreen.dart';
+import 'package:sporty_app/Home/SportProducts/consttt.dart';
 import 'package:sporty_app/Models/Widgets.dart';
 
 class VerificationCode extends StatefulWidget {
@@ -92,7 +93,7 @@ class _VerificationCodeState extends State<VerificationCode> {
       'Token': verificationCode,
     });
     var url = Uri.parse(
-        'http://Sporty.somee.com/api/Auth/CheckResetToken');
+        '${baseApi}/api/Auth/CheckResetToken');
     final response = await http.post(url,
         body: body, headers: {
           "content-type": "application/json",

@@ -113,7 +113,7 @@ class ShoppingCard extends StatelessWidget {
                                             ),
                                             width:200 ,
                                           ),
-                                          SizedBox(width: 40,),
+                                          SizedBox(width: 10,),
                                           InkWell(
                                               onTap: (){
                                                 cubit.deletFromShoppingCard(index);
@@ -208,7 +208,7 @@ class ShoppingCard extends StatelessWidget {
 
                                               ),
                                             ),
-                                            SizedBox(width: 130,),
+                                            SizedBox(width: 100,),
                                             Text(
                                               '${cubit.products[index]['Price']}\$',
                                               style: TextStyle(
@@ -244,7 +244,7 @@ class ShoppingCard extends StatelessWidget {
                         print('dddd${cubit.subTotal}');
                         Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) =>Checkout(subTotal: cubit.subTotal,)),);},
+                        MaterialPageRoute(builder: (context) =>Checkout(subTotal: cubit.subTotal, products: cubit.products,)),);},
                       child: Container(
                         width: MediaQuery
                             .of(context)

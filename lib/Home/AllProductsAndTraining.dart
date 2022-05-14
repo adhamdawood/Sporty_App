@@ -41,7 +41,7 @@ class _AllProductsAndTrainingState extends State<AllProductsAndTraining> {
     var body = jsonEncode({
     });
     var url = Uri.parse(
-        'http://Sporty.somee.com/api/home');
+        'http://sportyapi.somee.com/api/home');
     final response = await http.get(url,
         headers: {
           "content-type": "application/json",

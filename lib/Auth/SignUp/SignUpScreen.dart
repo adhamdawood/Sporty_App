@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:sporty_app/Home/SportProducts/consttt.dart';
 import 'package:sporty_app/Models/Widgets.dart';
 
 
@@ -112,7 +113,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       "confirmPassword":password,
     });
     var url = Uri.parse(
-        'http://Sporty.somee.com/api/Auth/signup');
+        '${baseApi}/api/Auth/signup');
     final response = await http.post(url,
         body: body, headers: {
           "content-type": "application/json",

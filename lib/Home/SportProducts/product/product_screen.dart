@@ -110,7 +110,7 @@ class _ProductScreenState extends State<SingleProductScreen> {
                             children: [
                               Padding(
                                 padding: const EdgeInsetsDirectional.only(
-                                    start: 18, top: 24.0, end: 16.0),
+                                    start: 18, top: 20.0, end: 16.0),
                                 child: Row(
                                   children: [
                                     Expanded(
@@ -180,7 +180,7 @@ class _ProductScreenState extends State<SingleProductScreen> {
                               ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.only(
-                                    start: 20, top: 35, end: 16.0),
+                                    start: 20, top: 5, end: 16.0),
                                 child: Text('Description',
                                   maxLines: 8,
                                   style: TextStyle(
@@ -192,7 +192,7 @@ class _ProductScreenState extends State<SingleProductScreen> {
                               ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.only(
-                                    start: 20, top: 8, end: 16.0),
+                                    start: 20, top: 5, end: 16.0),
                                 child: Expanded(
                                   flex: 1,
                                   child: Container(
@@ -224,7 +224,7 @@ class _ProductScreenState extends State<SingleProductScreen> {
                                           name: data.name, counter: 1, brand: data.brand, price: data.price
                                           ,imageUrl: data.imageUrl);
                                       print('screeeeen ${product.productId}');
-                                      cubit.insertDatabase( cartProduct: product );
+                                      cubit.insertProduct(  product );
 
 
                                     },
