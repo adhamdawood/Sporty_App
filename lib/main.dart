@@ -1,16 +1,11 @@
-import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:sporty_app/Auth/LogIn/ForgetPasswordScreen.dart';
 import 'package:sporty_app/Auth/LogIn/NewPasswordScreen.dart';
 import 'package:sporty_app/Auth/LogIn/VerificationCode.dart';
 import 'package:sporty_app/Auth/SignUp/SignUpScreen.dart';
 import 'package:sporty_app/Home/HomeScreen.dart';
 import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
-import 'package:sporty_app/Home/chooseInterests.dart';
-import 'package:sporty_app/Models/Widgets.dart';
-import 'package:sporty_app/Providers/productsProvider.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 import 'package:sporty_app/WelcomeScreen.dart';
 import 'Auth/LogIn/LogInScreen.dart';
@@ -56,7 +51,6 @@ Widget widget;
             ForgetPasswordScreen.ROUTE_NAME:(context)=>ForgetPasswordScreen(),
             VerificationCode.ROUTE_NAME:(context)=>VerificationCode(),
             NewPasswordScreen.ROUTE_NAME:(context)=>NewPasswordScreen(),
-            chooseInterests.ROUTE_NAME:(context)=>chooseInterests(),
             HomePage.ROUTE_NAME:(context)=>HomePage(),
           },
           // initialRoute: ForgetPasswordScreen.ROUTE_NAME,

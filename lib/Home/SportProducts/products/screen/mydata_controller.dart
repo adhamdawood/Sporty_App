@@ -6,7 +6,8 @@ import 'package:http/http.dart' as http;
   List<MydataModel> allProducts ;
 Future<List<MydataModel>> fetchData() async {
   final response =
-  await http.get(Uri.parse('http://Sporty.somee.com/api/products'),
+  await http.get(Uri.parse('http://sportyapi.somee.com/api/products'),
+
      headers: {'Authorization':'Bearer ${cacheHelper.sharedPreferences.getString("token")}'}
   );
 

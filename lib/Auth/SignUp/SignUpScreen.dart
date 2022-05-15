@@ -112,7 +112,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       "confirmPassword":password,
     });
     var url = Uri.parse(
-        'http://Sporty.somee.com/api/Auth/signup');
+        '${ApiUrl}/api/Auth/signup');
     final response = await http.post(url,
         body: body, headers: {
           "content-type": "application/json",

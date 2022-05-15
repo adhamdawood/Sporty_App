@@ -3,9 +3,11 @@ import 'package:http/http.dart' as http;
 import 'package:sporty_app/Home/SportProducts/product/product_model.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 
+import '../../../Models/Widgets.dart';
+
 Future<ProductModel> singleProductData({ String id}) async {
 
-  final response = await http.get(Uri.parse('http://Sporty.somee.com/api/products/'+id),
+  final response = await http.get(Uri.parse('${ApiUrl}/api/products/'+id),
       headers: {'Authorization':'Bearer ${cacheHelper.sharedPreferences.getString("token")}'},
   );
   if (response.statusCode == 200) {

@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:sporty_app/Home/SportProducts/checkout/model/address_model.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/model/user_payment_data_model.dart';
 import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
+import 'package:sporty_app/Models/Widgets.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 import 'package:http/http.dart' as http;
 
@@ -11,8 +12,8 @@ var token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4NDVmZDk4Yy1jMmE1LT
 
  Future<UserPaymentDataModel> fetchUserPaymentData() async {
   final response =
-  await http.get(Uri.parse('http://Sporty.somee.com/api/users/payment-data'),
-      headers: {'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4NDVmZDk4Yy1jMmE1LTQzYWEtYjNlNy05NDkxZDE2ZmY1MWMiLCJlbWFpbCI6Im1vaGFtZWRzYWRrLjg4OUBnbWFpbC5jb20iLCJ1aWQiOiJlMTRhMGYxZS04MmUzLTRiN2EtYjVkMi05OTgxZjcyMmE0YzEiLCJleHAiOjE2NTYwNjk0MDgsImlzcyI6IlRlc3RKV1RBcGkiLCJhdWQiOiJUZXN0SldUQXBpVXNlciJ9.H0CSfFzmMY5CYaiyxsrBQyYdQMxnIqlVhTeP8pg6Zkc'}
+  await http.get(Uri.parse('${ApiUrl}/api/users/payment-data'),
+      headers: {'Authorization':'Bearer ${cacheHelper.sharedPreferences.getString("token")}'}
   );
 
   if (response.statusCode == 200) {

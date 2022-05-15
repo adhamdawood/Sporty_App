@@ -22,9 +22,10 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<productProvider>(
-      create:(context)=>productProvider() ,
+      create:(context)=>productProvider()..fetchData() ,
       builder: (context,widget){
          provider=Provider.of<productProvider>(context);
+
         return Scaffold(
           bottomNavigationBar: BottomAppBar(
             clipBehavior: Clip.hardEdge,
@@ -68,7 +69,6 @@ class _HomePageState extends State<HomePage> {
 
   Widget Body(){
     if(selectedIndex==0) {
-      provider.fetchData();
       return ProductScreen();}
     else if (selectedIndex==1) {return TrainingScreen();}
     else if (selectedIndex==2) {return AllProductsAndTraining();}

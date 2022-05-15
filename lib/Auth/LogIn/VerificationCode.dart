@@ -92,7 +92,7 @@ class _VerificationCodeState extends State<VerificationCode> {
       'Token': verificationCode,
     });
     var url = Uri.parse(
-        'http://Sporty.somee.com/api/Auth/CheckResetToken');
+        '${ApiUrl}/api/Auth/CheckResetToken');
     final response = await http.post(url,
         body: body, headers: {
           "content-type": "application/json",
