@@ -121,7 +121,7 @@ class _LogInScreenState extends State<LogInScreen> {
       'password': password,
     });
     var url = Uri.parse(
-        '${baseApi}/api/Auth/login');
+        '${ApiUrl}/api/Auth/login');
     final response = await http.post(url,
         body: body, headers: {
           "content-type": "application/json",

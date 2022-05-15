@@ -4,10 +4,12 @@ import 'package:sporty_app/Home/SportProducts/consttt.dart';
 import 'package:sporty_app/Home/SportProducts/product/product_model.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 
+import '../../../Models/Widgets.dart';
+
 Future<ProductModel> singleProductData({ String id}) async {
 
-  final response = await http.get(Uri.parse('${baseApi}/api/products/'+id),
-      headers: {'Authorization':'Bearer  ${cacheHelper.sharedPreferences.getString("token")}'},
+  final response = await http.get(Uri.parse('${ApiUrl}/api/products/'+id),
+      headers: {'Authorization':'Bearer ${cacheHelper.sharedPreferences.getString("token")}'},
   );
   if (response.statusCode == 200) {
 

@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sporty_app/Auth/LogIn/ForgetPasswordScreen.dart';
@@ -12,7 +11,6 @@ import 'package:sporty_app/Home/SportProducts/products/screen/mydata_controller.
 import 'package:sporty_app/Home/TrainingProgram/training_programs/screen/mydata_model.dart';
 import 'package:sporty_app/Home/TrainingProgram/training_programs/screen/provider_trainings.dart';
 import 'package:sporty_app/Home/TrainingProgram/training_programs/screen/trainings.dart';
-import 'package:sporty_app/Home/chooseInterests.dart';
 import 'package:sporty_app/Models/Widgets.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 import 'package:sporty_app/WelcomeScreen.dart';
@@ -73,7 +71,6 @@ class _MyAppState extends State<MyApp> {
         ForgetPasswordScreen.ROUTE_NAME:(context)=>ForgetPasswordScreen(),
         VerificationCode.ROUTE_NAME:(context)=>VerificationCode(),
         NewPasswordScreen.ROUTE_NAME:(context)=>NewPasswordScreen(),
-        chooseInterests.ROUTE_NAME:(context)=>chooseInterests(),
         HomePage.ROUTE_NAME:(context)=>HomePage(),
       },
       // initialRoute: ForgetPasswordScreen.ROUTE_NAME,
@@ -85,4 +82,5 @@ class _MyAppState extends State<MyApp> {
 
   }
 }
+
 
