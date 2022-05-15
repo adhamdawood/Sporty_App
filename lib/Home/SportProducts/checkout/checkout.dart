@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/address.dart';
-import 'package:sporty_app/Home/SportProducts/checkout/controller/user_payment_data_controller.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/credit_card.dart';
-import 'package:sporty_app/Home/SportProducts/checkout/model/address_model.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/model/user_payment_data_model.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/provider/provider_checkout.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/success.dart';
 import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
-import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
+
 
 class Checkout extends StatefulWidget {
   final double subTotal;
@@ -32,7 +29,7 @@ class _CheckoutState extends State<Checkout> {
   ShoppingCubit cubit = new ShoppingCubit();
   List <Map> productsList;
 
-  _CheckoutState(double subTotal)
+  _CheckoutState(double subTotal,products)
   {
     this.subTotal = subTotal;
     total = subTotal + 10;

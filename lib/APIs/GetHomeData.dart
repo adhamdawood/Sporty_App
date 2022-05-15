@@ -1,6 +1,4 @@
 
-}
-
 /// productId : "8f0afcf5-88d3-4679-9a66-ec3462b5f00b"
 /// descriptionMinimized : "The first Slam of the year, the 2019 Australian Open, opens with Dunlop as its new ball sponsor!"
 /// imageUrl : "http://sporty.somee.com/Images/Products/Tennis/AustralianOpen4BallTube.JPG"
