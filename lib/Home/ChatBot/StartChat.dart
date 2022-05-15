@@ -1,10 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:http/http.dart' as http;
 
 class StartChat extends StatelessWidget {
   static String ROUTE_NAME = "StartChatScreen";
   final messageInsert = TextEditingController();
+  List<Map> messsages = List();
+  void response(String query) async{
+    var request = http.Request('POST', Uri.parse('http://ahmedssaleem-001-site1.etempurl.com/api/chat-bot?message=${query}'));
+
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      print(await response.stream.bytesToString());
+    }
+    else {
+    print(response.reasonPhrase);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -104,6 +119,7 @@ class StartChat extends StatelessWidget {
                     children: [
                       Expanded(
                         child: TextField(
+                          controller: messageInsert,
                           decoration: InputDecoration(
                               fillColor: Color.fromRGBO(247, 247, 247, 1),
                               filled: true,
@@ -119,7 +135,7 @@ class StartChat extends StatelessWidget {
                             borderRadius: BorderRadius.all(Radius.circular(50))),
                         padding: EdgeInsets.all(4),
                         child: IconButton(
-                            onPressed: (){
+                            onPressed: (){response(messageInsert.text);
                             },
                             icon: ImageIcon(AssetImage("assets/images/arrow.png"),color: Colors.white,
                             )),
