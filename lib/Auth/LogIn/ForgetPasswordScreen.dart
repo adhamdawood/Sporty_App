@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sporty_app/Auth/LogIn/VerificationCode.dart';
+import 'package:sporty_app/Home/SportProducts/consttt.dart';
 
 import '../../Models/Widgets.dart';
 
@@ -71,7 +72,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
 
   Future<void> forgetPass() async {
     var url = Uri.parse(
-        'http://Sporty.somee.com/api/Auth/ForgetPassword?email=$eMail');
+        '${baseApi}/api/Auth/ForgetPassword?email=$eMail');
     final response = await http.post(url,
          headers: {
           "content-type": "application/json",

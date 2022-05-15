@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:provider/provider.dart';
 import 'package:sporty_app/Home/SportProducts/product/product_controller.dart';
 import 'package:sporty_app/Home/SportProducts/product/product_model.dart';
 import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
 import 'package:sporty_app/Home/SportProducts/products/cart_product_model.dart';
 import 'package:sporty_app/Home/SportProducts/products/cubit/states.dart';
+import 'package:sporty_app/Home/TrainingProgram/single_training/training_controller.dart';
+import 'package:sporty_app/Home/TrainingProgram/single_training/training_model.dart';
 
-class SingleProductScreen extends StatefulWidget {
+class SingleTrainingScreen extends StatefulWidget {
   final String id;
-  const SingleProductScreen({Key key, this.id}) : super(key: key);
+  const SingleTrainingScreen({Key key, this.id}) : super(key: key);
 
   @override
-  State<SingleProductScreen> createState() => _ProductScreenState(id);
+  State<SingleTrainingScreen> createState() => _ProductScreenState(id);
 }
 
-class _ProductScreenState extends State<SingleProductScreen> {
-   Future <ProductModel> futureData;
+class _ProductScreenState extends State<SingleTrainingScreen> {
+   Future <SingleTrainingModel> futureData;
 
   String id ;
   _ProductScreenState(String id){
@@ -25,24 +28,20 @@ class _ProductScreenState extends State<SingleProductScreen> {
   void initState() {
     super.initState();
     //BlocProvider.of<ShoppingCubit>(context)..createDatabase();
-    futureData = singleProductData(id: this.id) ;
+    futureData = singleTrainingData(id: this.id) ;
   }
-
   @override
   Widget build(BuildContext context) {
     ShoppingCubit cubit = new ShoppingCubit();
     cubit.createDatabase();
     //cubit.getSubTotal();
-
         return Scaffold(
-
-          body:
-          FutureBuilder<ProductModel>(
+          body: FutureBuilder<SingleTrainingModel>(
               future: futureData,
               builder: (context,snapshot,) {
                 if (snapshot.hasData ) {
-                  ProductModel data = snapshot.data;
-                  if(data.isOutOfStock == false)
+                  SingleTrainingModel data = snapshot.data;
+                  if(data.isReserved == false)
                   {return Stack(
                     children: [
                       Container(
@@ -82,7 +81,6 @@ class _ProductScreenState extends State<SingleProductScreen> {
                       Align(
                         alignment: Alignment.bottomCenter,
                         child: Container(
-
                           width: MediaQuery
                               .of(context)
                               .size
@@ -110,21 +108,22 @@ class _ProductScreenState extends State<SingleProductScreen> {
                             children: [
                               Padding(
                                 padding: const EdgeInsetsDirectional.only(
-                                    start: 18, top: 20.0, end: 16.0),
+                                    start: 18, top: 24.0, end: 16.0),
                                 child: Row(
                                   children: [
                                     Expanded(
                                       child: Text(
                                         '${data.name}',
+                                        maxLines: 2,
                                         style: TextStyle(
                                           fontWeight: FontWeight.w500,
-                                          fontSize: 20.0,
+                                          fontSize: 18.0,
 
                                         ),
                                       ),
                                     ),
                                     Text(
-                                      '${data.price}\$',
+                                      '${data.pricePerMonth}\$',
                                       style: TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 20.0,
@@ -135,11 +134,37 @@ class _ProductScreenState extends State<SingleProductScreen> {
                                   ],
                                 ),
                               ),
+                              SizedBox(height: 10,),
+
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.only(start: 16),
+                                    child: Icon(Icons.location_on_outlined, color: Colors.black,),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.only(
+                                      start: 5, top: 0,),
+                                    child: Container(
+                                      width: 300,
+                                      child: Text(
+                                        '${data.location}',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 14.0,
+                                          //color: HexColor('8E8E93'),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+
                               Padding(
                                 padding: const EdgeInsetsDirectional.only(
-                                  start: 18, top: 10,),
+                                  start: 25, top: 10,),
                                 child: Text(
-                                  '${data.brand}',
+                                  '${data.level}',
                                   style: TextStyle(
                                     fontWeight: FontWeight.w400,
                                     fontSize: 14.0,
@@ -178,6 +203,36 @@ class _ProductScreenState extends State<SingleProductScreen> {
                                   ],
                                 ),
                               ),
+                              SizedBox(height: 5,),
+                              Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.only(
+                                      start: 20, top: 0,),
+                                    child: Text(
+                                      'Club : ',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14.0,
+                                        //color: HexColor('8E8E93'),
+                                      ),
+                                    ),
+                                  ),
+
+                                  Padding(
+                                    padding: const EdgeInsetsDirectional.only(
+                                      start: 8, top: 0,),
+                                    child: Text(
+                                      '${data.provider}',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14.0,
+                                        color: HexColor('8E8E93'),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.only(
                                     start: 20, top: 5, end: 16.0),
@@ -192,7 +247,7 @@ class _ProductScreenState extends State<SingleProductScreen> {
                               ),
                               Padding(
                                 padding: const EdgeInsetsDirectional.only(
-                                    start: 20, top: 5, end: 16.0),
+                                    start: 20, top: 8, end: 16.0),
                                 child: Expanded(
                                   flex: 1,
                                   child: Container(
@@ -219,12 +274,11 @@ class _ProductScreenState extends State<SingleProductScreen> {
                                   color: HexColor('E20030'),
                                   borderRadius: BorderRadius.circular(10.0),
                                   child: InkWell(
-                                    onTap: () {
-                                      var product = new CartProductModel(productId: data.productId,
-                                          name: data.name, counter: 1, brand: data.brand, price: data.price
-                                          ,imageUrl: data.imageUrl);
-                                      print('screeeeen ${product.productId}');
-                                      cubit.insertProduct(  product );
+                                    onTap: () async{
+
+                                      await enrollToAProgram(data.trainingProgramId);
+                                      Navigator.pop(context);
+
 
 
                                     },
@@ -238,7 +292,7 @@ class _ProductScreenState extends State<SingleProductScreen> {
                                           .size
                                           .height * .05,
                                       decoration: BoxDecoration(),
-                                      child:  Center(child: Text(  'Add To Cart' ,
+                                      child:  Center(child: Text(  'Book Now' ,
                                         style: TextStyle(
                                             fontSize: 14.0,
                                             fontWeight: FontWeight.w500,
@@ -260,7 +314,7 @@ class _ProductScreenState extends State<SingleProductScreen> {
                   //////////////////////////////////////////////////////////////////////
                   //////////////////////////////////////////////////////////////////////
                   //////////////////////////////////////////////////////////////////////
-                  else if (data.isOutOfStock == true) {
+                  else if (data.isReserved == true) {
                     return Stack(
                       children: [
                         Container(
@@ -343,7 +397,7 @@ class _ProductScreenState extends State<SingleProductScreen> {
                                         ),
                                       ),
                                       Text(
-                                        '${data.price}\$',
+                                        '${data.pricePerMonth}\$',
                                         style: TextStyle(
                                           fontWeight: FontWeight.w500,
                                           fontSize: 20.0,
@@ -358,7 +412,7 @@ class _ProductScreenState extends State<SingleProductScreen> {
                                   padding: const EdgeInsetsDirectional.only(
                                     start: 18, top: 10,),
                                   child: Text(
-                                    '${data.brand}',
+                                    '${data.level}',
                                     style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 14.0,

@@ -1,4 +1,4 @@
-// import 'package:sporty_app/Home/SportProducts/products/mydata_model.dart';
+// import 'package:sporty_app/Home/SportProducts/training_programs/mydata_model.dart';
 // import 'package:http/http.dart' as http;
 // import 'dart:convert';
 // import 'package:sporty_app/Shared_preferences/cubit.dart';
