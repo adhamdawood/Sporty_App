@@ -1,10 +1,11 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:sporty_app/Auth/LogIn/ForgetPasswordScreen.dart';
 import 'package:sporty_app/Auth/LogIn/NewPasswordScreen.dart';
 import 'package:sporty_app/Auth/LogIn/VerificationCode.dart';
 import 'package:sporty_app/Auth/SignUp/SignUpScreen.dart';
+import 'package:sporty_app/Home/ChatBot/ChatBotScreen.dart';
+import 'package:sporty_app/Home/ChatBot/StartChat.dart';
 import 'package:sporty_app/Home/HomeScreen.dart';
 import 'package:sporty_app/Home/chooseInterests.dart';
 import 'package:sporty_app/Models/Widgets.dart';
@@ -52,8 +53,10 @@ Widget widget;
             NewPasswordScreen.ROUTE_NAME:(context)=>NewPasswordScreen(),
             chooseInterests.ROUTE_NAME:(context)=>chooseInterests(),
             HomePage.ROUTE_NAME:(context)=>HomePage(),
+            ChatBot.ROUTE_NAME:(context)=>ChatBot(),
+            StartChat.ROUTE_NAME:(context)=>StartChat()
           },
-         // initialRoute: ForgetPasswordScreen.ROUTE_NAME,
+          initialRoute: ChatBot.ROUTE_NAME,
           //welcome==true?WelcomeScreen.ROUTE_NAME:LogInScreen.ROUTE_NAME,
          home: widget,
         );

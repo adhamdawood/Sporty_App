@@ -48,6 +48,9 @@ android {
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        compileSdkVersion 28
+        targetSdkVersion 28
+
     }
 
     buildTypes {
@@ -64,5 +67,6 @@ flutter {
 }
 
 dependencies {
+    // 'com.android.tools.build:gradle:3.5.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
