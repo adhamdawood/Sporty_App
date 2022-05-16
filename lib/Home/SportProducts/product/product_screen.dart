@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:provider/provider.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/shopping_card.dart';
 import 'package:sporty_app/Home/SportProducts/product/product_controller.dart';
 import 'package:sporty_app/Home/SportProducts/product/product_model.dart';
 import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
@@ -27,13 +29,14 @@ class _ProductScreenState extends State<SingleProductScreen> {
     //BlocProvider.of<ShoppingCubit>(context)..createDatabase();
     futureData = singleProductData(id: this.id) ;
   }
+  ShoppingProvider provider;
 
   @override
   Widget build(BuildContext context) {
-    ShoppingCubit cubit = new ShoppingCubit();
-    cubit.createDatabase();
+    //ShoppingCubit cubit = new ShoppingCubit();
+    //cubit.createDatabase();
     //cubit.getSubTotal();
-
+provider = Provider.of<ShoppingProvider>(context);
         return Scaffold(
 
           body:
@@ -72,7 +75,9 @@ class _ProductScreenState extends State<SingleProductScreen> {
                                 icon: Icon(
                                   Icons.arrow_back_ios, color: HexColor('E20030'),)),
                             SizedBox(width: 270,),
-                            IconButton(onPressed: () {},
+                            IconButton(onPressed: () { Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>ShoppingCard()),);        },
                                 icon: Icon(Icons.shopping_bag_outlined,
                                   color: Colors.white,)),
 
@@ -224,10 +229,9 @@ class _ProductScreenState extends State<SingleProductScreen> {
                                           name: data.name, counter: 1, brand: data.brand, price: data.price
                                           ,imageUrl: data.imageUrl);
                                       print('screeeeen ${product.productId}');
-                                      cubit.insertProduct(  product );
-
-
-                                    },
+                                      provider.insertProduct(  product );
+                                      Navigator.pushReplacement(context,
+                                        MaterialPageRoute(builder: (context) =>ShoppingCard()),);                                    },
                                     child: Container(
                                       width: MediaQuery
                                           .of(context)

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/shopping_card.dart';
 import 'package:sporty_app/Home/SportProducts/product/product_controller.dart';
 import 'package:sporty_app/Home/SportProducts/product/product_model.dart';
 import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
@@ -9,6 +10,8 @@ import 'package:sporty_app/Home/SportProducts/products/cart_product_model.dart';
 import 'package:sporty_app/Home/SportProducts/products/cubit/states.dart';
 import 'package:sporty_app/Home/TrainingProgram/single_training/training_controller.dart';
 import 'package:sporty_app/Home/TrainingProgram/single_training/training_model.dart';
+
+import '../success_training.dart';
 
 class SingleTrainingScreen extends StatefulWidget {
   final String id;
@@ -32,8 +35,8 @@ class _ProductScreenState extends State<SingleTrainingScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    ShoppingCubit cubit = new ShoppingCubit();
-    cubit.createDatabase();
+   // ShoppingCubit cubit = new ShoppingCubit();
+   // cubit.createDatabase();
     //cubit.getSubTotal();
         return Scaffold(
           body: FutureBuilder<SingleTrainingModel>(
@@ -71,9 +74,11 @@ class _ProductScreenState extends State<SingleTrainingScreen> {
                                 icon: Icon(
                                   Icons.arrow_back_ios, color: HexColor('E20030'),)),
                             SizedBox(width: 270,),
-                            IconButton(onPressed: () {},
-                                icon: Icon(Icons.shopping_bag_outlined,
-                                  color: Colors.white,)),
+                            // IconButton(onPressed: () { Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(builder: (context) =>ShoppingCard()),);        },
+                            //     icon: Icon(Icons.shopping_bag_outlined,
+                            //       color: Colors.white,)),
 
                           ],
                         ),
@@ -277,7 +282,9 @@ class _ProductScreenState extends State<SingleTrainingScreen> {
                                     onTap: () async{
 
                                       await enrollToAProgram(data.trainingProgramId);
-                                      Navigator.pop(context);
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (context) =>SuccessTraining()),);
 
 
 
@@ -344,9 +351,9 @@ class _ProductScreenState extends State<SingleTrainingScreen> {
                                   icon: Icon(
                                     Icons.arrow_back_ios, color: HexColor('E20030'),)),
                               SizedBox(width: 270,),
-                              IconButton(onPressed: () {},
-                                  icon: Icon(Icons.shopping_bag_outlined,
-                                    color: Colors.white,)),
+                              // IconButton(onPressed: () {},
+                              //     icon: Icon(Icons.shopping_bag_outlined,
+                              //       color: Colors.white,)),
 
                             ],
                           ),
@@ -457,7 +464,7 @@ class _ProductScreenState extends State<SingleTrainingScreen> {
                                 Padding(
                                   padding: const EdgeInsetsDirectional.only(
                                       start: 18, top: 12, end: 16.0),
-                                  child: Text('Out of stock',
+                                  child: Text('Already reserved!!',
                                     style:
                                     TextStyle(
                                       fontSize: 20.0,
@@ -501,35 +508,6 @@ class _ProductScreenState extends State<SingleTrainingScreen> {
                                   ),
 
                                 ),
-                                // Spacer(),
-                                // Padding(
-                                //   padding: const EdgeInsets.all(16.0),
-                                //   child:  Material(
-                                //     color: HexColor('E20030'),
-                                //     borderRadius: BorderRadius.circular(10.0),
-                                //     child: InkWell(
-                                //       onTap: () {
-                                //         print (data.isOutOfStock);
-                                //       },
-                                //       child: Container(
-                                //         width: MediaQuery
-                                //             .of(context)
-                                //             .size
-                                //             .width,
-                                //         height: MediaQuery
-                                //             .of(context)
-                                //             .size
-                                //             .height * .05,
-                                //         decoration: BoxDecoration(),
-                                //         child:  Center(child: Text(  'aaaaaaaaaaaaaaaa' ,
-                                //           style: TextStyle(
-                                //               fontSize: 14.0,
-                                //               fontWeight: FontWeight.w500,
-                                //               color: Colors.white),)),
-                                //       ),
-                                //     ),
-                                //   ),
-                                // ),
                               ],
                             ),
                           ),

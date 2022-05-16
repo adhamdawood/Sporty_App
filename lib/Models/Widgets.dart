@@ -33,7 +33,7 @@ Widget tabOfSport({String name}){
   Future<bool> flutterToast({String msg}){
   return  Fluttertoast.showToast(
       msg: msg,
-      toastLength: Toast.LENGTH_LONG,
+      toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.CENTER,
       timeInSecForIosWeb: 1,
       backgroundColor: const Color(0xFFE20030),

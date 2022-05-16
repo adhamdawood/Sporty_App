@@ -1,23 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:provider/provider.dart';
 import 'package:sporty_app/Home/HomeScreen.dart';
-import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
 
-class Success extends StatefulWidget {
-  const Success({Key key}) : super(key: key);
-
-  @override
-  State<Success> createState() => _SuccessState();
-}
-
-class _SuccessState extends State<Success> {
-ShoppingProvider provider;
+class SuccessTraining extends StatelessWidget {
+  const SuccessTraining({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    provider = Provider.of<ShoppingProvider>(context);
-    provider.deleteDatabase();
     return Scaffold(
      body: Column(
        children: [
@@ -31,7 +20,7 @@ ShoppingProvider provider;
            ),
          ),
          SizedBox(height: 55,),
-         Text('Payment completed successfully',
+         Text('Reservation completed successfully',
          style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),
          ),
          SizedBox(height: 10,),
@@ -40,7 +29,7 @@ ShoppingProvider provider;
              height: 42,
              width: 240,
              child: Center(
-               child: Text('Your order will be shipped to your',
+               child: Text('The coach will contact you soon to confirm your reservation. ',
                  style: TextStyle(
                      fontSize: 14,
                      fontWeight: FontWeight.w500,
@@ -50,15 +39,15 @@ ShoppingProvider provider;
              ),
            ),
          ),
-         Text(' shipping address today',
-           style: TextStyle(
-               fontSize: 14,
-               fontWeight: FontWeight.w500,
-             color: HexColor('8E8E93'),
-           ),
-         ),
+         // Text(' shipping address today',
+         //   style: TextStyle(
+         //       fontSize: 14,
+         //       fontWeight: FontWeight.w500,
+         //     color: HexColor('8E8E93'),
+         //   ),
+         // ),
          SizedBox(height: 30,),
-         Text(' Order number : 9461320',
+         Text(' Reservation number : 53428',
            style: TextStyle(
              fontSize: 14,
              fontWeight: FontWeight.w500,

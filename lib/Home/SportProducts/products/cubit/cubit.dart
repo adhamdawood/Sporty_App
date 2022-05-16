@@ -7,11 +7,11 @@ import 'package:sporty_app/Home/SportProducts/products/cubit/states.dart';
 import 'package:sqflite/sqflite.dart';
 
 
-class ShoppingCubit extends Cubit<ShoppingCardStates>{
+class ShoppingProvider extends ChangeNotifier{
 
-  ShoppingCubit() : super(ShoppingInitialState());
+  //ShoppingCubit() : super(ShoppingInitialState());
 
-  static ShoppingCubit get(context) => BlocProvider.of(context);
+  //static ShoppingProvider get(context) => BlocProvider.of(context);
    Database database;
    List <Map> products = [];
    double subTotal;
@@ -52,8 +52,8 @@ class ShoppingCubit extends Cubit<ShoppingCardStates>{
       onOpen: (database)
       {
         //getFromDatabase(database);
-        emit(ShoppingGetDatabaseState());
-        print('opened');
+notifyListeners();
+print('opened');
       },
 
 
@@ -61,8 +61,9 @@ class ShoppingCubit extends Cubit<ShoppingCardStates>{
       database = value;
       getFromDatabase(database);
       getSubTotal(database);
-      emit(ShoppingCreateDatabaseState());
-     });
+    notifyListeners();
+
+    });
 
   }
 
@@ -79,13 +80,13 @@ class ShoppingCubit extends Cubit<ShoppingCardStates>{
 
             increaseCounter(cartProduct.productId);
             getFromDatabase(database);
-            emit(ShoppingGetDatabaseState());
+            notifyListeners();
           }
           else{
             insertProduct(cartProduct);
             getFromDatabase(database);
             print('444444$database');
-            emit(ShoppingGetDatabaseState());
+            notifyListeners();
           }
 
 
@@ -101,7 +102,7 @@ class ShoppingCubit extends Cubit<ShoppingCardStates>{
       {
           products.add(element);
       });
-      emit(ShoppingGetDatabaseState());
+      notifyListeners();
     });
   }
 
@@ -114,8 +115,7 @@ class ShoppingCubit extends Cubit<ShoppingCardStates>{
 
       print("${subTotal}");
 
-      emit(ShoppingsubTotalState(subTotal));
-
+notifyListeners();
 
     });
   }
@@ -130,7 +130,7 @@ class ShoppingCubit extends Cubit<ShoppingCardStates>{
       [counter, id],
     ).then((value) {
       getFromDatabase(database);
-      emit(ShoppingUpdateDatabaseState());
+      notifyListeners();
     });
   }
 
@@ -140,7 +140,7 @@ class ShoppingCubit extends Cubit<ShoppingCardStates>{
       [id],
     ).then((value) {
       getFromDatabase(database);
-       emit(ShoppingUpdateDatabaseState());
+      notifyListeners();
     });
   }
 
@@ -152,7 +152,7 @@ class ShoppingCubit extends Cubit<ShoppingCardStates>{
   ',"${cartProduct.imageUrl}", "${cartProduct.price}", "${cartProduct.counter}")').then((value) {
 
   print('inserted success $value');
-   emit(ShoppingInsertDatabaseState());
+  notifyListeners();
   }).catchError((error){});
 
   });
@@ -168,7 +168,7 @@ class ShoppingCubit extends Cubit<ShoppingCardStates>{
     ).then((value) {
       getFromDatabase(database);
 
-      emit(ShoppingDeleteDatabaseState());
+      notifyListeners();
     });
   }
 
@@ -191,7 +191,7 @@ class ShoppingCubit extends Cubit<ShoppingCardStates>{
           id: products[index]['ProductId']);
     }
 
-     emit(ShoppingMinusState());
+    notifyListeners();
 
   }
 
@@ -199,15 +199,17 @@ class ShoppingCubit extends Cubit<ShoppingCardStates>{
   void changeCounterPlus(int index){
 
   increaseCounter(products[index]['ProductId']);
-     emit(ShoppingPlusState());
+  notifyListeners();
 
   }
 
   void deletFromShoppingCard(int index){
     dynamic id = products[index]['ProductId'];
     deleteProduct(id: id);
-    emit(ShoppingDeletFromShoppingCardState());
+    notifyListeners();
   }
+
+
 
 //////////// Address//////////////////////////////////////
   void getAddressFromDatabase (database, token)
@@ -218,7 +220,7 @@ class ShoppingCubit extends Cubit<ShoppingCardStates>{
 
       address = new AddressModel(street: value[0]['Street'], city: value[0]['City'], buildingNumber: value[0]['Building']);
       print("${address.city}, ${address.street}");
-      emit(ShoppingGetDatabaseState());
+      notifyListeners();
     });
   }
 

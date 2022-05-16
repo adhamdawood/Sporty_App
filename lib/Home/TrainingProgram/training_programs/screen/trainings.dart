@@ -106,7 +106,7 @@ class _ScreenState extends State<TrainingScreen> {
                                   },
                                   child: Icon (Icons.tune_outlined,color: HexColor('E20030'),),),
                                 prefixIcon: Icon(Icons.search),
-                                hintText: 'Search for single_training'
+                                hintText: 'Search for training'
 
                             )
                         ),

@@ -67,6 +67,7 @@ ProductProvider provider;
       backgroundColor: Colors.white,
 
       appBar: AppBar(
+
         elevation: 0.0,
         backgroundColor: Colors.white,
 
@@ -111,7 +112,7 @@ ProductProvider provider;
                         },
                         child: Icon (Icons.tune_outlined,color: HexColor('E20030'),),),
                       prefixIcon: Icon(Icons.search),
-                      hintText: 'Search for single_training'
+                      hintText: 'Search for products'
 
                   )
               ),
@@ -150,25 +151,25 @@ ProductProvider provider;
                                   ),
                                 ),
                               ),
-                              Row(
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.only(start: 36.0,top: 35.0),
-                                    child: Icon(Icons.star,color: HexColor('FFC107'),),
-                                  ),
-                                  SizedBox(width: 2.0,),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.only(top: 35.0),
-                                    child: Text('4.6',
-                                      style: TextStyle(
-                                          fontSize: 12.0,
-                                          fontWeight: FontWeight.w600,
-                                          color: Colors.black
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                              // Row(
+                              //   children: [
+                              //     Padding(
+                              //       padding: const EdgeInsetsDirectional.only(start: 36.0,top: 35.0),
+                              //       child: Icon(Icons.star,color: HexColor('FFC107'),),
+                              //     ),
+                              //     SizedBox(width: 2.0,),
+                              //     Padding(
+                              //       padding: const EdgeInsetsDirectional.only(top: 35.0),
+                              //       child: Text('4.6',
+                              //         style: TextStyle(
+                              //             fontSize: 12.0,
+                              //             fontWeight: FontWeight.w600,
+                              //             color: Colors.black
+                              //         ),
+                              //       ),
+                              //     ),
+                              //   ],
+                              // ),
 
                             ],
                           ),

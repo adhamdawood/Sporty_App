@@ -25,7 +25,7 @@ void main() async{
    await cacheHelper.init();
    dynamic welcome = cacheHelper.sharedPreferences.getBool("welcome");
   dynamic token = cacheHelper.sharedPreferences.getString("token");
-  ShoppingCubit cubit = new ShoppingCubit();
+  // ShoppingCubit cubit = new ShoppingCubit();
   //cubit.createDatabase();
   //cacheHelperr.createDatabase();
   Widget widget;
@@ -43,6 +43,8 @@ void main() async{
     ChangeNotifierProvider<TrainingProvider>(create: (context,) => TrainingProvider()..fetchDataa() ),
     ChangeNotifierProvider<ProductProvider>(create: (context,) => ProductProvider()..fetchData()),
     ChangeNotifierProvider<CheckoutProvider>(create: (context,) => CheckoutProvider()..fetchDataa()),
+    ChangeNotifierProvider<ShoppingProvider>(create: (context,) => ShoppingProvider()..createDatabase()),
+
   ],
   child: MyApp(widget: widget) ,
   ));}
