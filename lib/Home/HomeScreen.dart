@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sporty_app/Home/AllProductsAndTraining.dart';
 import 'package:sporty_app/Home/ChatBot/ChatBotScreen.dart';
-import 'package:sporty_app/Home/ProfileView/ProfileViewScren.dart';
+import 'package:sporty_app/Home/ProfileView/ProfileViewScreen.dart';
 import 'package:sporty_app/Home/SportProducts/ProductScreen.dart';
 import 'package:sporty_app/Home/TrainingProgram/TrainingScreen.dart';
 
@@ -59,6 +59,6 @@ class _HomePageState extends State<HomePage> {
     else if (selectedIndex==1) {return TrainingScreen();}
     else if (selectedIndex==2) {return AllProductsAndTraining();}
     else if (selectedIndex==3) {return ChatBot();}
-    else if (selectedIndex==4) {return ProfileView();}
+    else if (selectedIndex==4) {return ProfileScreen();}
   }
 }
