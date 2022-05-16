@@ -4,21 +4,21 @@
 /// address : {"city":"Alex","street":"Wekalat El-Lamon","buildingNumber":8,"mobileNumber":"01090794168"}
 /// creditCards : [{"creditCardId":"5e0650de-81c4-4721-b726-2387429c143e","creditCardNumber":"4616908381384025","expirationDate":"12/2024","zipcode":"11511"}]
 
-class GetUserDetails {
-  GetUserDetails({
-    String id,
-    String name,
-    String email,
-    Address address,
-    List<CreditCards> creditCards,}){
+class GetAllUserDetails {
+  GetAllUserDetails({
+      String id, 
+      String name, 
+      String email, 
+      Address address, 
+      List<CreditCards> creditCards,}){
     _id = id;
     _name = name;
     _email = email;
     _address = address;
     _creditCards = creditCards;
-  }
+}
 
-  GetUserDetails.fromJson(dynamic json) {
+  GetAllUserDetails.fromJson(dynamic json) {
     _id = json['id'];
     _name = json['name'];
     _email = json['email'];
@@ -35,17 +35,17 @@ class GetUserDetails {
   String _email;
   Address _address;
   List<CreditCards> _creditCards;
-  GetUserDetails copyWith({  String id,
-    String name,
-    String email,
-    Address address,
-    List<CreditCards> creditCards,
-  }) => GetUserDetails(  id: id ?? _id,
-    name: name ?? _name,
-    email: email ?? _email,
-    address: address ?? _address,
-    creditCards: creditCards ?? _creditCards,
-  );
+GetAllUserDetails copyWith({  String id,
+  String name,
+  String email,
+  Address address,
+  List<CreditCards> creditCards,
+}) => GetAllUserDetails(  id: id ?? _id,
+  name: name ?? _name,
+  email: email ?? _email,
+  address: address ?? _address,
+  creditCards: creditCards ?? _creditCards,
+);
   String get id => _id;
   String get name => _name;
   String get email => _email;
@@ -75,15 +75,15 @@ class GetUserDetails {
 
 class CreditCards {
   CreditCards({
-    String creditCardId,
-    String creditCardNumber,
-    String expirationDate,
-    String zipcode,}){
+      String creditCardId, 
+      String creditCardNumber, 
+      String expirationDate, 
+      String zipcode,}){
     _creditCardId = creditCardId;
     _creditCardNumber = creditCardNumber;
     _expirationDate = expirationDate;
     _zipcode = zipcode;
-  }
+}
 
   CreditCards.fromJson(dynamic json) {
     _creditCardId = json['creditCardId'];
@@ -95,15 +95,15 @@ class CreditCards {
   String _creditCardNumber;
   String _expirationDate;
   String _zipcode;
-  CreditCards copyWith({  String creditCardId,
-    String creditCardNumber,
-    String expirationDate,
-    String zipcode,
-  }) => CreditCards(  creditCardId: creditCardId ?? _creditCardId,
-    creditCardNumber: creditCardNumber ?? _creditCardNumber,
-    expirationDate: expirationDate ?? _expirationDate,
-    zipcode: zipcode ?? _zipcode,
-  );
+CreditCards copyWith({  String creditCardId,
+  String creditCardNumber,
+  String expirationDate,
+  String zipcode,
+}) => CreditCards(  creditCardId: creditCardId ?? _creditCardId,
+  creditCardNumber: creditCardNumber ?? _creditCardNumber,
+  expirationDate: expirationDate ?? _expirationDate,
+  zipcode: zipcode ?? _zipcode,
+);
   String get creditCardId => _creditCardId;
   String get creditCardNumber => _creditCardNumber;
   String get expirationDate => _expirationDate;
@@ -127,15 +127,15 @@ class CreditCards {
 
 class Address {
   Address({
-    String city,
-    String street,
-    int buildingNumber,
-    String mobileNumber,}){
+      String city, 
+      String street, 
+      int buildingNumber, 
+      String mobileNumber,}){
     _city = city;
     _street = street;
     _buildingNumber = buildingNumber;
     _mobileNumber = mobileNumber;
-  }
+}
 
   Address.fromJson(dynamic json) {
     _city = json['city'];
@@ -147,15 +147,15 @@ class Address {
   String _street;
   int _buildingNumber;
   String _mobileNumber;
-  Address copyWith({  String city,
-    String street,
-    int buildingNumber,
-    String mobileNumber,
-  }) => Address(  city: city ?? _city,
-    street: street ?? _street,
-    buildingNumber: buildingNumber ?? _buildingNumber,
-    mobileNumber: mobileNumber ?? _mobileNumber,
-  );
+Address copyWith({  String city,
+  String street,
+  int buildingNumber,
+  String mobileNumber,
+}) => Address(  city: city ?? _city,
+  street: street ?? _street,
+  buildingNumber: buildingNumber ?? _buildingNumber,
+  mobileNumber: mobileNumber ?? _mobileNumber,
+);
   String get city => _city;
   String get street => _street;
   int get buildingNumber => _buildingNumber;

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:sporty_app/APIs/ProgramDetails.dart';
 import 'package:sporty_app/Auth/LogIn/ForgetPasswordScreen.dart';
 import 'package:sporty_app/Auth/LogIn/NewPasswordScreen.dart';
 import 'package:sporty_app/Auth/LogIn/VerificationCode.dart';
 import 'package:sporty_app/Auth/SignUp/SignUpScreen.dart';
+import 'package:sporty_app/Home/ProfileView/BookingHistory.dart';
 import 'package:sporty_app/Home/ProfileView/CreditCardInfo.dart';
-import 'package:sporty_app/Home/ProfileView/CreditCards.dart';
+import 'package:sporty_app/Home/ProfileView/CreditCardsScreen.dart';
+import 'package:sporty_app/Home/ProfileView/OrderHistory.dart';
+import 'package:sporty_app/Home/ProfileView/OrderInformation.dart';
 import 'package:sporty_app/Home/ProfileView/ProfileInformation.dart';
 import 'package:sporty_app/Home/ProfileView/ProfileViewScreen.dart';
 import 'package:sporty_app/WelcomeScreen.dart';
@@ -35,7 +39,11 @@ class MyApp extends StatelessWidget {
         NewPasswordScreen.ROUTE_NAME:(context)=>NewPasswordScreen(),
         ProfileScreen.ROUTE_NAME:(context)=>ProfileScreen(),
         ProfileInformation.ROUTE_NAME:(context)=>ProfileInformation(),
-        CreditCards.ROUTE_NAME: (context)=>CreditCards()
+        CreditCardsScreen.ROUTE_NAME: (context)=>CreditCardsScreen(),
+        CreditCardInformation.ROUTE_NAME: (context)=>CreditCardInformation(),
+        OrderHistory.ROUTE_NAME: (context)=>OrderHistory(),
+        OrderInformation.ROUTE_NAME: (context)=>OrderInformation(),
+        BookingHistory.ROUTE_NAME: (context)=>BookingHistory()
 
       },
       initialRoute: ProfileScreen.ROUTE_NAME,
