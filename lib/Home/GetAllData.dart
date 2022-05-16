@@ -6,9 +6,15 @@ import 'package:sporty_app/Home/SportProducts/product/product_screen.dart';
 import 'package:sporty_app/Models/Widgets.dart';
 
 
-class getAllData extends StatelessWidget {
+class getAllData extends StatefulWidget {
    GetData homeData;
   getAllData(this.homeData);
+
+  @override
+  State<getAllData> createState() => _getAllDataState();
+}
+
+class _getAllDataState extends State<getAllData> {
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -46,8 +52,8 @@ class getAllData extends StatelessWidget {
                           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                             childAspectRatio: 0.75,
                               crossAxisCount: 1,mainAxisSpacing: 8,crossAxisSpacing: 0),
-                          itemBuilder: (_, index) =>TrainingProgramsWidget(homeData.trainingPrograms[index]),
-                          itemCount: homeData.trainingPrograms.length,
+                          itemBuilder: (_, index) =>TrainingProgramsWidget(widget.homeData.trainingPrograms[index]),
+                          itemCount: widget.homeData.trainingPrograms.length,
                         ),
                       ),
                     SizedBox(height: 10,),
@@ -67,8 +73,8 @@ class getAllData extends StatelessWidget {
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         childAspectRatio: 1.4,
                           crossAxisCount: 1,mainAxisSpacing: 0,crossAxisSpacing: 0),
-                      itemBuilder: (_, index) =>ProductsWidget(homeData.products[index]),
-                      itemCount: homeData.products.length,
+                      itemBuilder: (_, index) =>ProductsWidget(widget.homeData.products[index]),
+                      itemCount: widget.homeData.products.length,
                     ),
                   ),
                 ],

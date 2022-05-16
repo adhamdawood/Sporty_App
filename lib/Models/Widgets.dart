@@ -139,6 +139,57 @@ ProductsWidget(data){
   );
 }
 
+Chat(String massage,int data){
+  return data==0?Row(
+    children: [
+      Container(
+        margin: EdgeInsets.all(8),
+        child: CircleAvatar(
+          radius: 25,
+          backgroundImage: AssetImage("assets/images/robot.png"),
+        ),
+      ),
+      Container(
+        width: 210,
+        decoration: BoxDecoration(
+          color: Color.fromRGBO(247, 247, 247, 1),
+          borderRadius: BorderRadius.circular(18),
+        ),
+        margin: EdgeInsets.all(5),
+        padding: EdgeInsets.all(20),
+        child: Container(
+          child: Text(
+            massage,
+            maxLines: 100,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+      ),
+    ],
+  ) : Row(
+    mainAxisAlignment: MainAxisAlignment.end,
+    children: [
+      Container(
+
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(63, 136, 197, 1),
+            borderRadius: BorderRadius.circular(18),
+          ),
+          margin: EdgeInsets.all(5),
+          padding: EdgeInsets.all(20),
+          child: Text(
+           massage,
+            maxLines: 100,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(color: Colors.white),
+          )
+
+      ),
+    ],
+  );
+}
+
 // Widget tabOfSport({String name}){
 //   bool onClick=true;
 //     return onClick? Container(

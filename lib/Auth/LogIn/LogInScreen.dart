@@ -94,7 +94,7 @@ class _LogInScreenState extends State<LogInScreen> {
                             InkWell(
                               onTap: () {
                                 Navigator.of(context)
-                                    .push(MaterialPageRoute(builder: (_) => SignUpScreen()));
+                                    .pushReplacement(MaterialPageRoute(builder: (_) => SignUpScreen()));
                               },
                               child: const Text.rich(
                                 TextSpan(

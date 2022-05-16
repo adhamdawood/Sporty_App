@@ -6,19 +6,15 @@ import 'package:sporty_app/Auth/LogIn/NewPasswordScreen.dart';
 import 'package:sporty_app/Auth/LogIn/VerificationCode.dart';
 import 'package:sporty_app/Auth/SignUp/SignUpScreen.dart';
 import 'package:sporty_app/Home/HomeScreen.dart';
-import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
-import 'package:sporty_app/Home/SportProducts/products/screen/mydata_controller.dart';
-import 'package:sporty_app/Home/TrainingProgram/training_programs/screen/mydata_model.dart';
-import 'package:sporty_app/Home/TrainingProgram/training_programs/screen/provider_trainings.dart';
-import 'package:sporty_app/Home/TrainingProgram/training_programs/screen/trainings.dart';
-import 'package:sporty_app/Models/Widgets.dart';
+import 'package:sporty_app/Providers/ChatBotProvider.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 import 'package:sporty_app/WelcomeScreen.dart';
 import 'Auth/LogIn/LogInScreen.dart';
 import 'Home/SportProducts/checkout/provider/provider_checkout.dart';
+import 'Home/SportProducts/products/screen/mydata_controller.dart';
+import 'Home/TrainingProgram/training_programs/screen/provider_trainings.dart';
 
 void main() async{
-
   WidgetsFlutterBinding.ensureInitialized();
    await cacheHelper.init();
    dynamic welcome = cacheHelper.sharedPreferences.getBool("welcome");
@@ -38,6 +34,7 @@ void main() async{
     ChangeNotifierProvider<TrainingProvider>(create: (context,) => TrainingProvider()..fetchDataa() ),
     ChangeNotifierProvider<ProductProvider>(create: (context,) => ProductProvider()..fetchData()),
     ChangeNotifierProvider<CheckoutProvider>(create: (context,) => CheckoutProvider()..fetchDataa()),
+    ChangeNotifierProvider<chatProvider>(create: (context,) => chatProvider()),
   ],
   child: MyApp(widget: widget) ,
   ));}
@@ -55,7 +52,7 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -73,6 +70,7 @@ class _MyAppState extends State<MyApp> {
       //welcome==true?WelcomeScreen.ROUTE_NAME:LogInScreen.ROUTE_NAME,
       home:  widget.widget,);
   }
+
 }
 
 

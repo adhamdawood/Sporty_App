@@ -65,7 +65,8 @@ class ChatBot extends StatelessWidget {
               ),
               child: TextButton(
                 onPressed: (){
-                  Navigator.of(context).pushNamed(StartChat.ROUTE_NAME);
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (_) => StartChat()));
                 },
                 child: const Text(
                   "Start Chat",
