@@ -354,7 +354,6 @@ class _ProductScreenState extends State<SingleTrainingScreen> {
                               // IconButton(onPressed: () {},
                               //     icon: Icon(Icons.shopping_bag_outlined,
                               //       color: Colors.white,)),
-
                             ],
                           ),
                         ),
