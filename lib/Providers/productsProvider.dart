@@ -12,7 +12,6 @@ class productProvider extends ChangeNotifier{
   List<MydataModel> allProducts ;
 
   Future<List<MydataModel>> fetchData() async {
-    print("yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
     final response =
     await http.get(Uri.parse('${ApiUrl}/api/products'),
         headers: {'Authorization':'Bearer ${cacheHelper.sharedPreferences.getString("token")}'}

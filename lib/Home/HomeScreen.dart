@@ -18,18 +18,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  productProvider provider;
-
   int selectedIndex=2;
-
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<productProvider>(
-      create:(context)=>productProvider()..fetchData() ,
-      builder: (context,widget){
-         provider=Provider.of<productProvider>(context);
-
-        return Scaffold(
+    return  Scaffold(
           bottomNavigationBar: BottomAppBar(
             clipBehavior: Clip.hardEdge,
             notchMargin: 10,
@@ -66,10 +58,7 @@ class _HomePageState extends State<HomePage> {
             ),),
           body: Body(),
         );
-      },
-    );
-  }
-
+      }
   Widget Body(){
     if(selectedIndex==0) {
       return ProductScreen();}

@@ -69,13 +69,16 @@ ProductProvider provider;
                 controller: searchController,
                   onChanged: (value)
                   {
-                    //addSearchedForItem(value);
+                    provider.searchItems(value);
                   },
                   decoration: InputDecoration(
                       suffixIcon: PopupMenuButton(
-
+                        onSelected: (value){
+                          provider.filterItems(value);
+                        },
                         itemBuilder: (BuildContext context) {
                           return filter.map((e) => PopupMenuItem(
+
                               value: e,
                               child: Text(e))).toList();
                         },
@@ -85,10 +88,102 @@ ProductProvider provider;
 
                   )
               ),
-            ),]
+            ),
+            Container(padding: EdgeInsets.all(5),
+              child: GridView.count(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                crossAxisCount: 2,
+                mainAxisSpacing: 3.0,
+                crossAxisSpacing: 3.0,
+                childAspectRatio: 1 / 1.25,
+                children: List.generate( provider.searchProducts.length , (index) => InkWell(
+                  onTap: (){
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) =>SingleProductScreen(id: provider.searchProducts[index].productId)),);
+                  },
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(18, 0, 5, 0),
+                        width: 150,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            Stack(
+                              children: [
+                                Container(
+                                  padding: const EdgeInsets.all(20.0),
+                                  height: 150.0, width: 150.0,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                    image: DecorationImage(image: NetworkImage(
+                                      provider.allProducts[index].imageUrl
+                                          .toString(),), // fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                                Row(
+                                  children: const [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.only(
+                                          start: 10.0, top: 3.0),
+                                      child: Icon(
+                                        Icons.star, color: Color(0xffFFC107),),
+                                    ),
+                                    SizedBox(width: 2.0,),
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.only(
+                                          top: 5.0),
+                                      child: Text('4.6',
+                                        style: TextStyle(fontSize: 12.0,
+                                            fontWeight: FontWeight.w600,
+                                            color: Color(0xffFFC107)),),),
+                                  ],
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 5,),
+                            Text(provider.allProducts[index].name.toString(),
+                              maxLines: 3,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontSize: 12.0, fontWeight: FontWeight.w400,),
+                            ),
+                            SizedBox(height: 5.0,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Container(
+                                  child: Text(provider.allProducts[index].brand
+                                      .toString(),
+                                    style: TextStyle(color: Colors.grey),),
+                                ),
+                                SizedBox(width: 5,),
+                                Container(
+                                  height: 10.0,
+                                  width: 1.0,
+                                  color: Color(0xffE20030),
+                                ),
+                                SizedBox(width: 8.0,),
+                                Text('${provider.allProducts[index].price
+                                    .toString()}\$',
+                                  style: TextStyle(fontSize: 12.0,
+                                      fontWeight: FontWeight.w600,
+                                      fontStyle: FontStyle.normal),
+                                ),
+                              ],
+                            ),
+
+                          ],
+                        ),
+                      ),
+                    ),),
+              ),
+            )
+          ]
     ),
     )
-    ):CircularProgressIndicator();
+    ):Center(child: CircularProgressIndicator());
   }
-
 }

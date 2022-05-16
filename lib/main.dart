@@ -23,9 +23,6 @@ void main() async{
    await cacheHelper.init();
    dynamic welcome = cacheHelper.sharedPreferences.getBool("welcome");
   dynamic token = cacheHelper.sharedPreferences.getString("token");
-  ShoppingCubit cubit = new ShoppingCubit();
-  //cubit.createDatabase();
-  //cacheHelperr.createDatabase();
   Widget widget;
   if(welcome == false){
       if(token!=null)
@@ -48,7 +45,6 @@ void main() async{
 class MyApp extends StatefulWidget {
 Widget widget;
   MyApp({this.widget});
-
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -76,10 +72,6 @@ class _MyAppState extends State<MyApp> {
       // initialRoute: ForgetPasswordScreen.ROUTE_NAME,
       //welcome==true?WelcomeScreen.ROUTE_NAME:LogInScreen.ROUTE_NAME,
       home:  widget.widget,);
-
-
-
-
   }
 }
 

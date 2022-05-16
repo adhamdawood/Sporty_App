@@ -30,7 +30,7 @@ class _AllProductsAndTrainingState extends State<AllProductsAndTraining> {
       (future: getHomeData,
         builder: (buildContext,snapShot){
           if(snapShot.hasError){
-            return LogInScreen();
+            return CircularProgressIndicator();
           }else if(snapShot.hasData){
             return getAllData(snapShot.data);
           }else{
@@ -52,7 +52,12 @@ class _AllProductsAndTrainingState extends State<AllProductsAndTraining> {
         });
     if (response.statusCode == 200) {
      return await GetData.fromJson(jsonDecode(response.body));
-    } else  {
+    }else if(response.statusCode==404){
+        flutterToast(msg: "Please Login again");
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => LogInScreen()));
+    }
+    else  {
       throw(Exception(response.body));
     }
   }

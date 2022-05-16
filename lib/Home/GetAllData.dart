@@ -75,8 +75,6 @@ class getAllData extends StatelessWidget {
               ),
 
             ),
-
-
           ),
     );
 
