@@ -82,11 +82,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 height: 55,
                 child: IconButton(
                     onPressed: () {   if(snapShot.data.address==null){
-                      Navigator.of(context).push(MaterialPageRoute(builder: (_)=>ProfileInformation(firstName: snapShot.data.name.split(' ').first,lastName: snapShot.data.name.split(' ').last,email: snapShot.data.email)));
+                      Navigator.push(context,MaterialPageRoute(builder: (_)=>ProfileInformation(firstName: snapShot.data.name.split(' ').first,lastName: snapShot.data.name.split(' ').last,email: snapShot.data.email))).then((_) {setState(() {
+                   userDetails=getDetails();
+                      });});
                     }
                     else
                       {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>ProfileInformation(firstName: snapShot.data.name.split(' ').first,lastName: snapShot.data.name.split(' ').last,email: snapShot.data.email,street: snapShot.data.address.street,city: snapShot.data.address.city,bNumber: snapShot.data.address.buildingNumber, mobileNumber: snapShot.data.address.mobileNumber,)));
+                        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>ProfileInformation(firstName: snapShot.data.name.split(' ').first,lastName: snapShot.data.name.split(' ').last,email: snapShot.data.email,street: snapShot.data.address.street,city: snapShot.data.address.city,bNumber: snapShot.data.address.buildingNumber, mobileNumber: snapShot.data.address.mobileNumber,))).then((_) {setState(() {
+                          userDetails=getDetails();
+                        });});
                       }},
                     icon: Row(
                       children: [

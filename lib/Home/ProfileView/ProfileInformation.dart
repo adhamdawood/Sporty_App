@@ -43,7 +43,7 @@ class _ProfileInformationState extends State<ProfileInformation> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.of(context).pop();
           },
           icon: Icon(
             Icons.arrow_back_ios,
