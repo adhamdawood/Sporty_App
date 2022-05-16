@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 import 'package:sporty_app/Home/HomeScreen.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/provider/provider_checkout.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/provider/provider_success.dart';
 import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
 
 class Success extends StatefulWidget {
@@ -12,12 +14,14 @@ class Success extends StatefulWidget {
 }
 
 class _SuccessState extends State<Success> {
-ShoppingProvider provider;
+//ShoppingProviderr provider;
+
+  ShoppingProviderr provider ;
 
   @override
   Widget build(BuildContext context) {
-    provider = Provider.of<ShoppingProvider>(context);
-    provider.deleteDatabase();
+    provider = Provider.of<ShoppingProviderr>(context);
+    //provider.deleteDatabase();
     return Scaffold(
      body: Column(
        children: [
@@ -72,7 +76,9 @@ ShoppingProvider provider;
              color: HexColor('E20030'),
              borderRadius: BorderRadius.circular(10.0),
              child: InkWell(
-               onTap: () {Navigator.push(
+               onTap: () {
+                 provider.deleteDatabase();
+                 Navigator.push(
                  context,
                  MaterialPageRoute(builder: (context) =>HomePage()),);},
                child: Container(

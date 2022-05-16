@@ -72,7 +72,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
 
   Future<void> forgetPass() async {
     var url = Uri.parse(
-        '${baseApi}/api/Auth/ForgetPassword?email=$eMail');
+        '${ApiUrl}/api/Auth/ForgetPassword?email=$eMail');
     final response = await http.post(url,
          headers: {
           "content-type": "application/json",

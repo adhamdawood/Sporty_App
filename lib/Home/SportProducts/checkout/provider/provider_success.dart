@@ -7,28 +7,28 @@ import 'package:sporty_app/Home/SportProducts/products/cubit/states.dart';
 import 'package:sqflite/sqflite.dart';
 
 
-class ShoppingCubit extends Cubit<ShoppingCardStates>{
+class ShoppingProviderr extends ChangeNotifier{
 
-  ShoppingCubit() : super(ShoppingInitialState());
+ // ShoppingCubit() : super(ShoppingInitialState());
 
-  static ShoppingCubit get(context) => BlocProvider.of(context);
-   Database database;
-   List <Map> products = [];
-   double subTotal;
-   var counter;
+  //static ShoppingCubit get(context) => BlocProvider.of(context);
+  Database database;
+  List <Map> products = [];
+  double subTotal;
+  var counter;
 
 
-    AddressModel address;
+  AddressModel address;
 
-   void createDatabase ()async
+  void createDatabase ()async
   {
-       await openDatabase(
+    await openDatabase(
       'sportyy.db',
       version: 1,
       onCreate: (database, version)
       {
         print('created');
-          database.execute('CREATE TABLE cart (ProductId TEXT PRIMARY KEY, Name TEXT , Brand TEXT , Image TEXT, Price REAL, Counter INTEGER)').then((value)
+        database.execute('CREATE TABLE cart (ProductId TEXT PRIMARY KEY, Name TEXT , Brand TEXT , Image TEXT, Price REAL, Counter INTEGER)').then((value)
         {
           print('table created');
         }).catchError((error){
@@ -52,7 +52,7 @@ class ShoppingCubit extends Cubit<ShoppingCardStates>{
       onOpen: (database)
       {
         //getFromDatabase(database);
-        emit(ShoppingGetDatabaseState());
+        //emit(ShoppingGetDatabaseState());
         print('opened');
       },
 
@@ -61,37 +61,37 @@ class ShoppingCubit extends Cubit<ShoppingCardStates>{
       database = value;
       getFromDatabase(database);
       getSubTotal(database);
-      emit(ShoppingCreateDatabaseState());
-       });
+      //emit(ShoppingCreateDatabaseState());
+    });
 
   }
 
-   void insertDatabase ({
+  void insertDatabase ({
     CartProductModel cartProduct,
   }
-  ) async
-   {
-     print('in isert ${cartProduct.productId}');
-     print('in iserttttttttttt ${database.isOpen}');
+      ) async
+  {
+    print('in isert ${cartProduct.productId}');
+    print('in iserttttttttttt ${database.isOpen}');
     database.rawQuery('SELECT ProductId FROM cart where ProductId = ?', [cartProduct.productId])
         .then((value) {
-          if(value[0]['ProductId'] == cartProduct.productId){
+      if(value[0]['ProductId'] == cartProduct.productId){
 
-            increaseCounter(cartProduct.productId);
-            getFromDatabase(database);
-            emit(ShoppingGetDatabaseState());
-          }
-          else{
-            insertProduct(cartProduct);
-            getFromDatabase(database);
-            print('444444$database');
-            emit(ShoppingGetDatabaseState());
-          }
+        increaseCounter(cartProduct.productId);
+        getFromDatabase(database);
+       // emit(ShoppingGetDatabaseState());
+      }
+      else{
+        insertProduct(cartProduct);
+        getFromDatabase(database);
+        print('444444$database');
+        //emit(ShoppingGetDatabaseState());
+      }
 
 
     });
   }
-   void getFromDatabase (database)
+  void getFromDatabase (database)
   {
     products = [];
     //emit(AppGetDatabaseLoadingState());
@@ -99,13 +99,13 @@ class ShoppingCubit extends Cubit<ShoppingCardStates>{
 
       value.forEach((element)
       {
-          products.add(element);
+        products.add(element);
       });
-      emit(ShoppingGetDatabaseState());
+      //emit(ShoppingGetDatabaseState());
     });
   }
 
-   void getSubTotal(dynamic database)async{
+  void getSubTotal(dynamic database)async{
     await database.rawQuery('SELECT SUM(Counter*Price) as subTotal FROM cart ').then((value) {
       // print("${subTotal}")
       print('${value}');
@@ -114,66 +114,69 @@ class ShoppingCubit extends Cubit<ShoppingCardStates>{
 
       print("${subTotal}");
 
-      emit(ShoppingsubTotalState(subTotal));
+     // emit(ShoppingsubTotalState(subTotal));
 
     });
   }
-   void updateDatabase (
-  {
-   int counter,
-   dynamic id,
-  }) async
+  void updateDatabase (
+      {
+        int counter,
+        dynamic id,
+      }) async
   {
     database.rawUpdate(
       'UPDATE cart SET Counter = ? WHERE ProductId = ?',
       [counter, id],
     ).then((value) {
       getFromDatabase(database);
-      emit(ShoppingUpdateDatabaseState());
+      //emit(ShoppingUpdateDatabaseState());
     });
   }
 
-   void increaseCounter(dynamic id) async{
+  void increaseCounter(dynamic id) async{
     database.rawUpdate(
       'UPDATE cart SET Counter = Counter + 1 WHERE ProductId = ?',
       [id],
     ).then((value) {
       getFromDatabase(database);
-      emit(ShoppingUpdateDatabaseState());
+     // emit(ShoppingUpdateDatabaseState());
     });
   }
 
-   void insertProduct(CartProductModel cartProduct) async{
+  void insertProduct(CartProductModel cartProduct) async{
 
-  await database.transaction((txn)  {
-  txn.rawInsert('INSERT INTO cart (ProductId, Name, Brand, Image, Price, Counter)'
-  ' VALUES("${cartProduct.productId}", "${cartProduct.name}", "${cartProduct.brand}" '
-  ',"${cartProduct.imageUrl}", "${cartProduct.price}", "${cartProduct.counter}")').then((value) {
+    await database.transaction((txn)  {
+      txn.rawInsert('INSERT INTO cart (ProductId, Name, Brand, Image, Price, Counter)'
+          ' VALUES("${cartProduct.productId}", "${cartProduct.name}", "${cartProduct.brand}" '
+          ',"${cartProduct.imageUrl}", "${cartProduct.price}", "${cartProduct.counter}")').then((value) {
 
-  print('inserted success $value');
-  emit(ShoppingInsertDatabaseState());
-  }).catchError((error){});
+        print('inserted success $value');
+       // emit(ShoppingInsertDatabaseState());
+      }).catchError((error){});
 
-  });
-}
+    });
+  }
 
-   void deleteProduct (
-  {
-   dynamic id,
-  }) async
+  void deleteProduct (
+      {
+        dynamic id,
+      }) async
   {
     database.rawDelete(
       'DELETE FROM cart  WHERE ProductId = ?', [id],
     ).then((value) {
       getFromDatabase(database);
 
-      emit(ShoppingDeleteDatabaseState());
+      //emit(ShoppingDeleteDatabaseState());
     });
   }
 
-   void deleteDatabase() async{
+  void deleteDatabase() async{
+    print("deleted products");
     database.rawDelete('DELETE FROM cart').then((value){
       getFromDatabase(database);
+      notifyListeners();
+
     });
   }
 
@@ -190,22 +193,22 @@ class ShoppingCubit extends Cubit<ShoppingCardStates>{
           id: products[index]['ProductId']);
     }
 
-    emit(ShoppingMinusState());
+  //  emit(ShoppingMinusState());
 
   }
 
 
   void changeCounterPlus(int index){
 
-  increaseCounter(products[index]['ProductId']);
-  emit(ShoppingPlusState());
+    increaseCounter(products[index]['ProductId']);
+    //emit(ShoppingPlusState());
 
   }
 
   void deletFromShoppingCard(int index){
     dynamic id = products[index]['ProductId'];
     deleteProduct(id: id);
-    emit(ShoppingDeletFromShoppingCardState());
+    //emit(ShoppingDeletFromShoppingCardState());
   }
 
 
@@ -219,7 +222,7 @@ class ShoppingCubit extends Cubit<ShoppingCardStates>{
 
       address = new AddressModel(street: value[0]['Street'], city: value[0]['City'], buildingNumber: value[0]['Building']);
       print("${address.city}, ${address.street}");
-      emit(ShoppingGetDatabaseState());
+      //emit(ShoppingGetDatabaseState());
     });
   }
 
@@ -262,6 +265,6 @@ class ShoppingCubit extends Cubit<ShoppingCardStates>{
     });
   }
 
-  ///////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
 
 }

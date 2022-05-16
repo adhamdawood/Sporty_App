@@ -26,17 +26,18 @@ class _ProductScreenState extends State<SingleProductScreen> {
   }
   void initState() {
     super.initState();
-    //BlocProvider.of<ShoppingCubit>(context)..createDatabase();
+    // BlocProvider.of<ShoppingCubit>(context)..createDatabase();
     futureData = singleProductData(id: this.id) ;
   }
-  ShoppingProvider provider;
+ // ShoppingProvider provider;
 
   @override
   Widget build(BuildContext context) {
-    //ShoppingCubit cubit = new ShoppingCubit();
-    //cubit.createDatabase();
+    ShoppingCubit cubit = new ShoppingCubit();
+    cubit.createDatabase();
     //cubit.getSubTotal();
-provider = Provider.of<ShoppingProvider>(context);
+//provider = Provider.of<ShoppingProvider>(context);
+//provider.createDatabase();
         return Scaffold(
 
           body:
@@ -229,7 +230,7 @@ provider = Provider.of<ShoppingProvider>(context);
                                           name: data.name, counter: 1, brand: data.brand, price: data.price
                                           ,imageUrl: data.imageUrl);
                                       print('screeeeen ${product.productId}');
-                                      provider.insertProduct(  product );
+                                      cubit.insertProduct(  product );
                                       Navigator.pushReplacement(context,
                                         MaterialPageRoute(builder: (context) =>ShoppingCard()),);                                    },
                                     child: Container(

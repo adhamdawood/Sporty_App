@@ -44,14 +44,14 @@ class _CheckoutState extends State<Checkout> {
   void initState() {
     // TODO: implement initState
     super.initState();
-   //////////////////////////////////// print("in checkout${cacheHelperr.address}");
-     ///cubit.createDatabase();
+    //////////////////////////////////// print("in checkout${cacheHelperr.address}");
+    ///cubit.createDatabase();
 
   }
   CheckoutProvider provider ;
   @override
   Widget build(BuildContext context) {
-  //cubit.getSubTotal();
+    //cubit.getSubTotal();
     provider = Provider.of<CheckoutProvider>(context);
     print("in setting provider ${productsList}");
     provider.products = productsList;
@@ -120,29 +120,29 @@ class _CheckoutState extends State<Checkout> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                     Padding(
-                       padding: const EdgeInsetsDirectional.only(start: 9,top: 9,),
-                       child: Row(
-                         children: [
-                           Expanded(
-                             child: Text("${provider.userPayment.address == null ? "Enter your address" :
-                             provider.userPayment.address.street}",
-                               style: TextStyle(
-                                 fontSize: 14,
-                                 fontWeight: FontWeight.w400,
-                               ),
-                             ),
-                           ),
-                           InkWell(
-                               onTap: (){
-                                 Navigator.push(
-                                     context,
-                                     MaterialPageRoute(builder: (context) =>Address(total: this.total,addressModel: provider.userPayment.address,)));
-                               },
-                               child: Icon(Icons.arrow_forward_ios,size: 20,color: HexColor('8E8E93'),))
-                         ],
-                       ),
-                     ),
+                      Padding(
+                        padding: const EdgeInsetsDirectional.only(start: 9,top: 9,),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Text("${provider.userPayment.address == null ? "Enter your address" :
+                              provider.userPayment.address.street}",
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                                onTap: (){
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) =>Address(total: this.total,addressModel: provider.userPayment.address,)));
+                                },
+                                child: Icon(Icons.arrow_forward_ios,size: 20,color: HexColor('8E8E93'),))
+                          ],
+                        ),
+                      ),
                       SizedBox(height: 6,),
                       Padding(
                         padding: const EdgeInsetsDirectional.only(start: 9,),
@@ -208,11 +208,11 @@ class _CheckoutState extends State<Checkout> {
                               ),
                             ),
                             InkWell(
-                              onTap: (){
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(builder: (context) =>CreditCard(total: total - 10,creditCard: provider.userPayment.creditCard,)));
-                              },
+                                onTap: (){
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) =>CreditCard(total: total - 10,creditCard: provider.userPayment.creditCard,)));
+                                },
                                 child: Icon(Icons.arrow_forward_ios,size: 20,color: HexColor('8E8E93'),))
                           ],
                         ),
@@ -320,7 +320,7 @@ class _CheckoutState extends State<Checkout> {
                   padding: const EdgeInsetsDirectional.only(end: 16),
                   child: Text(' ${total} \$',
                     style: TextStyle(
-                     // color: HexColor('8E8E93'),
+                      // color: HexColor('8E8E93'),
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                     ),
@@ -337,18 +337,18 @@ class _CheckoutState extends State<Checkout> {
                 borderRadius: BorderRadius.circular(10.0),
                 child: InkWell(
                   onTap: () async{
-                   if(provider.userPayment.address == null || provider.userPayment.creditCard.length == 0){
-                     return flutterToast(msg: "Address and Credit Card must be filled!!");
-                   }
-                   else {
-                    await provider.makeApiOrder(total);
-                     //cubit.deleteDatabase();
-                     Navigator.push(
-                       context,
-                       MaterialPageRoute(builder: (context) =>Success()),);
-                   }
+                    if(provider.userPayment.address == null || provider.userPayment.creditCard.length == 0){
+                      return flutterToast(msg: "Address and Credit Card must be filled!!");
+                    }
+                    else {
+                      await provider.makeApiOrder(total);
+                      //cubit.deleteDatabase();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) =>Success()),);
+                    }
 
-                    },
+                  },
                   child: Container(
                     width: MediaQuery
                         .of(context)

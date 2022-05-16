@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sporty_app/Auth/LogIn/ForgetPasswordScreen.dart';
@@ -7,27 +6,22 @@ import 'package:sporty_app/Auth/LogIn/NewPasswordScreen.dart';
 import 'package:sporty_app/Auth/LogIn/VerificationCode.dart';
 import 'package:sporty_app/Auth/SignUp/SignUpScreen.dart';
 import 'package:sporty_app/Home/HomeScreen.dart';
-import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
-import 'package:sporty_app/Home/SportProducts/products/screen/mydata_controller.dart';
-import 'package:sporty_app/Home/TrainingProgram/training_programs/screen/mydata_model.dart';
-import 'package:sporty_app/Home/TrainingProgram/training_programs/screen/provider_trainings.dart';
-import 'package:sporty_app/Home/TrainingProgram/training_programs/screen/trainings.dart';
-import 'package:sporty_app/Home/chooseInterests.dart';
-import 'package:sporty_app/Models/Widgets.dart';
+import 'package:sporty_app/Providers/ChatBotProvider.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 import 'package:sporty_app/WelcomeScreen.dart';
 import 'Auth/LogIn/LogInScreen.dart';
 import 'Home/SportProducts/checkout/provider/provider_checkout.dart';
+import 'Home/SportProducts/checkout/provider/provider_success.dart';
+import 'Home/SportProducts/products/cubit/cubit.dart';
+import 'Home/SportProducts/products/screen/mydata_controller.dart';
+import 'Home/TrainingProgram/training_programs/screen/provider_trainings.dart';
 
 void main() async{
-
   WidgetsFlutterBinding.ensureInitialized();
    await cacheHelper.init();
    dynamic welcome = cacheHelper.sharedPreferences.getBool("welcome");
   dynamic token = cacheHelper.sharedPreferences.getString("token");
-  // ShoppingCubit cubit = new ShoppingCubit();
-  //cubit.createDatabase();
-  //cacheHelperr.createDatabase();
+
   Widget widget;
   if(welcome == false){
       if(token!=null)
@@ -43,8 +37,9 @@ void main() async{
     ChangeNotifierProvider<TrainingProvider>(create: (context,) => TrainingProvider()..fetchDataa() ),
     ChangeNotifierProvider<ProductProvider>(create: (context,) => ProductProvider()..fetchData()),
     ChangeNotifierProvider<CheckoutProvider>(create: (context,) => CheckoutProvider()..fetchDataa()),
-    ChangeNotifierProvider<ShoppingProvider>(create: (context,) => ShoppingProvider()..createDatabase()),
+    ChangeNotifierProvider<ShoppingProviderr>(create: (context,) => ShoppingProviderr()..createDatabase()),
 
+    ChangeNotifierProvider<chatProvider>(create: (context,) => chatProvider()),
   ],
   child: MyApp(widget: widget) ,
   ));}
@@ -52,7 +47,6 @@ void main() async{
 class MyApp extends StatefulWidget {
 Widget widget;
   MyApp({this.widget});
-
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -63,7 +57,7 @@ class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -75,16 +69,13 @@ class _MyAppState extends State<MyApp> {
         ForgetPasswordScreen.ROUTE_NAME:(context)=>ForgetPasswordScreen(),
         VerificationCode.ROUTE_NAME:(context)=>VerificationCode(),
         NewPasswordScreen.ROUTE_NAME:(context)=>NewPasswordScreen(),
-        chooseInterests.ROUTE_NAME:(context)=>chooseInterests(),
         HomePage.ROUTE_NAME:(context)=>HomePage(),
       },
       // initialRoute: ForgetPasswordScreen.ROUTE_NAME,
       //welcome==true?WelcomeScreen.ROUTE_NAME:LogInScreen.ROUTE_NAME,
       home:  widget.widget,);
-
-
-
-
   }
+
 }
+
 

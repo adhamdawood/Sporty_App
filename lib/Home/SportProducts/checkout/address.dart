@@ -47,19 +47,8 @@ CheckoutProvider provider;
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.arrow_back_ios_outlined,
-              color: Colors.black,
-            )),
-        title: Text(
-          "Address",
-          style: TextStyle(
-              fontSize: 14, color: Colors.black, fontWeight: FontWeight.w600),
-        ),
+        leading: IconButton(onPressed: (){Navigator.pop(context);}, icon: Icon(Icons.arrow_back_ios_outlined,color: Colors.black,)),
+        title: Text("Address",style: TextStyle(fontSize: 14 ,color: Colors.black,fontWeight: FontWeight.w600),),
       ),
       body: Padding(
         padding: const EdgeInsetsDirectional.only(start: 15, end: 15, top: 40),

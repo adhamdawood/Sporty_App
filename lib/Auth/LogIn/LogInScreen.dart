@@ -94,7 +94,7 @@ class _LogInScreenState extends State<LogInScreen> {
                             InkWell(
                               onTap: () {
                                 Navigator.of(context)
-                                    .push(MaterialPageRoute(builder: (_) => SignUpScreen()));
+                                    .pushReplacement(MaterialPageRoute(builder: (_) => SignUpScreen()));
                               },
                               child: const Text.rich(
                                 TextSpan(
@@ -121,13 +121,14 @@ class _LogInScreenState extends State<LogInScreen> {
       'password': password,
     });
     var url = Uri.parse(
-        '${baseApi}/api/Auth/login');
+        '${ApiUrl}/api/Auth/login');
     final response = await http.post(url,
         body: body, headers: {
           "content-type": "application/json",
           "Accept": "application/json",
         });
     if (response.statusCode == 200) {
+
       return await LoginResponse.fromJson(jsonDecode(response.body));
     } else if(response.statusCode==400&&onSignInButton==1) {
      flutterToast( msg: "Email or Password is Incorrect");
