@@ -51,14 +51,13 @@ Widget widget;
             ForgetPasswordScreen.ROUTE_NAME:(context)=>ForgetPasswordScreen(),
             VerificationCode.ROUTE_NAME:(context)=>VerificationCode(),
             NewPasswordScreen.ROUTE_NAME:(context)=>NewPasswordScreen(),
-            chooseInterests.ROUTE_NAME:(context)=>chooseInterests(),
             HomePage.ROUTE_NAME:(context)=>HomePage(),
             ChatBot.ROUTE_NAME:(context)=>ChatBot(),
             StartChat.ROUTE_NAME:(context)=>StartChat()
           },
           initialRoute: ChatBot.ROUTE_NAME,
           //welcome==true?WelcomeScreen.ROUTE_NAME:LogInScreen.ROUTE_NAME,
-         home: widget,
+         //home: widget,
         );
   }
 

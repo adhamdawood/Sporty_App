@@ -9,10 +9,7 @@ class StartChat extends StatelessWidget {
   List<Map> messsages = List();
   void response(String query) async{
     var request = http.Request('POST', Uri.parse('http://ahmedssaleem-001-site1.etempurl.com/api/chat-bot?message=${query}'));
-
-
     http.StreamedResponse response = await request.send();
-
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
     }
