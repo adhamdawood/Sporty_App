@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sporty_app/APIs/GetUserDetails.dart';
 import 'package:http/http.dart' as http;
 import 'package:sporty_app/Home/ProfileView/ProfileViewScreen.dart';
-
+import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 class ProfileInformation extends StatefulWidget {
   static const ROUTE_NAME = "Profile info";
   String firstName, lastName, email, city, street, mobileNumber;
@@ -570,7 +570,7 @@ Future<GetUserDetails> updateAlbum(String firstName, String lastName,
     Uri.parse('http://ahmedssaleem-001-site1.etempurl.com/api/users/profile'),
     headers: {
       'Authorization':
-          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1MzAyM2E1YS1jYTVjLTRhNGQtODUzMC01NmVjZGVkZWRkMzYiLCJlbWFpbCI6ImFobWVkd2FlbC44ODlAZ21haWwuY29tIiwidWlkIjoiYWQ4YzYzZjAtZGNhNC00MmI0LTljZTQtMGU4N2UyYWQwNDVjIiwiZXhwIjoxNjU3NzE3NzExLCJpc3MiOiJUZXN0SldUQXBpIiwiYXVkIjoiVGVzdEpXVEFwaVVzZXIifQ.fnUvVChTZWq5pZ9iYLsrjv1qaEhctvgr7k5pS73s-84',
+          'Bearer ${cacheHelper.sharedPreferences.getString("token")}',
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: widget.city!=null? jsonEncode({

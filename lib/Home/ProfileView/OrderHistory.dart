@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:sporty_app/APIs/OrderDetails.dart';
 import 'package:sporty_app/Home/ProfileView/OrderButtonStyle.dart';
 import 'package:http/http.dart' as http;
-
+import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 class OrderHistory extends StatefulWidget{
 
   static const ROUTE_NAME = "Order history";
@@ -78,12 +78,12 @@ class _OrderHistoryState extends State<OrderHistory> {
 
     final response = await http.get(Uri.parse('http://ahmedssaleem-001-site1.etempurl.com/api/orders/history'),
         headers: { 'Authorization':
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1MzAyM2E1YS1jYTVjLTRhNGQtODUzMC01NmVjZGVkZWRkMzYiLCJlbWFpbCI6ImFobWVkd2FlbC44ODlAZ21haWwuY29tIiwidWlkIjoiYWQ4YzYzZjAtZGNhNC00MmI0LTljZTQtMGU4N2UyYWQwNDVjIiwiZXhwIjoxNjU3NzE3NzExLCJpc3MiOiJUZXN0SldUQXBpIiwiYXVkIjoiVGVzdEpXVEFwaVVzZXIifQ.fnUvVChTZWq5pZ9iYLsrjv1qaEhctvgr7k5pS73s-84' });
+        'Bearer ${cacheHelper.sharedPreferences.getString("token")}' });
     if (response.statusCode == 200) {
 
       List jsonResponse = json.decode(response.body);
      allOrders= jsonResponse.map((data) => OrderDetails.fromJson(data)).toList();
-      
+
       return allOrders;
     } else {
       throw Exception('Unexpected error occured!');

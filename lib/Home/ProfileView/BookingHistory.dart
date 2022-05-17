@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sporty_app/APIs/ProgramDetails.dart';
 import 'package:sporty_app/Home/ProfileView/ProgramHistoryDesign.dart';
-
+import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 class BookingHistory extends StatefulWidget {
   static const ROUTE_NAME = "Booking history";
 
@@ -49,7 +49,7 @@ class _BookingHistoryState extends State<BookingHistory> {
                 style: TextStyle(color: Colors.black),
               ),),
             body: ListView.builder(itemBuilder: (buildContext, index) {
-              return ProgramHistoryDesign(image: allPrograms[index].imageUrl,price: allPrograms[index].pricePerMonth,name: "${allPrograms[index].name.substring(0, 29)}...",level: allPrograms[index].level,date: allPrograms[index].date);
+              return ProgramHistoryDesign(image: allPrograms[index].imageUrl,price: allPrograms[index].pricePerMonth,name: "${allPrograms[index].name.substring(0, 20)}...",level: allPrograms[index].level,date: allPrograms[index].date);
             },
               itemCount: allPrograms.length,
 
@@ -77,7 +77,7 @@ class _BookingHistoryState extends State<BookingHistory> {
 
     final response = await http.get(Uri.parse('http://ahmedssaleem-001-site1.etempurl.com/api/programs/history'),
         headers: { 'Authorization':
-        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1MzAyM2E1YS1jYTVjLTRhNGQtODUzMC01NmVjZGVkZWRkMzYiLCJlbWFpbCI6ImFobWVkd2FlbC44ODlAZ21haWwuY29tIiwidWlkIjoiYWQ4YzYzZjAtZGNhNC00MmI0LTljZTQtMGU4N2UyYWQwNDVjIiwiZXhwIjoxNjU3NzE3NzExLCJpc3MiOiJUZXN0SldUQXBpIiwiYXVkIjoiVGVzdEpXVEFwaVVzZXIifQ.fnUvVChTZWq5pZ9iYLsrjv1qaEhctvgr7k5pS73s-84'});
+        'Bearer ${cacheHelper.sharedPreferences.getString("token")}'});
     if (response.statusCode == 200) {
 
       List jsonResponse = json.decode(response.body);

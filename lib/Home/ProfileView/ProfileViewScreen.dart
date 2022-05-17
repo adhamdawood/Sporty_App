@@ -11,6 +11,7 @@ import 'package:sporty_app/Home/ProfileView/CreditCardsScreen.dart';
 import 'package:sporty_app/Home/ProfileView/OrderHistory.dart';
 import 'package:sporty_app/Home/ProfileView/ProfileInformation.dart';
 import 'package:http/http.dart' as http;
+import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const ROUTE_NAME = "Profile screen";
@@ -220,7 +221,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<GetUserDetails>getDetails()async {
     final response = await http.get(Uri.parse('http://ahmedssaleem-001-site1.etempurl.com/api/users/profile'),
-        headers:{'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI1MzAyM2E1YS1jYTVjLTRhNGQtODUzMC01NmVjZGVkZWRkMzYiLCJlbWFpbCI6ImFobWVkd2FlbC44ODlAZ21haWwuY29tIiwidWlkIjoiYWQ4YzYzZjAtZGNhNC00MmI0LTljZTQtMGU4N2UyYWQwNDVjIiwiZXhwIjoxNjU3NzE3NzExLCJpc3MiOiJUZXN0SldUQXBpIiwiYXVkIjoiVGVzdEpXVEFwaVVzZXIifQ.fnUvVChTZWq5pZ9iYLsrjv1qaEhctvgr7k5pS73s-84'}
+        headers:{'Authorization':'Bearer ${cacheHelper.sharedPreferences.getString("token")}'}
     );
     if (response.statusCode == 200) {
 
