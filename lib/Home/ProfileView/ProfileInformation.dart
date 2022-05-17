@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +7,9 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sporty_app/APIs/GetUserDetails.dart';
 import 'package:http/http.dart' as http;
 import 'package:sporty_app/Home/ProfileView/ProfileViewScreen.dart';
+import 'package:sporty_app/Models/Widgets.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
+import 'package:sporty_app/Home/HomeScreen.dart';
 class ProfileInformation extends StatefulWidget {
   static const ROUTE_NAME = "Profile info";
   String firstName, lastName, email, city, street, mobileNumber;
@@ -23,6 +26,17 @@ class ProfileInformation extends StatefulWidget {
 class _ProfileInformationState extends State<ProfileInformation> {
   final myController = TextEditingController();
   Future<GetUserDetails> userDetails;
+  String validateEmail(String value) {
+    String pattern =
+        r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+        r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
+        r"{0,253}[a-zA-Z0-9])?)*$";
+    RegExp regex = RegExp(pattern);
+    if (value == null || value.isEmpty || !regex.hasMatch(value))
+      return 'Enter a valid email address';
+    else
+      return null;
+  }
 
   void initState()  {
     // TODO: implement initState
@@ -108,6 +122,8 @@ class _ProfileInformationState extends State<ProfileInformation> {
                             horizontal: 8, vertical: 16),
                         child: TextFormField(
                           initialValue: widget.email,
+                          validator: (value)=> validateEmail(value),
+                          autovalidateMode: AutovalidateMode.always,
                           decoration: const InputDecoration(
                               border: UnderlineInputBorder(),
                               focusedBorder: UnderlineInputBorder(
@@ -217,6 +233,7 @@ class _ProfileInformationState extends State<ProfileInformation> {
 
               child: TextButton(
                 onPressed: () {
+
                   if(widget.mobileNumber.length!=11)
                     return Fluttertoast.showToast(
                         msg: "Please insert the full number",
@@ -230,10 +247,7 @@ class _ProfileInformationState extends State<ProfileInformation> {
                   else
                   if(widget.street==""||widget.firstName== "" ||
                   widget.lastName==""||
-                  widget.email==""||
-                  widget.city==""||
-
-                  widget.mobileNumber==""
+                  widget.email==""
                   ) return Fluttertoast.showToast(
                       msg: "Please insert the user details correctly",
                       toastLength: Toast.LENGTH_SHORT,
@@ -256,7 +270,7 @@ class _ProfileInformationState extends State<ProfileInformation> {
 
                     );
                     Navigator.of(context)
-                        .pushReplacementNamed(ProfileScreen.ROUTE_NAME);
+                        .pushReplacementNamed(HomePage.ROUTE_NAME);
                   });
 
                 },
@@ -593,6 +607,7 @@ Future<GetUserDetails> updateAlbum(String firstName, String lastName,
 
     return GetUserDetails.fromJson(jsonDecode(response.body));
   } else {
+    flutterToast(msg: response.body.characters.string);
     // If the server did not return a 200 OK response,
     // then throw an exception.
     throw Exception(response.body);

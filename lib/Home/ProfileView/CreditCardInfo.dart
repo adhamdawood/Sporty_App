@@ -7,6 +7,7 @@ import 'package:sporty_app/APIs/GetUserDetails.dart';
 import 'package:http/http.dart' as http;
 import 'package:sporty_app/Home/ProfileView/ProfileViewScreen.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
+import 'package:sporty_app/Home/HomeScreen.dart';
 class CreditCardInformation extends StatefulWidget {
   static const ROUTE_NAME = "Credit card info";
   String creditNumber,zipCode,creditId,creditExp;
@@ -53,6 +54,7 @@ class _CreditCardInformationState extends State<CreditCardInformation> {
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               child: TextFormField(
                 initialValue: widget.creditNumber,
+                keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                     border: UnderlineInputBorder(),
                     focusedBorder: UnderlineInputBorder(
@@ -69,6 +71,7 @@ class _CreditCardInformationState extends State<CreditCardInformation> {
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               child: TextFormField(
                 initialValue: widget.zipCode,
+                  keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
                     border: UnderlineInputBorder(),
                     focusedBorder: UnderlineInputBorder(
@@ -85,12 +88,14 @@ class _CreditCardInformationState extends State<CreditCardInformation> {
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
               child: TextFormField(
                 initialValue: widget.creditExp,
+                  keyboardType: TextInputType.datetime,
                 decoration: const InputDecoration(
                     border: UnderlineInputBorder(),
                     focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey)),
                     labelText: 'Expiration date',
                     labelStyle: TextStyle(color: Colors.grey)),
+                  maxLength: 7,
                   onChanged: (value) {
                     setState(() {
                       widget.creditExp = value;
@@ -128,7 +133,7 @@ class _CreditCardInformationState extends State<CreditCardInformation> {
                   setState(() {
                     updateAlbum(widget.firstName,widget.lastName,widget.email,widget.creditExp,widget.creditNumber,widget.zipCode,widget.creditId);
                   });
-                  Navigator.of(context).pushReplacementNamed(ProfileScreen.ROUTE_NAME);
+                  Navigator.of(context).pushReplacementNamed(HomePage.ROUTE_NAME);
 
                 },
                 child: const Text("Update",style: TextStyle(color: Colors.white),),),
