@@ -30,9 +30,12 @@ class CheckoutProvider extends ChangeNotifier {
           UserPaymentDataModel.fromJson(jsonResponse as Map<String, dynamic>);
 
       notifyListeners();
+      print(userPayment.creditCards[0].creditCardNumber);
+
       //  model.description = model.description!.substring(0,100);
       return userPayment;
     } else {
+      print("55555555 ${response.statusCode } ${response.body} ");
       throw Exception('Unexpected error occured!');
     }
   }
@@ -66,9 +69,9 @@ class CheckoutProvider extends ChangeNotifier {
         "mobileNumber" : userPayment.address.MobileNumber
       },
       "creditCard": {
-        "creditCardNumber": userPayment.creditCard[0].creditCardNumber,
-        "expirationDate": userPayment.creditCard[0].expirationDate,
-        "zipcode": userPayment.creditCard[0].zipcode
+        "creditCardNumber": userPayment.creditCards[0].creditCardNumber,
+        "expirationDate": userPayment.creditCards[0].expirationDate,
+        "zipcode": userPayment.creditCards[0].zipcode
       },
       "totalPrice": total,
       "products": makeProductsObject()
@@ -92,14 +95,14 @@ class CheckoutProvider extends ChangeNotifier {
   }
 
   void setCreditCard(String creditCardNum, String expirationDate, String zipCode){
-    if(userPayment.creditCard == null || userPayment.creditCard.length == 0){
-      userPayment.creditCard = <CreditCardModel>[];
-      userPayment.creditCard.add(new CreditCardModel(creditCardNumber: creditCardNum,
+    if(userPayment.creditCards == null || userPayment.creditCards.length == 0){
+      userPayment.creditCards = <CreditCardModel>[];
+      userPayment.creditCards.add(new CreditCardModel(creditCardNumber: creditCardNum,
           expirationDate: expirationDate, zipcode: zipCode));
       notifyListeners();
     }
     else{
-      userPayment.creditCard[0] = new CreditCardModel(creditCardNumber: creditCardNum,
+      userPayment.creditCards[0] = new CreditCardModel(creditCardNumber: creditCardNum,
           expirationDate: expirationDate, zipcode: zipCode);
       notifyListeners();
     }

@@ -7,7 +7,6 @@ import 'package:sporty_app/Home/SportProducts/products/screen/screen_products.da
 import 'package:sporty_app/Home/TrainingProgram/TrainingScreen.dart';
 import 'package:sporty_app/Home/TrainingProgram/training_programs/screen/trainings.dart';
 
-
 import '../Providers/productsProvider.dart';
 import 'ProfileView/ProfileViewScreen.dart';
 

@@ -173,7 +173,7 @@ class _CheckoutState extends State<Checkout> {
               onTap: (){
                 Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) =>CreditCard(total: total - 10,creditCard: provider.userPayment.creditCard,)));
+                    MaterialPageRoute(builder: (context) =>CreditCard(total: total - 10,creditCard: provider.userPayment.creditCards,)));
 
               },
               child: Container(
@@ -211,7 +211,7 @@ class _CheckoutState extends State<Checkout> {
                                 onTap: (){
                                   Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (context) =>CreditCard(total: total - 10,creditCard: provider.userPayment.creditCard,)));
+                                      MaterialPageRoute(builder: (context) =>CreditCard(total: total - 10,creditCard: provider.userPayment.creditCards,)));
                                 },
                                 child: Icon(Icons.arrow_forward_ios,size: 20,color: HexColor('8E8E93'),))
                           ],
@@ -220,9 +220,9 @@ class _CheckoutState extends State<Checkout> {
                       SizedBox(height: 6,),
                       Padding(
                         padding: const EdgeInsetsDirectional.only(start: 9,),
-                        child: Text("${provider.userPayment.creditCard.length == 0 ?
+                        child: Text("${provider.userPayment.creditCards.length == 0 ?
                         "Enter your Credit Card" :
-                        provider.userPayment.creditCard[0].creditCardNumber}",
+                        provider.userPayment.creditCards[0].creditCardNumber}",
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
@@ -336,12 +336,12 @@ class _CheckoutState extends State<Checkout> {
                 color: HexColor('E20030'),
                 borderRadius: BorderRadius.circular(10.0),
                 child: InkWell(
-                  onTap: () async{
-                    if(provider.userPayment.address == null || provider.userPayment.creditCard.length == 0){
+                  onTap: () {
+                    if(provider.userPayment.address == null || provider.userPayment.creditCards.length == 0){
                       return flutterToast(msg: "Address and Credit Card must be filled!!");
                     }
                     else {
-                      await provider.makeApiOrder(total);
+                       provider.makeApiOrder(total);
                       //cubit.deleteDatabase();
                       Navigator.push(
                         context,
