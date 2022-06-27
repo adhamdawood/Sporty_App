@@ -174,6 +174,8 @@ class ShoppingCubit extends Cubit<ShoppingCardStates>{
    void deleteDatabase() async{
     database.rawDelete('DELETE FROM cart').then((value){
       getFromDatabase(database);
+      emit(ShoppingDeleteProductDatabaseState());
+
     });
   }
 

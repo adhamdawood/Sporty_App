@@ -3,29 +3,40 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:sporty_app/Home/SportProducts/product/product_screen.dart';
+import 'package:sporty_app/Home/TrainingProgram/single_training/training_screen.dart';
 
 
  String ApiUrl="http://ahmedssaleem-001-site1.etempurl.com";
 
 
-TrainingProgramsWidget(data){
+TrainingProgramsWidget(data,context){
   return Container(
     width: double.maxFinite,
     height: 400,
     child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      //mainAxisAlignment: MainAxisAlignment.spaceAround,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          height: 200.0,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            image:  DecorationImage(image:  NetworkImage(data.imageUrl.toString()),
-              fit: BoxFit.cover,
+        InkWell(
+          onTap: (){
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) =>SingleTrainingScreen(id: data.trainingProgramId)),);
+
+          },
+          child: Container(
+            height: 230.0,
+             width: 351,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              image:  DecorationImage(image:  NetworkImage(data.imageUrl.toString()),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
-        SizedBox(height: 5,),
+        SizedBox(height: 7,),
         Row(
           children: [
             Container(
@@ -33,24 +44,24 @@ TrainingProgramsWidget(data){
               child: Text(data.name,
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
-                style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400,
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400,
 
                 ),
               ),
             ),
-            Spacer(),
-            Icon(Icons.star,color: Color(0xffFFC107),),
-            Text('4.6',
-              style: TextStyle(
-                  fontSize: 12.0,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black
-              ),
-            ),
+            // Spacer(),
+            // Icon(Icons.star,color: Color(0xffFFC107),),
+            // Text('4.6',
+            //   style: TextStyle(
+            //       fontSize: 12.0,
+            //       fontWeight: FontWeight.w600,
+            //       color: Colors.black
+            //   ),
+            // ),
           ],
         ),
 
-        SizedBox(height: 5.0,),
+        SizedBox(height: 7.0,),
         Row(
           children: [
             Text(data.level,
@@ -78,42 +89,54 @@ TrainingProgramsWidget(data){
     ),
   );
 }
-ProductsWidget(data){
+ProductsWidget(data,context){
   return Container(
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Stack(
           children: [
-            Container(
-              height: 150.0, width: 150.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                image:  DecorationImage(image:  NetworkImage(data.imageUrl.toString(),), // fit: BoxFit.cover,
+            InkWell(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>SingleProductScreen(id: data.productId)),);
+
+              },
+              child: Container(
+                height: 170.0, width: 165.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  image:  DecorationImage(image:  NetworkImage(data.imageUrl.toString(),),  fit: BoxFit.cover,
+                  ),
                 ),
               ),
             ),
-            Row(
-              children: const [
-                Padding(
-                  padding: EdgeInsetsDirectional.only(start: 10.0,top: 3.0),
-                  child: Icon(Icons.star,color: Color(0xffFFC107),),
-                ),
-                SizedBox(width: 2.0,),
-                Padding(
-                  padding:  EdgeInsetsDirectional.only(top: 5.0),
-                  child: Text('4.6',
-                    style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w600, color: Color(0xffFFC107)),),),
-              ],
-            ),
+           // SizedBox(height: 2),
+            // Row(
+            //   children: const [
+            //     Padding(
+            //       padding: EdgeInsetsDirectional.only(start: 10.0,top: 3.0),
+            //       child: Icon(Icons.star,color: Color(0xffFFC107),),
+            //     ),
+            //     SizedBox(width: 2.0,),
+            //     Padding(
+            //       padding:  EdgeInsetsDirectional.only(top: 5.0),
+            //       child: Text('4.6',
+            //         style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.w600, color: Color(0xffFFC107)),),),
+            //   ],
+            // ),
           ],
         ),
+        SizedBox(height: 4,),
         Text(data.name.toString(),
           maxLines: 3,
           overflow: TextOverflow.ellipsis,
           style: const TextStyle(fontSize: 12.0, fontWeight: FontWeight.w400,),
         ),
+        SizedBox(height: 4,),
+
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [

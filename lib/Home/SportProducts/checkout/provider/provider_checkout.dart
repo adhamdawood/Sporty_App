@@ -2,10 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sporty_app/Home/HomeScreen.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/model/address_model.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/model/user_payment_data_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:sporty_app/Home/SportProducts/checkout/success.dart';
 import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
+import 'package:sporty_app/Models/Widgets.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 
 import '../../consttt.dart';
@@ -55,7 +58,7 @@ class CheckoutProvider extends ChangeNotifier {
     return productListObject;
   }
 
-  void makeApiOrder(double total) async{
+  void makeApiOrder(double total,context) async{
     var headers = {
       'Authorization': 'Bearer ${cacheHelper.sharedPreferences.getString("token")}',
       'Content-Type': 'application/json'
@@ -81,10 +84,14 @@ class CheckoutProvider extends ChangeNotifier {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Success() ));
       print(await response.stream.bytesToString());
     }
+    else if (response.statusCode == 400){
+      flutterToast( msg: "Address & Credit is Incorrect");
+      print(response.reasonPhrase);
+    }
     else {
-    print(response.reasonPhrase);
     }
 
   }

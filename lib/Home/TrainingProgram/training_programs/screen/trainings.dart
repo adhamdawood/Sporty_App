@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
@@ -129,89 +130,91 @@ class _ScreenState extends State<TrainingScreen> {
                                 MaterialPageRoute(builder: (context) =>SingleTrainingScreen(id: provider.searchTraining[index].trainingProgramId)),);
                             },
                             child: Padding(
-                              padding: const EdgeInsetsDirectional.only(start: 28,),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.only(start: 0,),
-                                    child: Container(
-                                      height: 131.0,
-                                      width: 340.0,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10.0),
-                                        image:  DecorationImage(image:  NetworkImage(provider.searchTraining[index].imageUrl.toString(),),
-                                          fit: BoxFit.cover,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  SizedBox(height: 5,),
-                                  Row(
-
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.only(start: 0.0),
-                                        child: Container(
-                                          width: 250,
-                                          child: Text(
-                                            provider.searchTraining[index].name.toString(),
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                              fontSize: 12.0,
-                                              fontWeight: FontWeight.w400,
-
-                                            ),
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              child: Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.only(start: 0,),
+                                      child: Container(
+                                        height: 131.0,
+                                        width: 340.0,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10.0),
+                                          image:  DecorationImage(image:  NetworkImage(provider.searchTraining[index].imageUrl.toString(),),
+                                            fit: BoxFit.cover,
                                           ),
                                         ),
                                       ),
+                                    ),
+                                    SizedBox(height: 5,),
+                                    Row(
 
-                                    ],
-                                  ),
-                                  // SizedBox(height: 0.0,),
-                                  // Padding(
-                                  //   padding: const EdgeInsetsDirectional.only(start: 16.0),
-                                  //   child: Text(
-                                  //     data[index].descriptionMinimized.toString(),
-                                  //     maxLines: 3,
-                                  //     overflow: TextOverflow.ellipsis,
-                                  //     style: TextStyle(
-                                  //       fontSize: 12.0,
-                                  //       fontWeight: FontWeight.w400,
-                                  //
-                                  //     ),
-                                  //   ),
-                                  // ),
-                                  SizedBox(height: 5.0,),
-                                  Row(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsetsDirectional.only(start: 0.0),
-                                        child: Text("${provider.searchTraining[index].level.toString()}",
-                                          style: TextStyle(
-                                              color: Colors.grey
-                                          ),),
-                                      ),
-                                      SizedBox(width: 8.0,),
-                                      Container(
-                                        height: 10.0,
-                                        width: 1.0,
-                                        color: HexColor('E20030'),
-                                      ),
-                                      SizedBox(width: 8.0,),
-                                      ///
-                                      Text('${provider.searchTraining[index].sportName.toString()}',
-                                        style: TextStyle(
-                                            fontSize: 12.0,
-                                            fontWeight: FontWeight.w600,
-                                            fontStyle: FontStyle.normal
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsetsDirectional.only(start: 0.0),
+                                          child: Container(
+                                            width: 250,
+                                            child: Text(
+                                              provider.searchTraining[index].name.toString(),
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                fontSize: 12.0,
+                                                fontWeight: FontWeight.w400,
+
+                                              ),
+                                            ),
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+
+                                      ],
+                                    ),
+                                    // SizedBox(height: 0.0,),
+                                    // Padding(
+                                    //   padding: const EdgeInsetsDirectional.only(start: 16.0),
+                                    //   child: Text(
+                                    //     data[index].descriptionMinimized.toString(),
+                                    //     maxLines: 3,
+                                    //     overflow: TextOverflow.ellipsis,
+                                    //     style: TextStyle(
+                                    //       fontSize: 12.0,
+                                    //       fontWeight: FontWeight.w400,
+                                    //
+                                    //     ),
+                                    //   ),
+                                    // ),
+                                    SizedBox(height: 5.0,),
+                                    Row(
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsetsDirectional.only(start: 0.0),
+                                          child: Text("${provider.searchTraining[index].level.toString()}",
+                                            style: TextStyle(
+                                                color: Colors.grey
+                                            ),),
+                                        ),
+                                        SizedBox(width: 8.0,),
+                                        Container(
+                                          height: 10.0,
+                                          width: 1.0,
+                                          color: HexColor('E20030'),
+                                        ),
+                                        SizedBox(width: 8.0,),
+                                        ///
+                                        Text('${provider.searchTraining[index].sportName.toString()}',
+                                          style: TextStyle(
+                                              fontSize: 12.0,
+                                              fontWeight: FontWeight.w600,
+                                              fontStyle: FontStyle.normal
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),)

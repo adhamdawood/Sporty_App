@@ -38,6 +38,7 @@ var formKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
     provider = Provider.of<CheckoutProvider>(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
@@ -47,121 +48,119 @@ var formKey = GlobalKey<FormState>();
       ),
       body: Padding(
         padding: const EdgeInsetsDirectional.only(start: 15,end: 15,top: 40 ),
-        child: SingleChildScrollView(
-          child: Form(
-            key: formKey,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Credit card number",
-                    style: TextStyle(
-                        color: Colors.grey,
+        child: Form(
+          key: formKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Credit card number",
+                  style: TextStyle(
+                      color: Colors.grey,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w400
+                  )),
+              TextFormField(
+                keyboardType: TextInputType.number,
+                controller: credirCardNumController,
+                validator: (value){
+                  if(value.isEmpty)
+                  {
+                    return ' credit card number must not be empty';
+
+                  }
+                  return null;
+
+                } ,
+
+              ),
+              SizedBox(height: 30,),
+              Text("Zipcode",
+                  style: TextStyle(color: Colors.grey,
                       fontSize: 14,
                       fontWeight: FontWeight.w400
-                    )),
-                TextFormField(
-                  keyboardType: TextInputType.number,
-                  controller: credirCardNumController,
-                  validator: (value){
-                    if(value.isEmpty)
-                    {
-                      return ' credit card number must not be empty';
+                  ),),
+              TextFormField(keyboardType: TextInputType.number,
+                controller: zipCodeController,
+                validator: (value){
+                  if(value.isEmpty)
+                  {
+                    return ' zipcode must not be empty';
 
-                    }
-                    return null;
+                  }
+                  return null;
 
-                  } ,
+                } ,
+              ),
+              SizedBox(height: 30,),
+              Text("Expiration date",
+                  style: TextStyle(color: Colors.grey,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400
+                  )),
+              TextFormField(
+                controller: expirationDateController,
+                keyboardType: TextInputType.datetime,
+                // onTap: (){
+                //   showDatePicker(context: context,
+                //       initialDate: DateTime.now(),
+                //       firstDate: DateTime.now(),
+                //       lastDate: DateTime(2100)).then((value) {
+                //     expirationDateController.text = DateFormat.yMMMd().format(value);
+                //
+                //   });;
+                // },
+                validator: (value){
+                  if(value.isEmpty)
+                  {
+                    return 'expiration date must not be empty';
 
+                  }
+                  return null;
+
+                } ,
+                decoration: InputDecoration(
+                    suffixIcon: Icon(Icons.date_range_outlined,color: Colors.black,)
                 ),
-                SizedBox(height: 30,),
-                Text("Zipcode",
-                    style: TextStyle(color: Colors.grey,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400
-                    ),),
-                TextFormField(keyboardType: TextInputType.number,
-                  controller: zipCodeController,
-                  validator: (value){
-                    if(value.isEmpty)
-                    {
-                      return ' zipcode must not be empty';
+              ),
+             Spacer(),
+             //  SizedBox(height: 240,),
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child:  Material(
+                  color: Color(0xffE20030),
+                  borderRadius: BorderRadius.circular(10.0),
+                  child: InkWell(
+                    onTap: () {
+                      if (formKey.currentState.validate()){
+                        provider.setCreditCard(credirCardNumController.text,
+                            expirationDateController.text, zipCodeController.text);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) =>Checkout(subTotal: subtotal,)),);
+                      }
 
-                    }
-                    return null;
-
-                  } ,
-                ),
-                SizedBox(height: 30,),
-                Text("Expiration date",
-                    style: TextStyle(color: Colors.grey,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w400
-                    )),
-                TextFormField(
-                  controller: expirationDateController,
-                  keyboardType: TextInputType.datetime,
-                  // onTap: (){
-                  //   showDatePicker(context: context,
-                  //       initialDate: DateTime.now(),
-                  //       firstDate: DateTime.now(),
-                  //       lastDate: DateTime(2100)).then((value) {
-                  //     expirationDateController.text = DateFormat.yMMMd().format(value);
-                  //
-                  //   });;
-                  // },
-                  validator: (value){
-                    if(value.isEmpty)
-                    {
-                      return 'expiration date must not be empty';
-
-                    }
-                    return null;
-
-                  } ,
-                  decoration: InputDecoration(
-                      suffixIcon: Icon(Icons.date_range_outlined,color: Colors.black,)
-                  ),
-                ),
-               // Spacer(),
-                SizedBox(height: 240,),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child:  Material(
-                    color: Color(0xffE20030),
-                    borderRadius: BorderRadius.circular(10.0),
-                    child: InkWell(
-                      onTap: () {
-                        if (formKey.currentState.validate()){
-                          provider.setCreditCard(credirCardNumController.text,
-                              expirationDateController.text, zipCodeController.text);
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) =>Checkout(subTotal: subtotal,)),);
-                        }
-
-                        },
-                      child: Container(
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width,
-                        height: MediaQuery
-                            .of(context)
-                            .size
-                            .height * .05,
-                        decoration: BoxDecoration(),
-                        child:  Center(child: Text(  'Update' ,
-                          style: TextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.w500,
-                              color: Colors.white),)),
-                      ),
+                      },
+                    child: Container(
+                      width: MediaQuery
+                          .of(context)
+                          .size
+                          .width,
+                      height: MediaQuery
+                          .of(context)
+                          .size
+                          .height * .05,
+                      decoration: BoxDecoration(),
+                      child:  Center(child: Text(  'Update' ,
+                        style: TextStyle(
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white),)),
                     ),
                   ),
                 ),
+              ),
 
-              ],
-            ),
+            ],
           ),
         ),
       ),
