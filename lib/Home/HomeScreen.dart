@@ -7,19 +7,24 @@ import 'package:sporty_app/Home/SportProducts/products/screen/screen_products.da
 import 'package:sporty_app/Home/TrainingProgram/TrainingScreen.dart';
 import 'package:sporty_app/Home/TrainingProgram/training_programs/screen/trainings.dart';
 
-
 import '../Providers/productsProvider.dart';
 import 'ProfileView/ProfileViewScreen.dart';
 
 class HomePage extends StatefulWidget {
   static String  ROUTE_NAME="Home";
+  final int index ;
+  HomePage( this.index);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState(index);
 }
 
 class _HomePageState extends State<HomePage> {
   int selectedIndex=2;
+
+  _HomePageState(int index){
+    selectedIndex = index;
+  }
   @override
   Widget build(BuildContext context) {
     return  Scaffold(

@@ -13,6 +13,7 @@ import 'package:sporty_app/Home/ProfileView/OrderHistory.dart';
 import 'package:sporty_app/Home/ProfileView/OrderInformation.dart';
 import 'package:sporty_app/Home/ProfileView/ProfileInformation.dart';
 import 'package:sporty_app/Home/ProfileView/ProfileViewScreen.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/success.dart';
 import 'package:sporty_app/Providers/ChatBotProvider.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 import 'package:sporty_app/WelcomeScreen.dart';
@@ -33,7 +34,7 @@ void main() async{
   if(welcome == false){
     if(token!=null)
     {
-      widget=HomePage();
+      widget=HomePage(2);
     }else{
       widget=LogInScreen();
     }
@@ -76,14 +77,14 @@ class _MyAppState extends State<MyApp> {
         ForgetPasswordScreen.ROUTE_NAME:(context)=>ForgetPasswordScreen(),
         VerificationCode.ROUTE_NAME:(context)=>VerificationCode(),
         NewPasswordScreen.ROUTE_NAME:(context)=>NewPasswordScreen(),
-        HomePage.ROUTE_NAME:(context)=>HomePage(),
+        HomePage.ROUTE_NAME:(context)=>HomePage(2),
         ProfileScreen.ROUTE_NAME:(context)=>ProfileScreen(),
         ProfileInformation.ROUTE_NAME:(context)=>ProfileInformation(),
         CreditCardsScreen.ROUTE_NAME: (context)=>CreditCardsScreen(),
         CreditCardInformation.ROUTE_NAME: (context)=>CreditCardInformation(),
         OrderHistory.ROUTE_NAME: (context)=>OrderHistory(),
         OrderInformation.ROUTE_NAME: (context)=>OrderInformation(),
-        BookingHistory.ROUTE_NAME: (context)=>BookingHistory()
+        BookingHistory.ROUTE_NAME: (context)=>BookingHistory(),
       },
       // initialRoute: ForgetPasswordScreen.ROUTE_NAME,
       //welcome==true?WelcomeScreen.ROUTE_NAME:LogInScreen.ROUTE_NAME,

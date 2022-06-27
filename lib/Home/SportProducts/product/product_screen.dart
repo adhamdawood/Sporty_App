@@ -57,7 +57,7 @@ class _ProductScreenState extends State<SingleProductScreen> {
                         height: MediaQuery
                             .of(context)
                             .size
-                            .height * .53,
+                            .height * .52,
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: NetworkImage('${data.imageUrl}'),

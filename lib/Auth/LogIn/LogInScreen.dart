@@ -36,7 +36,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   if (snapshot.hasData){
                    cacheHelper.saveData(key: "token", value: snapshot.data.token);
                    cacheHelper.saveData(key: "refreshToken", value : snapshot.data.refreshToken);
-                    return HomePage();
+                    return HomePage(2);
                   }else {
                     return Scaffold(
                       body: Container(

@@ -61,9 +61,15 @@ class SuccessTraining extends StatelessWidget {
              color: HexColor('E20030'),
              borderRadius: BorderRadius.circular(10.0),
              child: InkWell(
-               onTap: () {Navigator.push(
-                 context,
-                 MaterialPageRoute(builder: (context) =>HomePage()),);},
+               onTap: () {
+                 Navigator.pushAndRemoveUntil(
+                     context,
+                     MaterialPageRoute(
+                       builder: (context) => HomePage(2),
+                     ),
+                         (route) => false);
+
+                 },
                child: Container(
                  width: MediaQuery
                      .of(context)

@@ -44,6 +44,7 @@ class ProductProvider extends ChangeNotifier{
   List<MydataModel> filterItems(String filterParam){
     if(filterParam == "All"){
       searchProducts = allProducts;
+     // searchProducts.sort((a,b)=>a.price.compareTo(b.price));
       notifyListeners();
       return searchProducts;
     }

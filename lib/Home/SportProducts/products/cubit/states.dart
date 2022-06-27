@@ -8,6 +8,8 @@ class ShoppingGetDatabaseState extends ShoppingCardStates{}
 
 class ShoppingDeleteDatabaseState extends ShoppingCardStates{}
 
+class ShoppingDeleteProductDatabaseState extends ShoppingCardStates{}
+
 class ShoppingInsertDatabaseState extends ShoppingCardStates{}
 
 class ShoppingUpdateDatabaseState extends ShoppingCardStates{}

@@ -2,10 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sporty_app/Home/HomeScreen.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/model/address_model.dart';
 import 'package:sporty_app/Home/SportProducts/checkout/model/user_payment_data_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:sporty_app/Home/SportProducts/checkout/success.dart';
 import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
+import 'package:sporty_app/Models/Widgets.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 
 import '../../consttt.dart';
@@ -30,9 +33,12 @@ class CheckoutProvider extends ChangeNotifier {
           UserPaymentDataModel.fromJson(jsonResponse as Map<String, dynamic>);
 
       notifyListeners();
+      print(userPayment.creditCards[0].creditCardNumber);
+
       //  model.description = model.description!.substring(0,100);
       return userPayment;
     } else {
+      print("55555555 ${response.statusCode } ${response.body} ");
       throw Exception('Unexpected error occured!');
     }
   }
@@ -52,7 +58,7 @@ class CheckoutProvider extends ChangeNotifier {
     return productListObject;
   }
 
-  void makeApiOrder(double total) async{
+  void makeApiOrder(double total,context) async{
     var headers = {
       'Authorization': 'Bearer ${cacheHelper.sharedPreferences.getString("token")}',
       'Content-Type': 'application/json'
@@ -66,9 +72,9 @@ class CheckoutProvider extends ChangeNotifier {
         "mobileNumber" : userPayment.address.MobileNumber
       },
       "creditCard": {
-        "creditCardNumber": userPayment.creditCard[0].creditCardNumber,
-        "expirationDate": userPayment.creditCard[0].expirationDate,
-        "zipcode": userPayment.creditCard[0].zipcode
+        "creditCardNumber": userPayment.creditCards[0].creditCardNumber,
+        "expirationDate": userPayment.creditCards[0].expirationDate,
+        "zipcode": userPayment.creditCards[0].zipcode
       },
       "totalPrice": total,
       "products": makeProductsObject()
@@ -78,10 +84,14 @@ class CheckoutProvider extends ChangeNotifier {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Success() ));
       print(await response.stream.bytesToString());
     }
+    else if (response.statusCode == 400){
+      flutterToast( msg: "Address & Credit is Incorrect");
+      print(response.reasonPhrase);
+    }
     else {
-    print(response.reasonPhrase);
     }
 
   }
@@ -92,14 +102,14 @@ class CheckoutProvider extends ChangeNotifier {
   }
 
   void setCreditCard(String creditCardNum, String expirationDate, String zipCode){
-    if(userPayment.creditCard == null || userPayment.creditCard.length == 0){
-      userPayment.creditCard = <CreditCardModel>[];
-      userPayment.creditCard.add(new CreditCardModel(creditCardNumber: creditCardNum,
+    if(userPayment.creditCards == null || userPayment.creditCards.length == 0){
+      userPayment.creditCards = <CreditCardModel>[];
+      userPayment.creditCards.add(new CreditCardModel(creditCardNumber: creditCardNum,
           expirationDate: expirationDate, zipcode: zipCode));
       notifyListeners();
     }
     else{
-      userPayment.creditCard[0] = new CreditCardModel(creditCardNumber: creditCardNum,
+      userPayment.creditCards[0] = new CreditCardModel(creditCardNumber: creditCardNum,
           expirationDate: expirationDate, zipcode: zipCode);
       notifyListeners();
     }

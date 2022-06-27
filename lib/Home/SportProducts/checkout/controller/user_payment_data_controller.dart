@@ -21,7 +21,7 @@ var token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI4NDVmZDk4Yy1jMmE1LT
     var jsonResponse = json.decode(response.body);
     print("in fetch ${jsonResponse.runtimeType}");
     var model = UserPaymentDataModel.fromJson(jsonResponse as Map<String, dynamic>);
-    print("after calling ${model.address} ${model.creditCard}");
+    print("after calling ${model.address} ${model.creditCards}");
     if(model.address == null){
       model.address = new AddressModel(street: "Enter your Address", buildingNumber: 0, city: "");
     }
