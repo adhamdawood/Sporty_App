@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sporty_app/APIs/GetUserDetails.dart';
+import 'package:sporty_app/Models/Widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:sporty_app/Home/ProfileView/ProfileViewScreen.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
@@ -200,6 +201,7 @@ class _CreditCardInformationState extends State<CreditCardInformation> {
 
       return GetUserDetails.fromJson(jsonDecode(response.body));
     } else {
+      flutterToast(msg: response.body.characters.string);
       // If the server did not return a 200 OK response,
       // then throw an exception.
       throw Exception(response.body);

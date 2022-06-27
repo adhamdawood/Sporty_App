@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:sporty_app/Models/Widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sporty_app/APIs/GetUserDetails.dart';

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:sporty_app/APIs/GetUserDetails.dart';
+import 'package:sporty_app/Models/Widgets.dart';
 import 'package:sporty_app/APIs/ProgramDetails.dart';
 import 'package:sporty_app/Home/ProfileView/BookingHistory.dart';
 import 'package:sporty_app/Home/ProfileView/CreditCardInfo.dart';
@@ -12,6 +13,8 @@ import 'package:sporty_app/Home/ProfileView/OrderHistory.dart';
 import 'package:sporty_app/Home/ProfileView/ProfileInformation.dart';
 import 'package:http/http.dart' as http;
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
+
+import '../../Auth/LogIn/LogInScreen.dart';
 
 class ProfileScreen extends StatefulWidget {
   static const ROUTE_NAME = "Profile screen";
@@ -197,7 +200,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 width: 400,
                 height: 55,
                 child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+      cacheHelper.removeData(key: "token").then((value) {
+              if(value){
+                 Navigator.pushNamed(context,LogInScreen.ROUTE_NAME);
+               }
+               cacheHelper.removeData(key: "refreshToken");
+             });
+                    },
                     icon: Row(
                       children: [
                         Icon(Icons.logout,color: const Color(0xFF3f88c5)),
@@ -228,6 +238,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       dynamic jsonResponse = json.decode(response.body);
       return GetUserDetails.fromJson(jsonDecode(response.body));
     } else {
+      flutterToast(msg: "No internet connection!");
       throw Exception('Unexpected error occured!');
     }
   }

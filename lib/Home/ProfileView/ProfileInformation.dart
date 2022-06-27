@@ -13,7 +13,7 @@ import 'package:sporty_app/Home/HomeScreen.dart';
 class ProfileInformation extends StatefulWidget {
   static const ROUTE_NAME = "Profile info";
   String firstName, lastName, email, city, street, mobileNumber;
-  int bNumber;
+  int bNumber,valid=1;
   ProfileInformation({this.firstName,this.lastName,this.email,this.street,this.city,this.bNumber,this.mobileNumber});
 
   final myController2 = TextEditingController();
@@ -32,10 +32,14 @@ class _ProfileInformationState extends State<ProfileInformation> {
         r"{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]"
         r"{0,253}[a-zA-Z0-9])?)*$";
     RegExp regex = RegExp(pattern);
-    if (value == null || value.isEmpty || !regex.hasMatch(value))
-      return 'Enter a valid email address';
-    else
+    if (value == null || value.isEmpty || !regex.hasMatch(value)){
+      widget.valid=1;
+      return 'Enter a valid email address';}
+
+    else {
+      widget.valid=0;
       return null;
+    }
   }
 
   void initState()  {
@@ -140,7 +144,7 @@ class _ProfileInformationState extends State<ProfileInformation> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 16),
                         child: TextFormField(
-                          initialValue: widget.city!=null?widget.city:" ",
+                          initialValue: widget.city!=null?widget.city:"",
                           decoration: const InputDecoration(
                               border: UnderlineInputBorder(),
                               focusedBorder: UnderlineInputBorder(
@@ -157,14 +161,14 @@ class _ProfileInformationState extends State<ProfileInformation> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 16),
                         child: TextFormField(
-                          initialValue: widget.street!=null?widget.street:" ",
+                          initialValue: widget.street!=null?widget.street:"",
                           decoration: const InputDecoration(
                               border: UnderlineInputBorder(),
                               focusedBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(color: Colors.grey)),
                               labelText: 'Street',
                               labelStyle: TextStyle(color: Colors.grey)),
-                          onSaved:  (value) {
+                          onChanged:  (value) {
                             setState(() {
                               widget.street = value;
                             });
@@ -175,7 +179,7 @@ class _ProfileInformationState extends State<ProfileInformation> {
                             horizontal: 8, vertical: 16),
                         child: TextFormField(
                           initialValue:
-                          widget.bNumber.toString(),
+                          widget.bNumber.toString() == "null" ? "" : widget.bNumber.toString(),
                           keyboardType: TextInputType.number,
                           decoration: const InputDecoration(
                               border: UnderlineInputBorder(),
@@ -193,7 +197,7 @@ class _ProfileInformationState extends State<ProfileInformation> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8, vertical: 16),
                         child: TextFormField(
-                          initialValue: widget.mobileNumber!=null?widget.mobileNumber:" ",
+                          initialValue: widget.mobileNumber!=null?widget.mobileNumber:"",
                           decoration: const InputDecoration(
                               border: UnderlineInputBorder(),
 
@@ -247,7 +251,7 @@ class _ProfileInformationState extends State<ProfileInformation> {
                   else
                   if(widget.street==""||widget.firstName== "" ||
                   widget.lastName==""||
-                  widget.email==""
+                  widget.email==""||widget.valid==1
                   ) return Fluttertoast.showToast(
                       msg: "Please insert the user details correctly",
                       toastLength: Toast.LENGTH_SHORT,
@@ -580,6 +584,8 @@ class _ProfileInformationState extends State<ProfileInformation> {
 
 Future<GetUserDetails> updateAlbum(String firstName, String lastName,
     String email, String city, String street, String mobileNumber,int bNumber) async {
+    print(street);
+    print(bNumber);
   final response = await http.put(
     Uri.parse('http://ahmedssaleem-001-site1.etempurl.com/api/users/profile'),
     headers: {

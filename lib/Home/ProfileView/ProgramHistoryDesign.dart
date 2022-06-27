@@ -54,23 +54,25 @@ class ProgramHistoryDesign extends StatelessWidget {
 
 
 
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(right: 8.0,bottom: 4.0,top: 7),
-                                child: Text(name,style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500),),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 8.0,bottom: 10.0,top: 14.0),
-                                child: Text(level,style: TextStyle(color: Colors.grey,fontWeight: FontWeight.w500),),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 8.0,bottom: 9.0,top: 4.0),
-                                child: Text("$price\$".toString(),style: TextStyle(color: const Color(0xFF3f88c5),fontWeight: FontWeight.bold),),
-                              ),
-                            ],
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8.0,bottom: 4.0,top: 7),
+                                  child: Text(name,style: TextStyle(color: Colors.black,fontWeight: FontWeight.w500),overflow: TextOverflow.ellipsis,),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8.0,bottom: 10.0,top: 14.0),
+                                  child: Text(level,style: TextStyle(color: Colors.grey,fontWeight: FontWeight.w500),),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(right: 8.0,bottom: 9.0,top: 4.0),
+                                  child: Text("$price\$".toString(),style: TextStyle(color: const Color(0xFF3f88c5),fontWeight: FontWeight.bold),),
+                                ),
+                              ],
+                            ),
                           ),
                           SizedBox(
                             width: 5,

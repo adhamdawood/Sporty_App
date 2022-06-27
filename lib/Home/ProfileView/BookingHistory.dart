@@ -48,8 +48,9 @@ class _BookingHistoryState extends State<BookingHistory> {
                 'training history',
                 style: TextStyle(color: Colors.black),
               ),),
+
             body: ListView.builder(itemBuilder: (buildContext, index) {
-              return ProgramHistoryDesign(image: allPrograms[index].imageUrl,price: allPrograms[index].pricePerMonth,name: "${allPrograms[index].name.substring(0, 20)}...",level: allPrograms[index].level,date: allPrograms[index].date);
+              return ProgramHistoryDesign(image: allPrograms[index].imageUrl,price: allPrograms[index].pricePerMonth,name: "${allPrograms[index].name}...",level: allPrograms[index].level,date: allPrograms[index].date);
             },
               itemCount: allPrograms.length,
 
