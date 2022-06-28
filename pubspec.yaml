@@ -46,6 +46,7 @@ dependencies:
   flutter_bloc: ^8.0.1
   bloc: ^8.0.1
   carousel_slider: ^4.1.1
+  circle_bottom_navigation: ^1.0.6
 
 
 

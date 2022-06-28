@@ -1,4 +1,5 @@
 
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -13,30 +14,31 @@ import 'package:sporty_app/Home/TrainingProgram/single_training/training_screen.
 TrainingProgramsWidget(data,context){
   return Container(
     width: double.maxFinite,
-    height: 400,
+    height: MediaQuery.of(context).size.height,
     child: Column(
       //mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+
         InkWell(
           onTap: (){
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) =>SingleTrainingScreen(id: data.trainingProgramId)),);
-
           },
+
           child: Container(
-            height: 230.0,
-             width: 351,
+            height: MediaQuery.of(context).size.height * 0.25,
+             width: MediaQuery.of(context).size.width  ,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10.0),
-              image:  DecorationImage(image:  NetworkImage(data.imageUrl.toString()),
+              image:  DecorationImage(image:NetworkImage(data.imageUrl.toString()),
                 fit: BoxFit.cover,
               ),
             ),
           ),
         ),
-        SizedBox(height: 7,),
+        SizedBox(height:7,),
         Row(
           children: [
             Container(
@@ -105,7 +107,9 @@ ProductsWidget(data,context){
 
               },
               child: Container(
-                height: 170.0, width: 165.0,
+                height: MediaQuery.of(context).size.height * 0.2,
+                width: MediaQuery.of(context).size.width  ,
+               // height: 170.0, width: 165.0,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   image:  DecorationImage(image:  NetworkImage(data.imageUrl.toString(),),  fit: BoxFit.cover,

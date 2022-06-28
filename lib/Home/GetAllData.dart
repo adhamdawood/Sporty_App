@@ -92,8 +92,8 @@ class _getAllDataState extends State<getAllData> {
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
                             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              childAspectRatio: 0.83,
-                                crossAxisCount: 1,mainAxisSpacing: 0,crossAxisSpacing: 0),
+                              childAspectRatio: 0.747,
+                                crossAxisCount: 1,mainAxisSpacing: 5,crossAxisSpacing: 0),
                             itemBuilder: (_, index) =>TrainingProgramsWidget(widget.homeData.trainingPrograms[index],context),
                             itemCount: widget.homeData.trainingPrograms.length,
                           ),
@@ -122,8 +122,8 @@ class _getAllDataState extends State<getAllData> {
                         shrinkWrap: true,
                         scrollDirection: Axis.horizontal,
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          childAspectRatio: 1.6,
-                            crossAxisCount: 1,mainAxisSpacing: 0,crossAxisSpacing: 0),
+                          childAspectRatio: 1.5,
+                            crossAxisCount: 1,mainAxisSpacing: 7,crossAxisSpacing: 0),
                         itemBuilder: (_, index) =>ProductsWidget(widget.homeData.products[index],context),
                         itemCount: widget.homeData.products.length,
                       ),
