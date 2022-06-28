@@ -88,7 +88,7 @@ class OrderInformation extends StatelessWidget {
                           SizedBox(height: 15,),
                           Container(child: ListView.builder(itemBuilder: (buildContext,index){
                             return OrderInformationDesign(productDetails[index].name,productDetails[index].amount,productDetails[index].totalItemPrice,productDetails[index].imageUrl);
-                          },itemCount: 2,),width: 400,height: 450,),
+                          },itemCount: productDetails[index].amount,),width: 400,height: 450,),
 
                           Align(child: Text('Payment',textAlign: TextAlign.start,style: TextStyle(fontWeight: FontWeight.bold),),alignment: Alignment.topLeft,),
                           SizedBox(height: 10,),
