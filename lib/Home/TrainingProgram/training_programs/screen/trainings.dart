@@ -85,7 +85,7 @@ class _ScreenState extends State<TrainingScreen> {
                 child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 42.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 38.0),
                         child: TextFormField(
                             //controller: searchController,
                             onChanged: (value)
@@ -130,7 +130,7 @@ class _ScreenState extends State<TrainingScreen> {
                                 MaterialPageRoute(builder: (context) =>SingleTrainingScreen(id: provider.searchTraining[index].trainingProgramId)),);
                             },
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(horizontal: 16),
+                              padding: const EdgeInsets.symmetric(horizontal: 25),
                               child: Center(
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -139,11 +139,11 @@ class _ScreenState extends State<TrainingScreen> {
                                     Padding(
                                       padding: const EdgeInsetsDirectional.only(start: 0,),
                                       child: Container(
-                                        height: 131.0,
+                                        height: 150.0,
                                         width: 340.0,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(10.0),
-                                          image:  DecorationImage(image:  NetworkImage(provider.searchTraining[index].imageUrl.toString(),),
+                                          image: DecorationImage(image:  NetworkImage(provider.searchTraining[index].imageUrl.toString(),),
                                             fit: BoxFit.cover,
                                           ),
                                         ),
