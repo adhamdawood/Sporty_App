@@ -62,6 +62,7 @@ var formKey = GlobalKey<FormState>();
               TextFormField(
                 keyboardType: TextInputType.number,
                 controller: credirCardNumController,
+                maxLength: 16,
                 validator: (value){
                   if(value.isEmpty)
                   {
@@ -81,6 +82,7 @@ var formKey = GlobalKey<FormState>();
                   ),),
               TextFormField(keyboardType: TextInputType.number,
                 controller: zipCodeController,
+                maxLength: 5,
                 validator: (value){
                   if(value.isEmpty)
                   {

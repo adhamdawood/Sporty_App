@@ -89,6 +89,7 @@ class CheckoutProvider extends ChangeNotifier {
     }
     else if (response.statusCode == 400){
       flutterToast( msg: "Address & Credit is Incorrect");
+      Navigator.pop(context);
       print(response.reasonPhrase);
     }
     else {

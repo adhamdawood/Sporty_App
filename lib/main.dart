@@ -88,7 +88,9 @@ class _MyAppState extends State<MyApp> {
       },
       // initialRoute: ForgetPasswordScreen.ROUTE_NAME,
       //welcome==true?WelcomeScreen.ROUTE_NAME:LogInScreen.ROUTE_NAME,
-      home:  widget.widget,);
+      home:  widget.widget,
+     debugShowMaterialGrid: false,
+    );
   }
 
 }

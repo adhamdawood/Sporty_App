@@ -136,6 +136,7 @@ CheckoutProvider provider;
                            keyboardType: TextInputType.number,
                            controller: controlerMobile,
                            onTap: () {},
+                           maxLength: 11,
                            validator: (value) {
                              if (value.isEmpty) {
                                return 'mobile number must not be empty';
