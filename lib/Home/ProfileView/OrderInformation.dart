@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
 import 'package:sporty_app/APIs/OrderDetails.dart';
-import 'package:sporty_app/Home/ProfileView/OrderInformationDesign.dart';
+import 'package:sporty_app/modules/ProfileView/OrderInformationDesign.dart';
 class OrderInformation extends StatelessWidget {
   String city,street,date,creditCard;
   int ordersCount,index;

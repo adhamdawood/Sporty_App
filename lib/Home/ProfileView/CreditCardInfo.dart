@@ -4,11 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:sporty_app/APIs/GetUserDetails.dart';
-import 'package:sporty_app/Models/Widgets.dart';
+import 'package:sporty_app/componants/componants.dart';
 import 'package:http/http.dart' as http;
-import 'package:sporty_app/Home/ProfileView/ProfileViewScreen.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
-import 'package:sporty_app/Home/HomeScreen.dart';
+import 'package:sporty_app/layuot/Home/HomeScreen.dart';
 class CreditCardInformation extends StatefulWidget {
   static const ROUTE_NAME = "Credit card info";
   String creditNumber,zipCode,creditId,creditExp;

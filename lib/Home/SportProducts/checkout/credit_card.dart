@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:sporty_app/Home/SportProducts/checkout/checkout.dart';
-import 'package:sporty_app/Home/SportProducts/checkout/model/CreditCardModel.dart';
-import 'package:sporty_app/Home/SportProducts/checkout/provider/provider_checkout.dart';
+import 'package:sporty_app/modules/SportProducts/checkout/checkout.dart';
+
+import 'model/CreditCardModel.dart';
+import 'provider/provider_checkout.dart';
 
 class CreditCard extends StatefulWidget {
   final double total;

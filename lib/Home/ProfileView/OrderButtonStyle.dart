@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sporty_app/APIs/OrderDetails.dart';
-import 'package:sporty_app/Home/ProfileView/OrderInformation.dart';
+import 'package:sporty_app/modules/ProfileView/OrderInformation.dart';
 
 class OrderButtonStyle extends StatelessWidget {
 String city,street,date,creditCard;

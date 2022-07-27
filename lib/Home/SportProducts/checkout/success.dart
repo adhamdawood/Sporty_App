@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
-import 'package:sporty_app/Home/HomeScreen.dart';
-import 'package:sporty_app/Home/SportProducts/checkout/provider/provider_checkout.dart';
-import 'package:sporty_app/Home/SportProducts/checkout/provider/provider_success.dart';
-import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
+import 'package:sporty_app/layuot/Home/HomeScreen.dart';
+
 
 class Success extends StatefulWidget {
   static const  ROUTE_NAME ="SuccessProduct";

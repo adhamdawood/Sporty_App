@@ -2,16 +2,15 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sporty_app/Home/HomeScreen.dart';
-import 'package:sporty_app/Home/SportProducts/checkout/model/address_model.dart';
-import 'package:sporty_app/Home/SportProducts/checkout/model/user_payment_data_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:sporty_app/Home/SportProducts/checkout/success.dart';
-import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
-import 'package:sporty_app/Models/Widgets.dart';
-import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 
-import '../../consttt.dart';
+import 'package:sporty_app/componants/componants.dart';
+import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
+import 'package:sporty_app/modules/SportProducts/checkout/model/address_model.dart';
+import 'package:sporty_app/modules/SportProducts/checkout/model/user_payment_data_model.dart';
+import 'package:sporty_app/modules/SportProducts/checkout/success.dart';
+
+import '../../../../componants/consttt.dart';
 import '../model/CreditCardModel.dart';
 
 class CheckoutProvider extends ChangeNotifier {

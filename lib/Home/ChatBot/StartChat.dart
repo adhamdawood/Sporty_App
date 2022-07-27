@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-import 'package:sporty_app/Models/Widgets.dart';
+import 'package:sporty_app/componants/componants.dart';
 
 import '../../Providers/ChatBotProvider.dart';
 

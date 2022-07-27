@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:sporty_app/Auth/LogIn/VerificationCode.dart';
-import 'package:sporty_app/Home/SportProducts/consttt.dart';
+import 'package:sporty_app/componants/componants.dart';
+import 'package:sporty_app/modules/Auth/LogIn/VerificationCode.dart';
 
-import '../../Models/Widgets.dart';
 
 
 class ForgetPasswordScreen extends StatefulWidget {

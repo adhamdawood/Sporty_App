@@ -2,8 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:sporty_app/Home/SportProducts/consttt.dart';
-import 'package:sporty_app/Models/Widgets.dart';
+import 'package:sporty_app/componants/componants.dart';
 
 
 import '../LogIn/LogInScreen.dart';

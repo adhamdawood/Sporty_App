@@ -5,14 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
-import 'package:sporty_app/Home/SportProducts/checkout/checkout.dart';
-import 'package:sporty_app/Home/SportProducts/checkout/controller/user_payment_data_controller.dart';
-import 'package:sporty_app/Home/SportProducts/consttt.dart';
-import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
-import 'package:sporty_app/Home/SportProducts/products/cubit/states.dart';
-import 'package:sporty_app/Home/SportProducts/products/screen/screen_products.dart';
+import 'package:sporty_app/modules/SportProducts/checkout/checkout.dart';
+import 'package:sporty_app/modules/SportProducts/products/cubit/cubit.dart';
+import 'package:sporty_app/modules/SportProducts/products/cubit/states.dart';
 
-import '../../../Models/Widgets.dart';
+
+import '../../../componants/componants.dart';
 
 class ShoppingCard extends StatelessWidget {
   // var training_programs = cacheHelperr.training_programs;

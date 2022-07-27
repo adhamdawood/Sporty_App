@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sporty_app/Home/ChatBot/StartChat.dart';
+import 'package:sporty_app/modules/ChatBot/StartChat.dart';
 
 class ChatBot extends StatelessWidget {
   static String ROUTE_NAME = "ChatBotWelcomeScreen";

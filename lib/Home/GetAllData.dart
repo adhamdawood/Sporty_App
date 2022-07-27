@@ -3,11 +3,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:sporty_app/APIs/GetData.dart';
-import 'package:sporty_app/Home/HomeScreen.dart';
-import 'package:sporty_app/Home/SportProducts/checkout/shopping_card.dart';
-import 'package:sporty_app/Home/SportProducts/product/product_screen.dart';
-import 'package:sporty_app/Home/SportProducts/products/screen/screen_products.dart';
-import 'package:sporty_app/Models/Widgets.dart';
+import 'package:sporty_app/componants/componants.dart';
+import 'package:sporty_app/layuot/Home/HomeScreen.dart';
+import 'package:sporty_app/modules/SportProducts/checkout/shopping_card.dart';
 
 
 class getAllData extends StatefulWidget {
