@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sporty_app/layuot/Home/AllProductsAndTraining.dart';
-import 'package:sporty_app/modules/ChatBot/ChatBotScreen.dart';
-import 'package:sporty_app/modules/ProfileView/ProfileViewScreen.dart';
-import 'package:sporty_app/modules/SportProducts/products/screen/screen_products.dart';
-import 'package:sporty_app/modules/TrainingProgram/training_programs/screen/trainings.dart';
+import 'package:sporty_app/Home/AllProductsAndTraining.dart';
+import 'package:sporty_app/Home/ChatBot/ChatBotScreen.dart';
+import 'package:sporty_app/Home/ProfileView/ProfileViewScreen.dart';
+import 'package:sporty_app/Home/SportProducts/products/screen/screen_products.dart';
+import 'package:sporty_app/Home/TrainingProgram/training_programs/screen/trainings.dart';
 
 
 class HomePage extends StatefulWidget {

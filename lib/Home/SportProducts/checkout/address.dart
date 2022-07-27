@@ -3,9 +3,9 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
-import 'package:sporty_app/modules/SportProducts/checkout/checkout.dart';
-import 'package:sporty_app/modules/SportProducts/checkout/model/address_model.dart';
-import 'package:sporty_app/modules/SportProducts/checkout/provider/provider_checkout.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/checkout.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/model/address_model.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/provider/provider_checkout.dart';
 
 class Address extends StatefulWidget {
   final double total;

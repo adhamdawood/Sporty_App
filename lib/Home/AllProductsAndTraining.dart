@@ -6,8 +6,8 @@ import 'package:http/http.dart' as http;
 import 'package:sporty_app/APIs/GetData.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 import 'package:sporty_app/componants/componants.dart';
-import 'package:sporty_app/layuot/Home/GetAllData.dart';
-import 'package:sporty_app/modules/Auth/LogIn/LogInScreen.dart';
+import 'package:sporty_app/Home/GetAllData.dart';
+import 'package:sporty_app/Auth/LogIn/LogInScreen.dart';
 
 
 class AllProductsAndTraining extends StatefulWidget {
@@ -30,7 +30,7 @@ class _AllProductsAndTrainingState extends State<AllProductsAndTraining> {
       (future: getHomeData,
         builder: (buildContext,snapShot){
           if(snapShot.hasError){
-            return CircularProgressIndicator();
+            return Center(child: CircularProgressIndicator());
           }else if(snapShot.hasData){
             return getAllData(snapShot.data);
           }else{

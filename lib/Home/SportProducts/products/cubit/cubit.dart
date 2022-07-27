@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:sporty_app/modules/SportProducts/checkout/model/address_model.dart';
-import 'package:sporty_app/modules/SportProducts/products/cart_product_model.dart';
-import 'package:sporty_app/modules/SportProducts/products/cubit/states.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/model/address_model.dart';
+import 'package:sporty_app/Home/SportProducts/products/cart_product_model.dart';
+import 'package:sporty_app/Home/SportProducts/products/cubit/states.dart';
 
 import 'package:sqflite/sqflite.dart';
 

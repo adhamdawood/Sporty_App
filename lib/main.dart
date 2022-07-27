@@ -1,28 +1,28 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sporty_app/Auth/LogIn/ForgetPasswordScreen.dart';
-import 'package:sporty_app/Auth/LogIn/NewPasswordScreen.dart';
-import 'package:sporty_app/Auth/LogIn/VerificationCode.dart';
-import 'package:sporty_app/Auth/SignUp/SignUpScreen.dart';
-import 'package:sporty_app/Home/HomeScreen.dart';
-import 'package:sporty_app/Home/ProfileView/BookingHistory.dart';
-import 'package:sporty_app/Home/ProfileView/CreditCardInfo.dart';
-import 'package:sporty_app/Home/ProfileView/CreditCardsScreen.dart';
-import 'package:sporty_app/Home/ProfileView/OrderHistory.dart';
-import 'package:sporty_app/Home/ProfileView/OrderInformation.dart';
-import 'package:sporty_app/Home/ProfileView/ProfileInformation.dart';
-import 'package:sporty_app/Home/ProfileView/ProfileViewScreen.dart';
-import 'package:sporty_app/Home/SportProducts/checkout/success.dart';
 import 'package:sporty_app/Providers/ChatBotProvider.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 import 'package:sporty_app/WelcomeScreen.dart';
-import 'Auth/LogIn/LogInScreen.dart';
-import 'Home/SportProducts/checkout/provider/provider_checkout.dart';
+import 'package:sporty_app/Home/HomeScreen.dart';
+import 'package:sporty_app/Auth/LogIn/ForgetPasswordScreen.dart';
+import 'package:sporty_app/Auth/LogIn/LogInScreen.dart';
+import 'package:sporty_app/Auth/LogIn/NewPasswordScreen.dart';
+import 'package:sporty_app/Auth/LogIn/VerificationCode.dart';
+import 'package:sporty_app/Auth/SignUp/SignUpScreen.dart';
+import 'package:sporty_app/Home/ProfileView/BookingHistory.dart';
+import 'package:sporty_app/Home/ProfileView/CreditCardInfo.dart';
+import 'package:sporty_app/Home/ProfileView/CreditCardsScreen.dart';
+import 'package:sporty_app/Home/ProfileView/ProfileInformation.dart';
+import 'package:sporty_app/Home/ProfileView/ProfileViewScreen.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/provider/provider_checkout.dart';
+import 'package:sporty_app/Home/SportProducts/products/screen/mydata_controller.dart';
+import 'package:sporty_app/Home/TrainingProgram/training_programs/screen/provider_trainings.dart';
+
+import 'Home/ProfileView/OrderHistory.dart';
+import 'Home/ProfileView/OrderInformation.dart';
 import 'Home/SportProducts/checkout/provider/provider_success.dart';
-import 'Home/SportProducts/products/cubit/cubit.dart';
-import 'Home/SportProducts/products/screen/mydata_controller.dart';
-import 'Home/TrainingProgram/training_programs/screen/provider_trainings.dart';
+
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,11 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
-import 'package:sporty_app/Home/SportProducts/products/screen/mydata_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
+import 'package:sporty_app/Home/SportProducts/products/screen/mydata_model.dart';
 
-import '../Models/Widgets.dart';
+import '../componants/componants.dart';
 
 class productProvider extends ChangeNotifier{
 

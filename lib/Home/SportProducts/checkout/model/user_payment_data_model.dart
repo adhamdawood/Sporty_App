@@ -1,6 +1,6 @@
 
-import 'package:sporty_app/modules/SportProducts/checkout/model/CreditCardModel.dart';
-import 'package:sporty_app/modules/SportProducts/checkout/model/address_model.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/model/CreditCardModel.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/model/address_model.dart';
 
 class UserPaymentDataModel {
   AddressModel address;

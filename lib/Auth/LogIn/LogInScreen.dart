@@ -2,10 +2,10 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:sporty_app/APIs/login_response.dart';
 import 'package:http/http.dart' as http;
+import 'package:sporty_app/Auth/LogIn/ForgetPasswordScreen.dart';
+import 'package:sporty_app/Home/HomeScreen.dart';
 import 'package:sporty_app/componants/componants.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
-import 'package:sporty_app/layuot/Home/HomeScreen.dart';
-import 'package:sporty_app/modules/Auth/LogIn/ForgetPasswordScreen.dart';
 
 import '../SignUp/SignUpScreen.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
-import 'package:sporty_app/layuot/Home/HomeScreen.dart';
+import 'package:sporty_app/Home/HomeScreen.dart';
 
 
 class Success extends StatefulWidget {

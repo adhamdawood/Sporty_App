@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:sporty_app/layuot/Home/HomeScreen.dart';
+import 'package:sporty_app/Home/HomeScreen.dart';
 
 class SuccessTraining extends StatelessWidget {
   const SuccessTraining({Key key}) : super(key: key);

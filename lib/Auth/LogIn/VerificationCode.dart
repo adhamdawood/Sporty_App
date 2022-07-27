@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:sporty_app/APIs/CheckResetToken.dart';
+import 'package:sporty_app/Auth/LogIn/NewPasswordScreen.dart';
 import 'package:sporty_app/componants/componants.dart';
-import 'package:sporty_app/modules/Auth/LogIn/NewPasswordScreen.dart';
 
 class VerificationCode extends StatefulWidget {
   static const ROUTE_NAME="verificationCode";

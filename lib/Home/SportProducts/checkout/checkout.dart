@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
-import 'package:sporty_app/modules/SportProducts/checkout/address.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/address.dart';
 import 'package:sporty_app/componants/componants.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
-import 'package:sporty_app/modules/SportProducts/checkout/credit_card.dart';
-import 'package:sporty_app/modules/SportProducts/checkout/model/user_payment_data_model.dart';
-import 'package:sporty_app/modules/SportProducts/checkout/provider/provider_checkout.dart';
-import 'package:sporty_app/modules/SportProducts/checkout/provider/provider_success.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/credit_card.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/model/user_payment_data_model.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/provider/provider_checkout.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/provider/provider_success.dart';
 
 class Checkout extends StatefulWidget {
   final double subTotal;

@@ -4,9 +4,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
-import 'package:sporty_app/modules/SportProducts/checkout/shopping_card.dart';
-import 'package:sporty_app/modules/TrainingProgram/single_training/training_screen.dart';
-import 'package:sporty_app/modules/TrainingProgram/training_programs/screen/provider_trainings.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/shopping_card.dart';
+import 'package:sporty_app/Home/TrainingProgram/single_training/training_screen.dart';
+import 'package:sporty_app/Home/TrainingProgram/training_programs/screen/provider_trainings.dart';
 
 import 'mydata_model.dart';
 

@@ -8,12 +8,12 @@ import 'package:sporty_app/componants/componants.dart';
 import 'package:sporty_app/APIs/ProgramDetails.dart';
 import 'package:http/http.dart' as http;
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
-import 'package:sporty_app/modules/Auth/LogIn/LogInScreen.dart';
-import 'package:sporty_app/modules/ProfileView/BookingHistory.dart';
-import 'package:sporty_app/modules/ProfileView/CreditCardInfo.dart';
-import 'package:sporty_app/modules/ProfileView/CreditCardsScreen.dart';
-import 'package:sporty_app/modules/ProfileView/OrderHistory.dart';
-import 'package:sporty_app/modules/ProfileView/ProfileInformation.dart';
+import 'package:sporty_app/Auth/LogIn/LogInScreen.dart';
+import 'package:sporty_app/Home/ProfileView/BookingHistory.dart';
+import 'package:sporty_app/Home/ProfileView/CreditCardInfo.dart';
+import 'package:sporty_app/Home/ProfileView/CreditCardsScreen.dart';
+import 'package:sporty_app/Home/ProfileView/OrderHistory.dart';
+import 'package:sporty_app/Home/ProfileView/ProfileInformation.dart';
 
 
 class ProfileScreen extends StatefulWidget {

@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
-import 'package:sporty_app/modules/SportProducts/checkout/shopping_card.dart';
-import 'package:sporty_app/modules/SportProducts/product/product_controller.dart';
-import 'package:sporty_app/modules/SportProducts/product/product_model.dart';
-import 'package:sporty_app/modules/SportProducts/products/cart_product_model.dart';
-import 'package:sporty_app/modules/SportProducts/products/cubit/cubit.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/shopping_card.dart';
+import 'package:sporty_app/Home/SportProducts/product/product_controller.dart';
+import 'package:sporty_app/Home/SportProducts/product/product_model.dart';
+import 'package:sporty_app/Home/SportProducts/products/cart_product_model.dart';
+import 'package:sporty_app/Home/SportProducts/products/cubit/cubit.dart';
 
 class SingleProductScreen extends StatefulWidget {
   final String id;

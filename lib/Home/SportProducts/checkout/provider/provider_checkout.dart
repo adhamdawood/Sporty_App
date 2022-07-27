@@ -6,9 +6,9 @@ import 'package:http/http.dart' as http;
 
 import 'package:sporty_app/componants/componants.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
-import 'package:sporty_app/modules/SportProducts/checkout/model/address_model.dart';
-import 'package:sporty_app/modules/SportProducts/checkout/model/user_payment_data_model.dart';
-import 'package:sporty_app/modules/SportProducts/checkout/success.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/model/address_model.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/model/user_payment_data_model.dart';
+import 'package:sporty_app/Home/SportProducts/checkout/success.dart';
 
 import '../../../../componants/consttt.dart';
 import '../model/CreditCardModel.dart';

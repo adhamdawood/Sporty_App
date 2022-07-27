@@ -2,7 +2,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
 import 'package:sporty_app/componants/consttt.dart';
-import 'package:sporty_app/modules/TrainingProgram/single_training/training_model.dart';
+import 'package:sporty_app/Home/TrainingProgram/single_training/training_model.dart';
+import 'package:sporty_app/Home/TrainingProgram/single_training/training_model.dart';
 
 Future<SingleTrainingModel> singleTrainingData({ String id}) async {
 

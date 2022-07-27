@@ -7,7 +7,7 @@ import 'package:sporty_app/APIs/ProgramDetails.dart';
 // import 'package:sporty_app/Home/ProfileView/ProgramHistoryDesign.dart';
 // import 'package:sporty_app/Home/ProfileView/ProgramHistoryDesign.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
-import 'package:sporty_app/modules/ProfileView/ProgramHistoryDesign.dart';
+import 'package:sporty_app/Home/ProfileView/ProgramHistoryDesign.dart';
 
 // import '../../Home/ProfileView/ProgramHistoryDesign.dart';
 class BookingHistory extends StatefulWidget {

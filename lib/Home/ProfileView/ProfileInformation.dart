@@ -8,7 +8,7 @@ import 'package:sporty_app/APIs/GetUserDetails.dart';
 import 'package:http/http.dart' as http;
 import 'package:sporty_app/componants/componants.dart';
 import 'package:sporty_app/Shared_preferences/Cache_Helper.dart';
-import 'package:sporty_app/layuot/Home/HomeScreen.dart';
+import 'package:sporty_app/Home/HomeScreen.dart';
 class ProfileInformation extends StatefulWidget {
   static const ROUTE_NAME = "Profile info";
   String firstName, lastName, email, city, street, mobileNumber;

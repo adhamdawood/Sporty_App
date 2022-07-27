@@ -2,7 +2,7 @@ import 'dart:convert';
 
 
 import 'package:http/http.dart' as http;
-import 'package:sporty_app/modules/SportProducts/products/screen/mydata_model.dart';
+import 'package:sporty_app/Home/SportProducts/products/screen/mydata_model.dart';
 
 Future<List<MydataModel>> searchData(String query) async {
   final response =

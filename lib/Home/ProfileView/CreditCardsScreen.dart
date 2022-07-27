@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sporty_app/APIs/GetUserDetails.dart';
 import 'package:http/http.dart' as http;
-import 'package:sporty_app/modules/ProfileView/CreditCardInfo.dart';
+import 'package:sporty_app/Home/ProfileView/CreditCardInfo.dart';
 class CreditCardsScreen extends StatefulWidget {
   static const ROUTE_NAME = "Credit cards";
   String creditNumber,zipCode,creditId,mobileNumber;
